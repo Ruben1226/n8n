@@ -9,7 +9,7 @@ Compatibilidad con el máster: ✅ compatible (parcial o TFM) · ⏳ encaja al t
 
 | # | Puesto / programa | Organización | Estado | Compat. | Por qué encaja |
 |---|---|---|---|---|---|
-| 1 | Beca JAE Intro ICU 2026 (20 h/sem, 600 €/mes) | IEM-CSIC, Física Nuclear Experimental | 🟢 2º plazo 1–30 sept. 2026 | ✅ | Ya conoces al grupo (CALIFA/R3B). Requisito: estar matriculado en un máster incluido en la ficha del instituto y superar la nota mínima. |
+| 1 | Contrato de apoyo, TFM o JAE Intro 2027 (primer plazo, ~feb.–mar. 2027) | IEM-CSIC, Física Nuclear Experimental | 🔵 (el IEM **no** está en el 2º plazo JAE 2026: solo IFIC en física nuclear) | ✅ | Ya conoces al grupo (CALIFA/R3B). Pregunta a tu tutor si el IEM entrará en la JAE Intro de 2027. |
 | 2 | TFM + contrato de apoyo técnico (PET, protonterapia, IA en imagen) | Grupo de Física Nuclear UCM (IPARCOS) | 🔵 | ✅ | Continúa tu TFG. López Herraiz (profesor de Aplicada II) lleva proyectos de la Comunidad de Madrid 2026-28. |
 | 3 | TFM → contrato predoctoral FPI (secciones eficaces de neutrones, n_TOF, MONSTER) | CIEMAT – Unidad de Innovación Nuclear (D. Cano Ott) | 🔵/🟡 | ✅ | Cano Ott es profesor de Aplicada II; el grupo pide espectroscopía γ/n, Monte Carlo y análisis. |
 | 4 | Titulado Superior (actividades científico-técnicas) / predoc | CIEMAT (física médica, fusión LNF, partículas) | 🟡 varias al año | ⏳ | Convocatorias periódicas para físicos. |
@@ -49,7 +49,7 @@ Reservas: ILL Grenoble (doctorados; convocatoria hacia primavera), ESS Lund, Med
 
 ## Etapa 3 — 10 con mayor probabilidad de éxito (distintas de las listas anteriores)
 
-Nota: por probabilidad, los números 1 y 2 de Madrid (JAE en el IEM y el GFN-UCM) serían los primeros de esta lista, porque ya te conocen.
+Nota: por probabilidad, los números 1 y 2 de Madrid (el grupo del IEM y el GFN-UCM) serían los primeros de esta lista, porque ya te conocen.
 
 | # | Opción | Probabilidad | Motivo |
 |---|---|---|---|
@@ -83,7 +83,7 @@ Nota: por probabilidad, los números 1 y 2 de Madrid (JAE en el IEM y el GFN-UCM
 
 ## Plazos inmediatos
 
-- 30/09/2026: JAE Intro ICU (2º plazo).
+- 30/09/2026: JAE Intro ICU (2º plazo). En física nuclear solo participa el IFIC (Valencia, presencial, nota media ≥7,5); el IEM no está en este plazo.
 - 16/10/2026: CERN Technical Student y Doctoral Student 2027-1.
 - Otoño de 2026: GANIL, CEA y convocatoria del JRC para marzo de 2027 (comprobar).
 - 31/01/2027 (aprox.): GSI/FAIR Summer Student Program.
