@@ -101,3 +101,23 @@ Nota: por probabilidad, los números 1 y 2 de Madrid (el grupo del IEM y el GFN-
 6. **Reconstrucción de imagen PET (STIR / SIRF)** — UCL / CCP SyneRBI. Gratis, sin certificado. https://github.com/UCL/STIR-exercises/ · https://www.ccpsynerbi.ac.uk/
 7. **Geant4 Beginner Course** — material del equipo de Geant4. Gratis. https://geant4-beginner-course.readthedocs.io/
 8. De pago, opcionales: **OpenMC** (curso online de la NEA-OCDE, ~450 €, mayo) y **FLUKA** para principiantes (NEA/CERN, ~600 €, mayo).
+
+## Doctorados industriales en Madrid
+
+**Programas (la solicitud la presenta la empresa, junto con una universidad o centro de investigación):**
+- Comunidad de Madrid – Doctorados Industriales: convocatoria anual; la de 2026 fue del 23/03 al 21/04. **Objetivo: la convocatoria de 2027 (marzo–abril de 2027)**, para empezar al acabar el máster.
+- AEI – Doctorados Industriales: la convocatoria de 2026 va del 30/09 al 26/10/2026, pero exige estar matriculado o admitido en un doctorado en 2026/27 al firmar el contrato. Casi seguro que no llegas: apunta a la de 2027.
+
+**Empresas con más encaje con el perfil** (✔ = caso de doctorado industrial o colaboración en tesis encontrado):
+1. SEDECAL – imagen PET/CT preclínica; ✔ colaboración de transferencia con BiiG (UC3M–HGUGM) y la UCM.
+2. Centro de Protonterapia Quirónsalud – protonterapia (tu TFG).
+3. Bioterra – ✔ doctorado industrial de la Comunidad de Madrid (IND2017) con la UPM sobre dosimetría de neutrones en protonterapia.
+4. Tecnatom – servicios nucleares y radiológicos.
+5. Enresa – ✔ financia tesis (residuos, caracterización radiológica).
+6. ENUSA – ✔ financia tesis (combustible nuclear).
+7. Westinghouse Electric Spain – blindajes, dosis y residuos.
+8. Siemens Healthineers España – imagen médica.
+9. Alter Technology TÜV Nord – ensayos de radiación en electrónica espacial.
+10. Indra / GMV – ✔ Indra tiene un programa propio de doctorado industrial; encaje menor (solo por la parte de datos).
+
+**Estrategia:** entre enero y febrero de 2027, conseguir un director académico (GFN-UCM, CIEMAT, IEM-CSIC o el departamento de Ingeniería Nuclear de la UPM) y proponer el proyecto a la empresa para la convocatoria de la Comunidad de Madrid.
