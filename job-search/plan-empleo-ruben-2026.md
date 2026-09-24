@@ -90,3 +90,14 @@ Nota: por probabilidad, los números 1 y 2 de Madrid (el grupo del IEM y el GFN-
 - Febrero de 2027: ESA Graduate Trainee (ESAC está en Madrid).
 - Jun.–jul. de 2027: ayudantes de investigación de la Comunidad de Madrid.
 - Ya cerradas: becas de colaboración del Ministerio (22/09/2026) e inscripción RFIR 2027 (14/09/2026).
+
+## Cursos recomendados para el CV (sección "Formación complementaria")
+
+1. **Medical Applications of Particle Accelerators** — Universidad de Lund (Coursera). Gratis; certificado gratis si te conceden la ayuda económica. https://www.coursera.org/learn/medical-applications-particle-accelerators
+2. **Fundamentals of Particle Accelerator Technology** — Universidad de Lund (Coursera). Mismas condiciones. https://www.coursera.org/learn/fundamentals-particle-accelerator-technology
+3. **Radiation Protection in Nuclear Medicine** — OIEA (e-learning). Gratis, con certificado. https://elearning.iaea.org/m2/
+4. **Safety and Quality in Radiotherapy** — OIEA (e-learning). Gratis, con certificado. https://elearning.iaea.org/m2/
+5. **Occupational Radiation Protection** — OIEA (e-learning). Gratis, con certificado. https://elearning.iaea.org/m2/course/index.php?categoryid=109
+6. **Reconstrucción de imagen PET (STIR / SIRF)** — UCL / CCP SyneRBI. Gratis, sin certificado. https://github.com/UCL/STIR-exercises/ · https://www.ccpsynerbi.ac.uk/
+7. **Geant4 Beginner Course** — material del equipo de Geant4. Gratis. https://geant4-beginner-course.readthedocs.io/
+8. De pago, opcionales: **OpenMC** (curso online de la NEA-OCDE, ~450 €, mayo) y **FLUKA** para principiantes (NEA/CERN, ~600 €, mayo).
