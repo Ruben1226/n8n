@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Claude Code Office</title>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">▣</span>
+        <h1 id="office-name">Claude Code Office</h1>
+        <span id="demo-badge" class="demo-badge" hidden>DEMO — datos ficticios</span>
+      </div>
+      <div class="status-strip">
+        <span id="conn" class="pill pill-connecting" role="status">Conectando…</span>
+        <span id="freshness" class="pill" title="Antigüedad del último dato recibido">—</span>
+        <button id="attention" class="pill pill-attn" hidden title="Agentes que esperan tu permiso o respuesta"></button>
+      </div>
+      <nav class="actions" aria-label="Vistas">
+        <button id="btn-view" class="btn" aria-pressed="false">Lista</button>
+        <button id="btn-events" class="btn" aria-pressed="false">Eventos</button>
+        <button id="btn-legend" class="btn">Leyenda</button>
+        <button id="btn-status" class="btn">Estado</button>
+        <button id="btn-motion" class="btn" aria-pressed="false" title="Reducir movimiento">Animación: sí</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <section id="stage" class="stage" aria-label="Oficina">
+        <div id="game" class="game"></div>
+        <div class="zoom" role="group" aria-label="Zoom">
+          <button id="zoom-in" class="btn round" aria-label="Acercar">+</button>
+          <button id="zoom-out" class="btn round" aria-label="Alejar">−</button>
+          <button id="zoom-fit" class="btn round" aria-label="Encajar vista">⤢</button>
+        </div>
+        <div id="empty" class="empty" hidden>
+          <p><strong>No hay actividad registrada todavía.</strong></p>
+          <p>Instala los hooks (<code>python3 collector/install_hooks.py --install</code>) y abre una sesión de Claude Code, o arranca con <code>scripts/run.sh --demo</code>.</p>
+        </div>
+      </section>
+
+      <section id="list-view" class="list-view" aria-label="Lista de entidades" hidden>
+        <table>
+          <thead>
+            <tr><th>Entidad</th><th>Tipo</th><th>Estado</th><th>Fuente</th><th>Último evento</th></tr>
+          </thead>
+          <tbody id="list-body"></tbody>
+        </table>
+      </section>
+
+      <aside id="detail" class="panel detail" aria-label="Detalle" hidden>
+        <div class="panel-head">
+          <h2 id="d-name">—</h2>
+          <button id="d-close" class="btn round" aria-label="Cerrar detalle">×</button>
+        </div>
+        <div id="d-stale" class="warn" hidden></div>
+        <dl id="d-fields" class="fields"></dl>
+        <h3>Relacionados</h3>
+        <ul id="d-related" class="related"></ul>
+        <h3>Últimos eventos</h3>
+        <div class="filters">
+          <label>Tipo <select id="d-filter"><option value="">todos</option></select></label>
+        </div>
+        <ol id="d-events" class="events"></ol>
+      </aside>
+
+      <aside id="events-panel" class="panel events-panel" aria-label="Registro de eventos" hidden>
+        <div class="panel-head">
+          <h2>Registro de eventos</h2>
+          <button id="e-close" class="btn round" aria-label="Cerrar registro">×</button>
+        </div>
+        <div class="filters">
+          <label>Fuente
+            <select id="e-source">
+              <option value="">todas</option>
+              <option value="hook">hook</option>
+              <option value="process_monitor">procesos</option>
+              <option value="demo">demo</option>
+            </select>
+          </label>
+          <label>Tipo <select id="e-type"><option value="">todos</option></select></label>
+        </div>
+        <ol id="e-list" class="events"></ol>
+      </aside>
+    </main>
+
+    <dialog id="legend-dialog" class="dialog">
+      <h2>Leyenda</h2>
+      <ul id="legend-list" class="legend"></ul>
+      <p class="note">«Detectado» = evento directo (hook o /proc). «Inferido» = deducido por ausencia de eventos o por fecha de archivos. «DEMO» = ficticio.</p>
+      <p class="note">Etiquetas: <b>RC</b> = sesión con Remote Control, <b>tmux</b>, <b>nube</b>, <b>sin hooks</b> = descubierta solo por su transcript.</p>
+      <form method="dialog"><button class="btn">Cerrar</button></form>
+    </dialog>
+
+    <dialog id="status-dialog" class="dialog">
+      <h2>Estado del sistema</h2>
+      <dl id="status-fields" class="fields"></dl>
+      <h3>Errores recientes</h3>
+      <ul id="status-errors" class="related"></ul>
+      <form method="dialog"><button class="btn">Cerrar</button></form>
+    </dialog>
+
+    <noscript>Esta aplicación necesita JavaScript.</noscript>
+    <script src="vendor/phaser.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
