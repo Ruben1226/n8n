@@ -1,0 +1,4 @@
+# Backend (el hook collector/claude_hook.py solo usa la biblioteca estándar)
+fastapi>=0.110
+uvicorn>=0.29
+websockets>=12

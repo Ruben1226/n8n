@@ -1,0 +1,44 @@
+# Claude Code Office — configuración local.
+# Copia este archivo a config.toml y ajústalo. No guardes secretos aquí.
+
+[server]
+# 127.0.0.1 = solo este ordenador. Para Tailscale pon la IP 100.x.y.z del
+# servidor (ver README). Evita 0.0.0.0: expone el puerto en TODAS las interfaces.
+host = "127.0.0.1"
+port = 8765
+
+[office]
+name = "Oficina de investigación"
+theme = "warm"            # warm | night
+reduce_motion = false     # fuerza animaciones mínimas para todos los clientes
+
+[sources]
+hooks = true              # eventos de hooks (JSONL escrito por collector/claude_hook.py)
+transcripts = true        # descubre sesiones SIN hooks mirando solo fecha de ~/.claude/projects/*.jsonl
+process_monitor = true    # procesos externos de la allowlist (/proc)
+
+[timing]
+process_scan_seconds = 5
+transcript_scan_seconds = 10
+stale_after_seconds = 300     # "trabajando" sin eventos ni herramienta abierta -> stale
+idle_after_seconds = 900      # completado/esperando sin eventos -> idle (inferido)
+error_visible_seconds = 8     # tiempo mínimo que se muestra un error
+ended_visible_seconds = 300   # terminados (subagentes, sesiones, procesos) siguen visibles este tiempo
+archive_after_seconds = 3600  # sesiones inactivas desaparecen de la escena (quedan en el historial)
+
+[storage]
+# Vacío = $XDG_DATA_HOME/claude-office (normalmente ~/.local/share/claude-office)
+data_dir = ""
+retention_days = 30
+
+[processes]
+# Nombres de ejecutable (comm o basename de /proc/<pid>/exe). Comodines * permitidos.
+allowlist = ["python", "python3", "python3.*", "root", "root.exe", "topas", "Geant4*", "g4*"]
+# Si es true, para intérpretes (python…) se guarda también el NOMBRE del script
+# (solo basename, nunca argumentos). Desactivado por defecto por privacidad.
+record_script_name = false
+# Ignorar procesos más cortos que esto (evita ruido de comandos instantáneos).
+min_age_seconds = 3
+
+[demo]
+enabled = false           # o arranca con: scripts/run.sh --demo

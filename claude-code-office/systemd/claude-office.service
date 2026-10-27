@@ -1,0 +1,18 @@
+# Unidad de usuario (sin root). scripts/install.sh --systemd la copia a
+# ~/.config/systemd/user/ sustituyendo @ROOT@ por la ruta del proyecto.
+[Unit]
+Description=Claude Code Office (panel local de solo lectura)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=@ROOT@
+ExecStart=@ROOT@/scripts/run.sh --foreground
+Restart=on-failure
+RestartSec=5
+# Endurecimiento básico
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target
