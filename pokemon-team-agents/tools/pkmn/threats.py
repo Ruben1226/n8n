@@ -37,9 +37,10 @@ def generic_threats() -> list[dict]:
 def pool_threats(sets: list[dict], n: int = 30) -> list[dict]:
     seen, out = set(), []
     for s in sorted(sets, key=lambda s: s["scores"]["total"], reverse=True):
-        if s["species"] in seen or s["role"] == "soporte":
+        sk = s.get("species_key", s["species"])
+        if sk in seen or s["role"] == "soporte":
             continue
-        seen.add(s["species"])
+        seen.add(sk)
         out.append({**s, "weight": 1.0, "threat_source": "pool"})
         if len(out) >= n:
             break
@@ -87,7 +88,7 @@ def build_matrix(dex, candidates: list[dict], threats: list[dict]) -> dict:
     for c in candidates:
         row = {}
         for t in threats:
-            if t.get("species") == c["species"]:
+            if t.get("species_key", t.get("species")) == c.get("species_key", c["species"]):
                 continue
             row[t["id"]] = matchup(dex, c, t)
         m[c["id"]] = row

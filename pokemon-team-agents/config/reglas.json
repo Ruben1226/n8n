@@ -4,9 +4,11 @@
   "nivel": 49,
   "evs": "todos a 0",
   "ivs": "los reales de cada Pokémon (pokemon.json -> ivs). Si no se conocen, se asume 31 y se marca como supuesto.",
-  "mentas_disponibles": 0,
-  "_mentas_nota": "Pon aquí cuántas mentas tienes. Cada set cuya naturaleza no coincida con la actual del Pokémon gasta 1.",
-  "movimientos_prohibidos": ["Last Respects", "Homenaje Póstumo"],
+  "mentas_disponibles": 2,
+  "_mentas_nota": "Mentas concretas que tiene el jugador: 1 Menta Mansa (Quiet) y 1 Menta Firme (Adamant).",
+  "movimientos_prohibidos": [
+    "Last Respects"
+  ],
   "clausula_sueño": "No se puede dormir a un Pokémon rival si ya hay otro Pokémon rival dormido por ti.",
   "clausula_especie": true,
   "clausula_objeto": false,
@@ -17,8 +19,27 @@
   "_habilidad_nota": "true = se exploran las 1-3 habilidades posibles (cápsula/parche). false = solo current_ability de cada ejemplar.",
   "boosts_limitados": false,
   "mts_disponibles": "all",
-  "_mts_nota": "\"all\" o lista de nombres de MT que tienes. Las MT no poseídas no se consideran.",
+  "_mts_nota": "El fichero ya lista solo las MTs que tiene y son compatibles (reutilizables).",
   "tutores_disponibles": true,
   "movimientos_huevo": false,
-  "meta": "ninguno: random de colegas; optimizar contra arquetipos genéricos y contra lo mejor del propio pool"
+  "meta": "ninguno: random de colegas; optimizar contra arquetipos genéricos y contra lo mejor del propio pool",
+  "datos_especie": "showdown",
+  "_datos_especie_nota": "Los combates son en Pokémon Showdown [Gen 9] Custom Game: mandan tipos y stats OFICIALES de Showdown. 'anil' solo si se jugara con un servidor que use los datos de Añil.",
+  "_nivel_nota": "Cada Pokémon combate a su nivel real de la partida (pokemon.json -> level).",
+  "mentas": {
+    "Quiet": 1,
+    "Adamant": 1
+  },
+  "mini_setas": 7,
+  "_mini_setas_nota": "Cambiar la habilidad a otra de la especie cuesta 1 Mini Seta (Experta en Habilidades).",
+  "habilidades_sin_efecto_en_showdown": [
+    "Poder Gélido",
+    "Coleóptero",
+    "Raíz robusta",
+    "Camorrista",
+    "Poder Sabio",
+    "Tintineo",
+    "Inflamable"
+  ],
+  "megaevolucion": "Charizardita X + Megaaro disponibles"
 }

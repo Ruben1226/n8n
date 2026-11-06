@@ -111,6 +111,112 @@ def _same_effect(n1: str, n2: str) -> bool:
         NATURES[norm_nature(n1)][0] is None and NATURES[norm_nature(n2)][0] is None)
 
 
+def _nature_value(nature: str, role: str, lean: str, fast: bool) -> float:
+    """Valor aproximado de una naturaleza para un rol (pesos por stat)."""
+    w = {"hp": 0, "atk": 0.0, "def": 0.3, "spa": 0.0, "spd": 0.3, "spe": 0.8 if fast else 0.4}
+    if role in ("atacante", "setup"):
+        if lean in ("physical", "mixed"):
+            w["atk"] = 1.0
+        if lean in ("special", "mixed"):
+            w["spa"] = 1.0
+    else:
+        w.update({"def": 0.8, "spd": 0.8, "spe": 0.3})
+        if lean in ("physical", "mixed"):
+            w["atk"] = 0.4
+        if lean in ("special", "mixed"):
+            w["spa"] = 0.4
+    up, down = NATURES[norm_nature(nature)]
+    return (w.get(up, 0) * 0.1 if up else 0) - (w.get(down, 0) * 0.1 if down else 0)
+
+
+TYPE_BOOSTERS = {
+    "Fire": ["Charcoal", "Flame Plate", "Fire Gem"], "Water": ["Mystic Water", "Splash Plate", "Water Gem"],
+    "Electric": ["Magnet", "Zap Plate", "Electric Gem"], "Grass": ["Miracle Seed", "Meadow Plate", "Grass Gem"],
+    "Ice": ["Never-Melt Ice", "Icicle Plate", "Ice Gem"], "Fighting": ["Black Belt", "Fist Plate", "Fighting Gem"],
+    "Poison": ["Poison Barb", "Toxic Plate", "Poison Gem"], "Ground": ["Soft Sand", "Earth Plate", "Ground Gem"],
+    "Flying": ["Sharp Beak", "Sky Plate", "Flying Gem"], "Psychic": ["Twisted Spoon", "Mind Plate", "Psychic Gem"],
+    "Bug": ["Silver Powder", "Insect Plate", "Bug Gem"], "Rock": ["Hard Stone", "Stone Plate", "Rock Gem"],
+    "Ghost": ["Spell Tag", "Spooky Plate", "Ghost Gem"], "Dragon": ["Dragon Fang", "Draco Plate", "Dragon Gem"],
+    "Dark": ["Black Glasses", "Dread Plate", "Dark Gem"], "Steel": ["Metal Coat", "Iron Plate", "Steel Gem"],
+    "Fairy": ["Fairy Feather", "Pixie Plate", "Fairy Gem"], "Normal": ["Silk Scarf", "Normal Gem"],
+}
+RESIST_BERRY = {"Fire": "Occa Berry", "Water": "Passho Berry", "Electric": "Wacan Berry", "Grass": "Rindo Berry",
+                "Ice": "Yache Berry", "Fighting": "Chople Berry", "Poison": "Kebia Berry", "Ground": "Shuca Berry",
+                "Flying": "Coba Berry", "Psychic": "Payapa Berry", "Bug": "Tanga Berry", "Rock": "Charti Berry",
+                "Ghost": "Kasib Berry", "Dragon": "Haban Berry", "Dark": "Colbur Berry", "Steel": "Babiri Berry",
+                "Fairy": "Roseli Berry"}
+
+
+def item_candidates(dex: Dex, mon: dict, role: str, lean: str, moves: list[str], ability: str, st: dict, k: int = 2) -> list[str]:
+    """Los k mejores objetos DISPONIBLES para el set (puntuación heurística; el arquitecto/crítico afinan)."""
+    avail = {key(i["name"]): i["name"] for i in dex.available_items()}
+    unrestricted = not avail
+    mds = [dex.move(m) or {} for m in moves]
+    tags = {t for md in mds for t in md.get("tags", [])}
+    has_status = any(md.get("category") == "status" for md in mds)
+    ab = key(ability or "")
+    sc: dict[str, float] = {}
+
+    def add(name, v):
+        sc[name] = max(sc.get(name, 0), v)
+
+    off = role in ("atacante", "setup")
+    if off:
+        add("Life Orb", 3.0 + (1.0 if ab == "magicguard" else 0))
+        add("Expert Belt", 2.3)
+        if not has_status:
+            add("Choice Band" if lean != "special" else "Choice Specs", 3.2)
+            add("Choice Scarf", 2.6)
+    if role == "setup":
+        add("Weakness Policy", 2.4)
+        add("Lum Berry", 2.2)
+    add("Leftovers", 3.0 if role == "soporte" else 2.0)
+    if "Poison" in mon["types"]:
+        add("Black Sludge", 3.0 if role == "soporte" else 2.0)
+    if mon.get("can_evolve"):
+        add("Eviolite", 3.6 if role == "soporte" else 2.4)
+    if role == "soporte":
+        add("Rocky Helmet", 2.0)
+        add("Covert Cloak", 1.0)
+        add("Eject Button", 0.9)
+    if "screens" in tags:
+        add("Light Clay", 3.2)
+    if any(isinstance(md.get("multi_hit"), list) and md["multi_hit"][0] != md["multi_hit"][1] for md in mds):
+        add("Loaded Dice", 2.9)  # solo sirve con multigolpe VARIABLE (2-5), no con golpes fijos (Doble Ala...)
+    if ab in ("poisonheal", "toxicboost"):
+        add("Toxic Orb", 3.8)
+    if ab in ("guts", "flareboost", "marvelscale"):
+        add("Flame Orb", 3.6)
+    if ab in ("superluck", "sniper"):
+        add("Scope Lens", 2.5)
+        add("Razor Claw", 2.5)
+    if any("drain" in md.get("tags", []) for md in mds):
+        add("Big Root", 1.0)
+    # potenciador del tipo del ataque principal
+    attacks = [md for md in mds if md.get("category") in ("physical", "special") and md.get("power")]
+    if attacks:
+        main = max(attacks, key=lambda md: (md.get("power") or 0) * (1.5 if md["type"] in mon["types"] else 1))
+        for i, it in enumerate(TYPE_BOOSTERS.get(main["type"], [])):
+            add(it, (2.4 if off else 1.0) - (0.6 if it.endswith("Gem") else 0) - 0.01 * i)
+    # baya de resistencia a la peor debilidad
+    from .typechart import effectiveness as _eff
+    weak = sorted(((t, _eff(t, mon["types"])) for t in RESIST_BERRY), key=lambda x: -x[1])
+    if weak and weak[0][1] >= 2:
+        add(RESIST_BERRY[weak[0][0]], 1.8 if weak[0][1] >= 4 else 1.4)
+    if _eff("Ground", mon["types"]) >= 2:
+        add("Air Balloon", 1.3)
+    add("Focus Sash", 1.6 if (role == "soporte" and "hazard_set" in tags) else 0.8)
+    add("Focus Band", 0.5)
+    ranked = sorted(sc.items(), key=lambda x: -x[1])
+    out = []
+    for name, _ in ranked:
+        if unrestricted or key(name) in avail:
+            out.append(avail.get(key(name), name))
+        if len(out) >= k:
+            break
+    return out
+
+
 def _pick_item(dex: Dex, prefs: list[str], can_evolve: bool) -> str | None:
     avail = {key(i["name"]): i["name"] for i in dex.available_items()}
     restrict = bool(avail)
@@ -123,13 +229,16 @@ def _pick_item(dex: Dex, prefs: list[str], can_evolve: bool) -> str | None:
 
 
 def generate_for(dex: Dex, mon: dict, speed_threshold: int) -> list[dict]:
-    level = dex.rules.get("nivel", 49)
+    level = mon.get("level") or dex.rules.get("nivel", 49)
     legal = [dex.move(m) for m in dex.legal_moves(mon)]
     legal = [m for m in legal if m]
     sets: list[dict] = []
     abilities = mon.get("abilities", [])
     if not dex.rules.get("habilidad_cambiable", True) and mon.get("current_ability"):
         abilities = [mon["current_ability"]]
+    banned_ab = {key(a) for a in dex.rules.get("habilidades_sin_efecto_en_showdown", [])}
+    usable_ab = [a for a in abilities if key(a) not in banned_ab]
+    abilities = usable_ab or abilities[:1]
     for ability in abilities:
         b = Battler(mon["name"], mon["types"], mon["base_stats"], ability=ability, level=level,
                     ivs=mon.get("ivs", {}), can_evolve=mon.get("can_evolve", False),
@@ -210,21 +319,26 @@ def generate_for(dex: Dex, mon: dict, speed_threshold: int) -> list[dict]:
 
         for role, moves in archetypes:
             moves = _pad(role, moves)
-            ideal = _ideal_nature(role, lean, mon["base_stats"], fast)
             current = mon.get("nature") or "Serious"
-            prefs = ITEM_PREFS["setup" if role == "setup" else "soporte" if role == "soporte"
-                               else f"atacante_{'physical' if lean != 'special' else 'special'}"]
-            if role == "atacante" and not fast and st["spe"] >= speed_threshold * 0.8:
-                prefs = ["Choice Scarf"] + prefs
-            if any((dex.move(m) or {}).get("category") == "status" for m in moves):
-                prefs = [p for p in prefs if not p.startswith("Choice")] or ITEM_PREFS["setup"]
-            item = _pick_item(dex, prefs, mon.get("can_evolve", False))
+            if mon.get("fixed_item"):
+                items = [mon["fixed_item"]]
+            else:
+                items = item_candidates(dex, mon, role, lean, moves, ability, st) or [None]
             variants = [(current, False)]
-            if not _same_effect(ideal, current):
-                variants.append((ideal, True))
-            for nature, needs_mint in variants:
-                s = build_set(dex, mon, ability, item, nature, moves, role, lean, needs_mint)
-                sets.append(s)
+            mint_stock = dex.rules.get("mentas")
+            if isinstance(mint_stock, dict):
+                # mentas de naturaleza CONCRETA: solo se ofrecen las que el jugador tiene y mejoran el set
+                for nat, qty in mint_stock.items():
+                    if qty > 0 and not _same_effect(nat, current) and \
+                            _nature_value(nat, role, lean, fast) > _nature_value(current, role, lean, fast) + 0.01:
+                        variants.append((norm_nature(nat), True))
+            else:
+                ideal = _ideal_nature(role, lean, mon["base_stats"], fast)
+                if not _same_effect(ideal, current):
+                    variants.append((ideal, True))
+            for item in items:
+                for nature, needs_mint in variants:
+                    sets.append(build_set(dex, mon, ability, item, nature, moves, role, lean, needs_mint))
     return sets
 
 
@@ -272,7 +386,7 @@ def _showdown_equivalents(dex: Dex, ability, item, moves) -> dict:
 
 def build_set(dex: Dex, mon: dict, ability: str, item: str | None, nature: str, moves: list[str],
               role: str, lean: str, needs_mint: bool) -> dict:
-    level = dex.rules.get("nivel", 49)
+    level = mon.get("level") or dex.rules.get("nivel", 49)
     # nombres canónicos (inglés) para que el simulador de Showdown los reconozca
     ab_entry = dex.abilities.get(key(ability)) if ability else None
     ability = ab_entry["name"] if ab_entry else ability
@@ -307,8 +421,12 @@ def build_set(dex: Dex, mon: dict, ability: str, item: str | None, nature: str, 
     ref_bulk = ref["hp"] * ref["def"]
     s = {
         "id": f"{mon['name']}|{ability}|{role}|{nature}",
-        "species": mon["name"], "types": mon["types"], "base_stats": mon["base_stats"],
+        "species": mon["name"], "species_key": mon.get("mega_de") or mon["name"],
+        "needs_seta": bool(mon.get("current_ability")) and key(ability or "") != key(mon.get("current_ability") or "")
+                      and not mon.get("fixed_item"),
+        "types": mon["types"], "base_stats": mon["base_stats"],
         **({"showdown_species": mon["showdown_name"]} if mon.get("showdown_name") else {}),
+        **({"showdown_ability": mon["sd_set_ability"]} if mon.get("sd_set_ability") else {}),
         **_showdown_equivalents(dex, ability, item, moves),
         "ivs": mon.get("ivs", {}), "can_evolve": mon.get("can_evolve", False),
         "ability": ability, "ability_effects": dex.ability_effects(ability),
@@ -327,16 +445,19 @@ def build_set(dex: Dex, mon: dict, ability: str, item: str | None, nature: str, 
 
 def speed_threshold(dex: Dex) -> int:
     level = dex.rules.get("nivel", 49)
-    speeds = sorted(calc_all(p["base_stats"], level, p.get("ivs", {}))["spe"] for p in dex.pokemon) or [100]
+    speeds = sorted(calc_all(p["base_stats"], p.get("level") or level, p.get("ivs", {}))["spe"] for p in dex.pokemon) or [100]
     return speeds[int(len(speeds) * 0.6)]
 
 
 def score_set(dex: Dex, s: dict, threshold: int) -> dict:
     """(Re)calcula role_tags y puntuaciones de un set (también sirve para sets editados a mano)."""
     sp = dex.species(s["species"]) or {}
-    mon = {"name": s["species"], "types": s.get("types") or sp.get("types"), "base_stats": s.get("base_stats") or sp.get("base_stats"),
-           "ivs": s.get("ivs") or sp.get("ivs", {}), "can_evolve": s.get("can_evolve", sp.get("can_evolve", False)),
-           "showdown_name": s.get("showdown_species") or sp.get("showdown_name")}
+    mon = dict(sp)  # conserva level, current_ability, mega_de, fixed_item, sd_set_ability...
+    mon.update({"name": s["species"], "types": s.get("types") or sp.get("types"), "base_stats": s.get("base_stats") or sp.get("base_stats"),
+                "ivs": s.get("ivs") or sp.get("ivs", {}), "can_evolve": s.get("can_evolve", sp.get("can_evolve", False)),
+                "showdown_name": s.get("showdown_species") or sp.get("showdown_name")})
+    if s.get("level"):
+        mon["level"] = s["level"]
     fresh = build_set(dex, mon, s["ability"], s.get("item"), s.get("nature", "Serious"), s["moves"],
                       s.get("role", "atacante"), s.get("lean", "physical"), s.get("needs_mint", False))
     for k, v in s.items():  # conservar campos extra (origen, notas, showdown_*...)

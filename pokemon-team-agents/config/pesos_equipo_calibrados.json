@@ -1,0 +1,30 @@
+{
+ "n_equipos": 30,
+ "spearman_actual": 0.672,
+ "spearman_calibrado": 0.679,
+ "coeficientes_estandarizados": {
+  "defensa_tipos": 0.0486,
+  "amenazas": 0.0122,
+  "presion_ofensiva": 0.0583,
+  "roles": 0.0131,
+  "velocidad": 0.0005,
+  "calidad_individual": 0.0896
+ },
+ "pesos_actuales": {
+  "defensa_tipos": 0.8,
+  "amenazas": 2.0,
+  "presion_ofensiva": 1.5,
+  "roles": 0.8,
+  "velocidad": 0.8,
+  "calidad_individual": 1.2
+ },
+ "pesos_sugeridos": {
+  "defensa_tipos": 1.471,
+  "amenazas": 0.55,
+  "presion_ofensiva": 3.014,
+  "roles": 0.55,
+  "velocidad": 0.55,
+  "calidad_individual": 0.963
+ },
+ "nota": "Si spearman_calibrado > spearman_actual + 0.1 con >= 25 equipos, copia pesos_sugeridos a config/pesos_equipo.json y repite la búsqueda (equipo). Con pocos equipos la calibración es ruidosa y spearman_calibrado se mide dentro de muestra (optimista)."
+}

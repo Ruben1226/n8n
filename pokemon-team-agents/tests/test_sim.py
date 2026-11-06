@@ -28,6 +28,17 @@ class TestSimulador(unittest.TestCase):
         self.assertEqual((out["w"], out["t"]), (out["w2"], out["t2"]))  # reproducible con la misma semilla
         self.assertIn("Sleep Clause Mod", out["fmt"])
 
+    def test_sin_elecciones_forzadas(self):
+        """Regresión: al completar un turno no debe forzarse 'default' en el turno siguiente."""
+        js = r"""
+        const m = require('./sim/motor-sim');
+        for (let i = 0; i < 5; i++) m.playBattle(m.randomForeignTeam(49, 10 + i), m.randomForeignTeam(49, 20 + i), {seed: i + 1});
+        """
+        import os as _os
+        env = dict(_os.environ, SIM_TRACE="1")
+        err = subprocess.run(["node", "-e", js], cwd=ROOT, env=env, capture_output=True, text=True).stderr
+        self.assertNotIn("ELECCION RECHAZADA", err)
+
 
 if __name__ == "__main__":
     unittest.main()

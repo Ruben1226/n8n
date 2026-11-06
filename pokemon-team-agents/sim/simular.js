@@ -33,7 +33,11 @@ const seed0 = parseInt(arg('semilla', '1'), 10);
 
 const warnings = [];
 const pk = path.join(datos, 'pokemon.json');
-if (fs.existsSync(pk)) warnings.push(...m.applyAnilSpecies(JSON.parse(fs.readFileSync(pk, 'utf8'))));
+let reglas = {};
+try { reglas = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'reglas.json'), 'utf8')); } catch (e) {}
+// Solo se parchean especies si los combates se juegan con los datos de Añil. En Showdown Custom Game
+// (lo habitual) mandan los tipos y stats OFICIALES de Showdown.
+if (reglas.datos_especie === 'anil' && fs.existsSync(pk)) warnings.push(...m.applyAnilSpecies(JSON.parse(fs.readFileSync(pk, 'utf8'))));
 
 function loadTeams(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8')).map((t, i) => {

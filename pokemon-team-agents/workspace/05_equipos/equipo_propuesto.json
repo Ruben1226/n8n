@@ -1,0 +1,454 @@
+{
+ "sets": [
+  {
+   "id": "Charizard-Mega-X|Tough Claws|atacante|Hardy",
+   "species": "Charizard-Mega-X",
+   "species_key": "Charizard",
+   "needs_seta": false,
+   "types": [
+    "Fire",
+    "Dragon"
+   ],
+   "base_stats": {
+    "hp": 78,
+    "atk": 130,
+    "def": 111,
+    "spa": 130,
+    "spd": 85,
+    "spe": 100
+   },
+   "showdown_species": "Charizard",
+   "showdown_ability": "Flower Gift",
+   "ivs": {
+    "hp": 29,
+    "atk": 16,
+    "def": 13,
+    "spa": 16,
+    "spd": 3,
+    "spe": 6
+   },
+   "can_evolve": false,
+   "ability": "Tough Claws",
+   "ability_effects": [
+    {
+     "kind": "power_mult",
+     "mult": 1.3,
+     "move_tag": "contact"
+    }
+   ],
+   "item": "Charizardite X",
+   "item_effects": [],
+   "nature": "Hardy",
+   "needs_mint": false,
+   "role": "atacante",
+   "lean": "mixed",
+   "moves": [
+    "Armor Cannon",
+    "Aqua Step",
+    "Zippy Zap",
+    "Hammer Arm"
+   ],
+   "stats": {
+    "hp": 149,
+    "atk": 140,
+    "def": 120,
+    "spa": 140,
+    "spd": 89,
+    "spe": 105
+   },
+   "level": 49,
+   "scores": {
+    "offense": 14.458,
+    "phys_bulk": 1.2,
+    "spec_bulk": 0.89,
+    "speed": 105,
+    "utility": 2.0,
+    "total": 20.113,
+    "percentil_rol": 0.886
+   },
+   "role_tags": [
+    "fast",
+    "priority",
+    "speed_control"
+   ]
+  },
+  {
+   "id": "Gliscor|Shadow Shield|setup|Adamant|item=Sky Plate",
+   "species": "Gliscor",
+   "species_key": "Gliscor",
+   "needs_seta": false,
+   "types": [
+    "Ground",
+    "Flying"
+   ],
+   "base_stats": {
+    "hp": 75,
+    "atk": 95,
+    "def": 125,
+    "spa": 45,
+    "spd": 75,
+    "spe": 95
+   },
+   "ivs": {
+    "hp": 14,
+    "atk": 8,
+    "def": 26,
+    "spa": 1,
+    "spd": 18,
+    "spe": 26
+   },
+   "can_evolve": false,
+   "ability": "Shadow Shield",
+   "ability_effects": [
+    {
+     "kind": "incoming_full_hp_mult",
+     "mult": 0.5
+    }
+   ],
+   "item": "Sky Plate",
+   "item_effects": [
+    {
+     "kind": "type_power_mult",
+     "type": "Flying",
+     "mult": 1.2
+    }
+   ],
+   "nature": "Adamant",
+   "needs_mint": true,
+   "role": "setup",
+   "lean": "physical",
+   "moves": [
+    "Victory Dance",
+    "Headlong Rush",
+    "Dual Wingbeat",
+    "Zippy Zap"
+   ],
+   "stats": {
+    "hp": 139,
+    "atk": 112,
+    "def": 140,
+    "spa": 44,
+    "spd": 87,
+    "spe": 110
+   },
+   "level": 49,
+   "scores": {
+    "offense": 13.374,
+    "phys_bulk": 1.306,
+    "spec_bulk": 0.812,
+    "speed": 110,
+    "utility": 2.0,
+    "total": 19.133
+   },
+   "role_tags": [
+    "fast",
+    "priority",
+    "setup_wincon",
+    "speed_control"
+   ]
+  },
+  {
+   "id": "Tinkaton|Multiscale|setup|Impish",
+   "species": "Tinkaton",
+   "species_key": "Tinkaton",
+   "needs_seta": true,
+   "types": [
+    "Fairy",
+    "Steel"
+   ],
+   "base_stats": {
+    "hp": 85,
+    "atk": 75,
+    "def": 77,
+    "spa": 70,
+    "spd": 105,
+    "spe": 94
+   },
+   "ivs": {
+    "hp": 12,
+    "atk": 17,
+    "def": 11,
+    "spa": 10,
+    "spd": 23,
+    "spe": 16
+   },
+   "can_evolve": false,
+   "ability": "Multiscale",
+   "ability_effects": [
+    {
+     "kind": "incoming_full_hp_mult",
+     "mult": 0.5
+    }
+   ],
+   "item": "Life Orb",
+   "item_effects": [
+    {
+     "kind": "final_mult",
+     "mult": 1.3
+    },
+    {
+     "kind": "note",
+     "text": "pierde 10% PS por ataque"
+    }
+   ],
+   "nature": "Impish",
+   "needs_mint": false,
+   "role": "setup",
+   "lean": "physical",
+   "moves": [
+    "Victory Dance",
+    "Magical Torque",
+    "Wave Crash",
+    "Spin Out"
+   ],
+   "stats": {
+    "hp": 148,
+    "atk": 86,
+    "def": 93,
+    "spa": 70,
+    "spd": 119,
+    "spe": 104
+   },
+   "level": 49,
+   "scores": {
+    "offense": 12.196,
+    "phys_bulk": 0.924,
+    "spec_bulk": 1.182,
+    "speed": 104,
+    "utility": 0,
+    "total": 16.655,
+    "percentil_rol": 0.657
+   },
+   "role_tags": [
+    "fast",
+    "setup_wincon"
+   ]
+  },
+  {
+   "id": "Sneasler|Pressure|soporte|Serious|ability=Compound Eyes",
+   "species": "Sneasler",
+   "species_key": "Sneasler",
+   "needs_seta": false,
+   "types": [
+    "Fighting",
+    "Poison"
+   ],
+   "base_stats": {
+    "hp": 80,
+    "atk": 130,
+    "def": 60,
+    "spa": 40,
+    "spd": 80,
+    "spe": 120
+   },
+   "ivs": {
+    "hp": 2,
+    "atk": 24,
+    "def": 12,
+    "spa": 23,
+    "spd": 30,
+    "spe": 26
+   },
+   "can_evolve": false,
+   "ability": "Compound Eyes",
+   "ability_effects": [
+    {
+     "kind": "note",
+     "text": "+30% precisión: hace fiables Hipnosis, Electrocañón, Megacuerno..."
+    }
+   ],
+   "item": "Payapa Berry",
+   "item_effects": [
+    {
+     "kind": "resist_berry",
+     "type": "Psychic"
+    }
+   ],
+   "nature": "Serious",
+   "needs_mint": false,
+   "role": "soporte",
+   "lean": "physical",
+   "moves": [
+    "Spikes",
+    "Parting Shot",
+    "Combat Torque",
+    "Wave Crash"
+   ],
+   "stats": {
+    "hp": 138,
+    "atk": 144,
+    "def": 69,
+    "spa": 55,
+    "spd": 98,
+    "spe": 135
+   },
+   "level": 49,
+   "scores": {
+    "offense": 12.988,
+    "phys_bulk": 0.639,
+    "spec_bulk": 0.908,
+    "speed": 135,
+    "utility": 5.5,
+    "total": 17.884
+   },
+   "role_tags": [
+    "fast",
+    "hazard_set",
+    "pivot"
+   ]
+  },
+  {
+   "id": "Kingambit|Adaptability|soporte|Lonely",
+   "species": "Kingambit",
+   "species_key": "Kingambit",
+   "needs_seta": true,
+   "types": [
+    "Dark",
+    "Steel"
+   ],
+   "base_stats": {
+    "hp": 100,
+    "atk": 135,
+    "def": 120,
+    "spa": 60,
+    "spd": 85,
+    "spe": 50
+   },
+   "ivs": {
+    "hp": 0,
+    "atk": 9,
+    "def": 21,
+    "spa": 21,
+    "spd": 3,
+    "spe": 12
+   },
+   "can_evolve": false,
+   "ability": "Adaptability",
+   "ability_effects": [
+    {
+     "kind": "stab_mult",
+     "mult": 2
+    }
+   ],
+   "item": "Air Balloon",
+   "item_effects": [
+    {
+     "kind": "immunity",
+     "type": "Ground"
+    },
+    {
+     "kind": "note",
+     "text": "se rompe al recibir un golpe"
+    }
+   ],
+   "nature": "Lonely",
+   "needs_mint": false,
+   "role": "soporte",
+   "lean": "physical",
+   "moves": [
+    "Parting Shot",
+    "Glare",
+    "Spin Out",
+    "Wicked Blow"
+   ],
+   "stats": {
+    "hp": 157,
+    "atk": 155,
+    "def": 118,
+    "spa": 74,
+    "spd": 89,
+    "spe": 59
+   },
+   "level": 49,
+   "scores": {
+    "offense": 14.694,
+    "phys_bulk": 1.244,
+    "spec_bulk": 0.938,
+    "speed": 59,
+    "utility": 6.5,
+    "total": 21.319,
+    "percentil_rol": 0.987
+   },
+   "role_tags": [
+    "pivot",
+    "speed_control",
+    "status_para",
+    "status_spreader"
+   ]
+  },
+  {
+   "id": "Haxorus|Shadow Shield|soporte|Relaxed",
+   "species": "Haxorus",
+   "species_key": "Haxorus",
+   "needs_seta": true,
+   "types": [
+    "Dragon"
+   ],
+   "base_stats": {
+    "hp": 76,
+    "atk": 147,
+    "def": 90,
+    "spa": 60,
+    "spd": 70,
+    "spe": 97
+   },
+   "ivs": {
+    "hp": 25,
+    "atk": 0,
+    "def": 20,
+    "spa": 13,
+    "spd": 1,
+    "spe": 20
+   },
+   "can_evolve": false,
+   "ability": "Shadow Shield",
+   "ability_effects": [
+    {
+     "kind": "incoming_full_hp_mult",
+     "mult": 0.5
+    }
+   ],
+   "item": "Covert Cloak",
+   "item_effects": [
+    {
+     "kind": "note",
+     "text": "inmune a efectos secundarios"
+    }
+   ],
+   "nature": "Relaxed",
+   "needs_mint": false,
+   "role": "soporte",
+   "lean": "physical",
+   "moves": [
+    "Strength Sap",
+    "Court Change",
+    "Magical Torque",
+    "Land's Wrath"
+   ],
+   "stats": {
+    "hp": 145,
+    "atk": 149,
+    "def": 113,
+    "spa": 70,
+    "spd": 74,
+    "spe": 98
+   },
+   "level": 49,
+   "scores": {
+    "offense": 11.958,
+    "phys_bulk": 1.1,
+    "spec_bulk": 0.72,
+    "speed": 98,
+    "utility": 5.5,
+    "total": 17.606,
+    "percentil_rol": 0.751
+   },
+   "role_tags": [
+    "fast",
+    "hazard_remove",
+    "recovery"
+   ]
+  }
+ ],
+ "nombre": "Equipo final"
+}

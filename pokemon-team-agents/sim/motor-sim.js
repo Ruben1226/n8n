@@ -145,6 +145,7 @@ function bestDamage(battle, att, def, movesIds) {
   return best;
 }
 
+const TRACE = {last: ''};
 const BOOST = b => (b >= 0 ? (2 + b) / 2 : 2 / (2 - b));
 /** Stat "en bruto" sin disparar eventos del simulador (getStat ejecuta habilidades y puede romper). */
 function rawStat(p, stat) {
@@ -280,7 +281,7 @@ function chooseMove(battle, side, req, rng, opts) {
       const mv = Dex.moves.get(id);
       if (mv.selfSwitch && my.frac < 1 && expectedDamage(battle, me, opp, id) >= my.frac * 0.8) choice = id;
     }
-    if (rng() < (opts.epsilon || 0)) choice = myIds[Math.floor(rng() * myIds.length)];
+    if (rng() < (opts.epsilon || 0)) { choice = myIds[Math.floor(rng() * myIds.length)]; TRACE.last = 'epsilon'; } else TRACE.last = 'R8';
     return pick(choice);
   }
   return `move ${usable[Math.floor(rng() * usable.length)].slot}`;
@@ -312,6 +313,12 @@ function chooseForcedSwitch(battle, side, req) {
   return sw ? `switch ${sw.slot}` : 'default';
 }
 
+function withMega(choice, req) {
+  // megaevoluciona en cuanto puede (lo normal en competitivo)
+  if (choice && choice.startsWith('move') && req.active && req.active[0] && req.active[0].canMegaEvo) return choice + ' mega';
+  return choice;
+}
+
 function decide(battle, side, rng, opts) {
   const req = side.activeRequest;
   if (!req || req.wait) return null;
@@ -321,7 +328,7 @@ function decide(battle, side, rng, opts) {
     const ms = req.active[0].moves.map((mv, i) => ({...mv, i})).filter(mv => !mv.disabled);
     return ms.length ? `move ${ms[Math.floor(rng() * ms.length)].i + 1}` : 'default';
   }
-  if (req.active) return chooseMove(battle, side, req, rng, opts);
+  if (req.active) return withMega(chooseMove(battle, side, req, rng, opts), req);
   return 'default';
 }
 
@@ -346,8 +353,17 @@ function playBattle(team1, team2, {seed = 1, keepLog = false, maxTurns = 300, ep
       if (side.activeRequest && !side.activeRequest.wait && !side.isChoiceDone()) {
         const eps = epsilons ? epsilons[side.id === 'p1' ? 0 : 1] : epsilon;
         const c = decide(battle, side, rng, {epsilon: eps, P: params ? params[side.id === 'p1' ? 0 : 1] : null});
-        try { battle.choose(side.id, c || 'default'); } catch (e) { battle.choose(side.id, 'default'); }
-        if (!side.isChoiceDone()) battle.choose(side.id, 'default');
+        if (process.env.SIM_TRACE && side.active[0]) console.error(`T${battle.turn} ${side.id} ${side.active[0].species.name} -> ${c} [${TRACE.last || ''}]`);
+        const req = side.activeRequest;
+        let ok = false;
+        try { ok = battle.choose(side.id, c || 'default'); } catch (e) { ok = false; }
+        // OJO: si esta elección completa el turno, el combate avanza y aparece una petición NUEVA.
+        // Solo es un rechazo si seguimos ante la MISMA petición sin elección hecha.
+        if (!ok && side.activeRequest === req && !side.isChoiceDone()) {
+          if (process.env.SIM_TRACE) console.error('ELECCION RECHAZADA', c, side.choice.error);
+          side.clearChoice();
+          battle.choose(side.id, 'default');
+        }
         acted = true;
       }
     }
@@ -358,4 +374,4 @@ function playBattle(team1, team2, {seed = 1, keepLog = false, maxTurns = 300, ep
   return res;
 }
 
-module.exports = {BOT_PARAMS: P, applyAnilSpecies, toShowdownSet, randomForeignTeam, playBattle, normNature, FORMAT};
+module.exports = {expectedDamage, decide, BOT_PARAMS: P, applyAnilSpecies, toShowdownSet, randomForeignTeam, playBattle, normNature, FORMAT};

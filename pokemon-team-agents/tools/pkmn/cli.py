@@ -68,7 +68,7 @@ def _build_rivals(sets, equipos, n_pool, seed):
     good = good[: max(12, int(len(good) * 0.6))]
     by_sp = {}
     for s_ in good:
-        by_sp.setdefault(s_["species"], []).append(s_)
+        by_sp.setdefault(s_.get("species_key", s_["species"]), []).append(s_)
     rivales = [dict(e, nombre="riv_" + e["nombre"]) for e in equipos]
     for i in range(n_pool):
         if len(by_sp) < 6:
@@ -259,11 +259,12 @@ def main(argv=None):
         historial = []
         for ronda in range(a.rondas):
             variantes = [{"nombre": "BASE", "sets": base}]
-            used = {s_["species"] for s_ in base}
+            used = {s_.get("species_key", s_["species"]) for s_ in base}
             for i, old in enumerate(base):
                 opciones = []
                 for c in cands:
-                    if c["id"] == old["id"] or (c["species"] in used and c["species"] != old["species"]):
+                    ck, ok_ = c.get("species_key", c["species"]), old.get("species_key", old["species"])
+                    if c["id"] == old["id"] or (ck in used and ck != ok_):
                         continue
                     t = base[:i] + [c] + base[i + 1:]
                     opciones.append((evaluate(t, matrix, threats, rules, w, qf)["total"], c))
@@ -322,7 +323,7 @@ def main(argv=None):
         teams = [t["sets"] for t in top[: a.top]]
         by_sp = {}
         for c in cands:
-            by_sp.setdefault(c["species"], []).append(c)
+            by_sp.setdefault(c.get("species_key", c["species"]), []).append(c)
         for _ in range(a.aleatorios):
             if len(by_sp) < 6:
                 break

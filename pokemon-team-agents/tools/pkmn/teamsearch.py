@@ -124,11 +124,19 @@ def evaluate(team: list[dict], matrix: dict, threats: list[dict], rules: dict, w
                 eslabones.append(s["id"])
                 pen += w["penal_eslabon_debil"] * (quality_floor - _q(s)) / quality_floor
     br["eslabones_debiles"] = eslabones
-    species = Counter(s["species"] for s in team)
+    species = Counter(s.get("species_key", s["species"]) for s in team)
     if rules.get("clausula_especie", True):
         pen += sum(c - 1 for c in species.values()) * w["penal_especie"]
     mints = sum(1 for s in team if s.get("needs_mint"))
-    pen += max(0, mints - rules.get("mentas_disponibles", 0)) * w["penal_menta"]
+    stock_m = rules.get("mentas")
+    if isinstance(stock_m, dict):  # mentas de naturaleza concreta
+        used = Counter(s["nature"] for s in team if s.get("needs_mint"))
+        pen += sum(max(0, c - stock_m.get(n, 0)) for n, c in used.items()) * w["penal_menta"]
+    else:
+        pen += max(0, mints - rules.get("mentas_disponibles", 0)) * w["penal_menta"]
+    setas = sum(1 for s in team if s.get("needs_seta"))
+    pen += max(0, setas - rules.get("mini_setas", 99)) * w["penal_menta"]
+    br["mini_setas_usadas"] = setas
     items = Counter(key(s["item"]) for s in team if s.get("item"))
     stock = rules.get("_stock_objetos", {})
     for it, c in items.items():
@@ -156,7 +164,7 @@ def search(candidates: list[dict], matrix: dict, threats: list[dict], rules: dic
     rng = random.Random(seed)
     by_species: dict[str, list[dict]] = {}
     for c in candidates:
-        by_species.setdefault(c["species"], []).append(c)
+        by_species.setdefault(c.get("species_key", c["species"]), []).append(c)
     species = list(by_species)
     locked = locked or []
     if len(species) < 6:
@@ -174,16 +182,17 @@ def search(candidates: list[dict], matrix: dict, threats: list[dict], rules: dic
     def mutate(team):
         t = list(team)
         i = rng.randrange(6)
-        if t[i]["species"] in locked or rng.random() < 0.5:
-            t[i] = rng.choice(by_species[t[i]["species"]])  # otro set del mismo Pokémon
+        sk = t[i].get("species_key", t[i]["species"])
+        if sk in locked or rng.random() < 0.5:
+            t[i] = rng.choice(by_species[sk])  # otro set del mismo Pokémon
         else:
-            used = {s["species"] for s in t}
+            used = {s.get("species_key", s["species"]) for s in t}
             new = rng.choice([s for s in species if s not in used] or species)
             t[i] = rng.choice(by_species[new])
         return t
 
     def crossover(a, b):
-        pool = {s["species"]: s for s in a + b}
+        pool = {s.get("species_key", s["species"]): s for s in a + b}
         sp = list(pool)
         rng.shuffle(sp)
         keep = [x for x in sp if x in locked]
@@ -215,7 +224,7 @@ def search(candidates: list[dict], matrix: dict, threats: list[dict], rules: dic
     population.sort(key=f, reverse=True)
     results, seen = [], set()
     for team in sorted({tuple(sorted(s["id"] for s in t)): t for t in population}.values(), key=f, reverse=True):
-        k = tuple(sorted(s["species"] for s in team))  # un resultado por composición de especies
+        k = tuple(sorted(s.get("species_key", s["species"]) for s in team))  # un resultado por composición
         if k in seen:
             continue
         seen.add(k)

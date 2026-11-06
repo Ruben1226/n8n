@@ -14,7 +14,7 @@
   - Inverse Mod si `modo_inverso`.
   - Nivel 49 y 0 EVs.
 - **Datos de Añil:** los tipos y stats base de `pokemon.json` se inyectan en las especies de Showdown, porque Añil modifica stats respecto a los oficiales.
-- **Bot (gana ~85 % a un bot aleatorio con el mismo equipo; parámetros ajustados por barrido, ver `sim/motor-sim.js → P`):** heurístico y **omnisciente** (ve el equipo rival). Usa `@smogon/calc` para estimar daños y sigue estas prioridades:
+- **Bot (gana ~95 % a un bot aleatorio con el mismo equipo; parámetros ajustados por barrido, ver `sim/motor-sim.js → P`):** heurístico y **omnisciente** (ve el equipo rival). Usa `@smogon/calc` para estimar daños y sigue estas prioridades:
   1. Rematar si puede.
   2. Prioridad que remata.
   3. Cambiar si le van a debilitar antes y hay un relevo que aguanta.
@@ -74,6 +74,7 @@ python -m tools.pkmn.cli refinar --indice 0 --rondas 3 --por-hueco 2 --n 6 --ran
   - Cambiar solo ante una amenaza de KO **si el relevo es claramente bueno** (`switchKO 0.65`).
   - Hacer setup con algo más de valentía (`setupSafety 1.5`).
   - Resultado: **~60–64 % contra la versión anterior** y 85 % contra un bot aleatorio.
+- **Fallo corregido** (detectado leyendo registros de derrotas, como prescribe el crítico): al completar un turno se forzaba 'movimiento 1' en el turno siguiente. Hay un test de regresión en `tests/test_sim.py`.
 - **Comprobado: no hay sesgo de lado** (p1 gana el 51,7 % de 300 espejos).
 
 ## Limitaciones (decláralas en el informe)
