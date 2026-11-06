@@ -1,0 +1,14 @@
+[
+ {
+  "name": "Aerilate",
+  "effects": [
+   {
+    "kind": "type_convert",
+    "from": "Normal",
+    "to": "Flying",
+    "mult": 1.2
+   }
+  ],
+  "description": "Normal -> Volador x1.2"
+ }
+]

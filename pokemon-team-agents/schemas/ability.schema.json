@@ -1,0 +1,59 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "abilities.json (lista)",
+ "type": "array",
+ "items": {
+  "type": "object",
+  "required": [
+   "name"
+  ],
+  "properties": {
+   "name": {
+    "type": "string"
+   },
+   "name_es": {
+    "type": "string"
+   },
+   "aliases": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   },
+   "description": {
+    "type": "string"
+   },
+   "effects": {
+    "type": [
+     "array",
+     "null"
+    ],
+    "items": {
+     "type": "object",
+     "required": [
+      "kind"
+     ],
+     "properties": {
+      "kind": {
+       "type": "string",
+       "description": "Ver knowledge/12-vocabulario-efectos.md"
+      },
+      "condition": {
+       "type": "string"
+      }
+     },
+     "additionalProperties": true
+    },
+    "description": "null/ausente = usar config/efectos_estandar.json"
+   },
+   "rating": {
+    "type": "integer",
+    "minimum": 1,
+    "maximum": 5
+   },
+   "custom_anil": {
+    "type": "boolean"
+   }
+  }
+ }
+}

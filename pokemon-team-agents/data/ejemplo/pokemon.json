@@ -1,0 +1,466 @@
+[
+ {
+  "name": "Gyarados",
+  "types": [
+   "Water",
+   "Flying"
+  ],
+  "base_stats": {
+   "hp": 95,
+   "atk": 125,
+   "def": 79,
+   "spa": 60,
+   "spd": 100,
+   "spe": 81
+  },
+  "abilities": [
+   "Intimidate",
+   "Moxie",
+   "Huge Power"
+  ],
+  "nature": "Jolly",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Waterfall",
+     "level": 21
+    },
+    {
+     "move": "Ice Fang",
+     "level": 30
+    },
+    {
+     "move": "Dragon Dance",
+     "level": 44
+    },
+    {
+     "move": "Bounce",
+     "level": 40
+    }
+   ],
+   "tm": [
+    "Earthquake",
+    "Stone Edge"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Charizard",
+  "types": [
+   "Fire",
+   "Flying"
+  ],
+  "base_stats": {
+   "hp": 78,
+   "atk": 84,
+   "def": 78,
+   "spa": 109,
+   "spd": 85,
+   "spe": 100
+  },
+  "abilities": [
+   "Blaze",
+   "Solar Power"
+  ],
+  "nature": "Modest",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Flamethrower",
+     "level": 36
+    },
+    {
+     "move": "Air Slash",
+     "level": 30
+    },
+    {
+     "move": "Fire Blast",
+     "level": 54
+    }
+   ],
+   "tm": [
+    "Solar Beam",
+    "Will-O-Wisp",
+    "Roost",
+    "Earthquake"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Jolteon",
+  "types": [
+   "Electric"
+  ],
+  "base_stats": {
+   "hp": 65,
+   "atk": 65,
+   "def": 60,
+   "spa": 110,
+   "spd": 95,
+   "spe": 130
+  },
+  "abilities": [
+   "Volt Absorb",
+   "Levitate"
+  ],
+  "nature": "Timid",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Thunderbolt",
+     "level": 40
+    },
+    {
+     "move": "Volt Switch",
+     "level": 30
+    },
+    {
+     "move": "Thunder Wave",
+     "level": 20
+    }
+   ],
+   "tm": [
+    "Shadow Ball",
+    "Toxic"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Gengar",
+  "types": [
+   "Ghost",
+   "Poison"
+  ],
+  "base_stats": {
+   "hp": 60,
+   "atk": 65,
+   "def": 60,
+   "spa": 130,
+   "spd": 75,
+   "spe": 110
+  },
+  "abilities": [
+   "Cursed Body",
+   "Adaptability"
+  ],
+  "nature": "Hardy",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Shadow Ball",
+     "level": 33
+    },
+    {
+     "move": "Hypnosis",
+     "level": 12
+    },
+    {
+     "move": "Sludge Bomb",
+     "level": 44
+    }
+   ],
+   "tm": [
+    "Thunderbolt",
+    "Toxic",
+    "Psychic",
+    "Last Respects"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Clefable",
+  "types": [
+   "Fairy"
+  ],
+  "base_stats": {
+   "hp": 95,
+   "atk": 70,
+   "def": 73,
+   "spa": 95,
+   "spd": 90,
+   "spe": 60
+  },
+  "abilities": [
+   "Magic Guard",
+   "Unaware"
+  ],
+  "nature": "Bold",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Moonblast",
+     "level": 46
+    },
+    {
+     "move": "Calm Mind",
+     "level": 40
+    }
+   ],
+   "tm": [
+    "Flamethrower",
+    "Thunder Wave",
+    "Stealth Rock",
+    "Psychic",
+    "Seismic Toss",
+    "Ice Beam"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Tauros",
+  "types": [
+   "Normal"
+  ],
+  "base_stats": {
+   "hp": 75,
+   "atk": 100,
+   "def": 95,
+   "spa": 40,
+   "spd": 70,
+   "spe": 110
+  },
+  "abilities": [
+   "Aerilate",
+   "Intimidate"
+  ],
+  "nature": "Adamant",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Body Slam",
+     "level": 35
+    },
+    {
+     "move": "Extreme Speed",
+     "level": 45
+    }
+   ],
+   "tm": [
+    "Earthquake",
+    "Stone Edge",
+    "Close Combat"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Hitmonchan",
+  "types": [
+   "Fighting"
+  ],
+  "base_stats": {
+   "hp": 50,
+   "atk": 105,
+   "def": 79,
+   "spa": 35,
+   "spd": 110,
+   "spe": 76
+  },
+  "abilities": [
+   "Iron Fist",
+   "Technician"
+  ],
+  "nature": "Careful",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Mach Punch",
+     "level": 16
+    },
+    {
+     "move": "Ice Punch",
+     "level": 36
+    },
+    {
+     "move": "Bullet Punch",
+     "level": 31
+    },
+    {
+     "move": "Close Combat",
+     "level": 46
+    }
+   ],
+   "tm": [
+    "Stone Edge",
+    "Rapid Spin"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Venusaur",
+  "types": [
+   "Grass",
+   "Poison"
+  ],
+  "base_stats": {
+   "hp": 80,
+   "atk": 82,
+   "def": 83,
+   "spa": 100,
+   "spd": 100,
+   "spe": 80
+  },
+  "abilities": [
+   "Overgrow",
+   "Chlorophyll",
+   "Thick Fat"
+  ],
+  "nature": "Calm",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Giga Drain",
+     "level": 30
+    },
+    {
+     "move": "Leech Seed",
+     "level": 9
+    },
+    {
+     "move": "Sludge Bomb",
+     "level": 44
+    }
+   ],
+   "tm": [
+    "Earthquake",
+    "Toxic",
+    "Solar Beam"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Starmie",
+  "types": [
+   "Water",
+   "Psychic"
+  ],
+  "base_stats": {
+   "hp": 60,
+   "atk": 75,
+   "def": 85,
+   "spa": 100,
+   "spd": 85,
+   "spe": 115
+  },
+  "abilities": [
+   "Natural Cure",
+   "Analytic",
+   "Levitate"
+  ],
+  "nature": "Timid",
+  "can_evolve": false,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Scald",
+     "level": 28
+    },
+    {
+     "move": "Psychic",
+     "level": 40
+    },
+    {
+     "move": "Recover",
+     "level": 22
+    },
+    {
+     "move": "Rapid Spin",
+     "level": 10
+    }
+   ],
+   "tm": [
+    "Ice Beam",
+    "Thunderbolt",
+    "Thunder Wave"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ },
+ {
+  "name": "Porygon",
+  "types": [
+   "Normal"
+  ],
+  "base_stats": {
+   "hp": 65,
+   "atk": 60,
+   "def": 70,
+   "spa": 85,
+   "spd": 75,
+   "spe": 40
+  },
+  "abilities": [
+   "Download",
+   "Regenerator"
+  ],
+  "nature": "Bold",
+  "can_evolve": true,
+  "ivs": {},
+  "learnset": {
+   "level_up": [
+    {
+     "move": "Thunderbolt",
+     "level": 40
+    },
+    {
+     "move": "Ice Beam",
+     "level": 30
+    },
+    {
+     "move": "Recover",
+     "level": 34
+    }
+   ],
+   "tm": [
+    "Toxic",
+    "Thunder Wave",
+    "Psychic"
+   ],
+   "tutor": [],
+   "relearn": [],
+   "egg": []
+  }
+ }
+]

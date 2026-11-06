@@ -1,0 +1,189 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "pokemon.json (lista)",
+ "type": "array",
+ "items": {
+  "type": "object",
+  "required": [
+   "name",
+   "types",
+   "base_stats",
+   "abilities",
+   "learnset"
+  ],
+  "properties": {
+   "name": {
+    "type": "string"
+   },
+   "name_es": {
+    "type": "string"
+   },
+   "types": {
+    "type": "array",
+    "minItems": 1,
+    "maxItems": 2,
+    "items": {
+     "type": "string"
+    }
+   },
+   "base_stats": {
+    "type": "object",
+    "required": [
+     "hp",
+     "atk",
+     "def",
+     "spa",
+     "spd",
+     "spe"
+    ],
+    "properties": {
+     "hp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+     },
+     "atk": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+     },
+     "def": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+     },
+     "spa": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+     },
+     "spd": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+     },
+     "spe": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+     }
+    }
+   },
+   "abilities": {
+    "type": "array",
+    "minItems": 1,
+    "maxItems": 3,
+    "items": {
+     "type": "string"
+    },
+    "description": "Habilidades posibles EN ESTA PARTIDA random"
+   },
+   "current_ability": {
+    "type": "string",
+    "description": "Habilidad actual del ejemplar, si no se puede cambiar"
+   },
+   "nature": {
+    "type": "string",
+    "description": "Naturaleza actual (ES o EN)"
+   },
+   "ivs": {
+    "type": "object",
+    "properties": {
+     "hp": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 31
+     },
+     "atk": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 31
+     },
+     "def": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 31
+     },
+     "spa": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 31
+     },
+     "spd": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 31
+     },
+     "spe": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 31
+     }
+    }
+   },
+   "level": {
+    "type": "integer"
+   },
+   "can_evolve": {
+    "type": "boolean",
+    "description": "true si puede evolucionar (Mineral Evolutivo)"
+   },
+   "current_moves": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   },
+   "learnset": {
+    "type": "object",
+    "properties": {
+     "level_up": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "move",
+        "level"
+       ],
+       "properties": {
+        "move": {
+         "type": "string"
+        },
+        "level": {
+         "type": "integer"
+        }
+       }
+      }
+     },
+     "tm": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "tutor": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "relearn": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "egg": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    }
+   },
+   "notes": {
+    "type": "string"
+   }
+  }
+ }
+}

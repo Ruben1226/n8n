@@ -1,0 +1,55 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "items.json (lista)",
+ "type": "array",
+ "items": {
+  "type": "object",
+  "required": [
+   "name"
+  ],
+  "properties": {
+   "name": {
+    "type": "string"
+   },
+   "name_es": {
+    "type": "string"
+   },
+   "aliases": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   },
+   "quantity": {
+    "type": "integer",
+    "minimum": 0,
+    "description": "Unidades disponibles"
+   },
+   "effects": {
+    "type": [
+     "array",
+     "null"
+    ],
+    "items": {
+     "type": "object",
+     "required": [
+      "kind"
+     ],
+     "properties": {
+      "kind": {
+       "type": "string",
+       "description": "Ver knowledge/12-vocabulario-efectos.md"
+      },
+      "condition": {
+       "type": "string"
+      }
+     },
+     "additionalProperties": true
+    }
+   },
+   "description": {
+    "type": "string"
+   }
+  }
+ }
+}

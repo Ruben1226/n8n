@@ -1,0 +1,16 @@
+{
+  "_comentario": "Pesos de la función objetivo del arquitecto. El crítico puede proponer ajustarlos justificándolo.",
+  "defensa_tipos": 1.0,
+  "amenazas": 2.0,
+  "roles": 1.0,
+  "velocidad": 0.8,
+  "calidad_individual": 1.0,
+  "penal_debilidad_compartida": 1.5,
+  "penal_menta": 50.0,
+  "penal_objeto": 50.0,
+  "penal_especie": 100.0,
+  "roles_deseados": {
+    "hazard_set": 1.0, "hazard_remove": 0.8, "pivot": 0.8, "speed_control": 1.0,
+    "setup_wincon": 1.0, "recovery": 0.6, "status_spreader": 0.5, "priority": 0.5
+  }
+}

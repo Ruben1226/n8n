@@ -1,0 +1,3 @@
+{
+  "_comentario": "Solo si Pokémon Añil modifica la tabla de tipos. Formato: {\"Atacante\": {\"Defensor\": multiplicador}}. Vacío = tabla Gen 6+ estándar."
+}

@@ -1,0 +1,481 @@
+[
+ {
+  "name": "Earthquake",
+  "type": "Ground",
+  "category": "physical",
+  "power": 100,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": []
+ },
+ {
+  "name": "Stone Edge",
+  "type": "Rock",
+  "category": "physical",
+  "power": 100,
+  "accuracy": 80,
+  "pp": 5,
+  "priority": 0,
+  "tags": []
+ },
+ {
+  "name": "Swords Dance",
+  "type": "Normal",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 20,
+  "priority": 0,
+  "tags": [
+   "setup_atk"
+  ]
+ },
+ {
+  "name": "Dragon Dance",
+  "type": "Dragon",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 20,
+  "priority": 0,
+  "tags": [
+   "setup_atk",
+   "setup_spe"
+  ]
+ },
+ {
+  "name": "Waterfall",
+  "type": "Water",
+  "category": "physical",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "secondary"
+  ]
+ },
+ {
+  "name": "Ice Fang",
+  "type": "Ice",
+  "category": "physical",
+  "power": 65,
+  "accuracy": 95,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "bite",
+   "secondary"
+  ]
+ },
+ {
+  "name": "Bounce",
+  "type": "Flying",
+  "category": "physical",
+  "power": 85,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "charge"
+  ]
+ },
+ {
+  "name": "Flamethrower",
+  "type": "Fire",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary"
+  ]
+ },
+ {
+  "name": "Fire Blast",
+  "type": "Fire",
+  "category": "special",
+  "power": 110,
+  "accuracy": 85,
+  "pp": 5,
+  "priority": 0,
+  "tags": [
+   "secondary"
+  ]
+ },
+ {
+  "name": "Air Slash",
+  "type": "Flying",
+  "category": "special",
+  "power": 75,
+  "accuracy": 95,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary",
+   "slicing"
+  ]
+ },
+ {
+  "name": "Solar Beam",
+  "type": "Grass",
+  "category": "special",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "charge"
+  ]
+ },
+ {
+  "name": "Will-O-Wisp",
+  "type": "Fire",
+  "category": "status",
+  "power": null,
+  "accuracy": 85,
+  "pp": 15,
+  "priority": 0,
+  "tags": [
+   "status_burn"
+  ]
+ },
+ {
+  "name": "Roost",
+  "type": "Flying",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 5,
+  "priority": 0,
+  "tags": [
+   "recovery"
+  ]
+ },
+ {
+  "name": "U-turn",
+  "type": "Bug",
+  "category": "physical",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "pivot"
+  ]
+ },
+ {
+  "name": "Thunderbolt",
+  "type": "Electric",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary"
+  ]
+ },
+ {
+  "name": "Volt Switch",
+  "type": "Electric",
+  "category": "special",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "pivot"
+  ]
+ },
+ {
+  "name": "Thunder Wave",
+  "type": "Electric",
+  "category": "status",
+  "power": null,
+  "accuracy": 90,
+  "pp": 20,
+  "priority": 0,
+  "tags": [
+   "status_para",
+   "speed_control"
+  ]
+ },
+ {
+  "name": "Shadow Ball",
+  "type": "Ghost",
+  "category": "special",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary",
+   "bullet"
+  ]
+ },
+ {
+  "name": "Sludge Bomb",
+  "type": "Poison",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary",
+   "bullet"
+  ]
+ },
+ {
+  "name": "Hypnosis",
+  "type": "Psychic",
+  "category": "status",
+  "power": null,
+  "accuracy": 60,
+  "pp": 20,
+  "priority": 0,
+  "tags": [
+   "status_sleep"
+  ]
+ },
+ {
+  "name": "Stealth Rock",
+  "type": "Rock",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 20,
+  "priority": 0,
+  "tags": [
+   "hazard_set"
+  ]
+ },
+ {
+  "name": "Rapid Spin",
+  "type": "Normal",
+  "category": "physical",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "hazard_remove"
+  ]
+ },
+ {
+  "name": "Moonblast",
+  "type": "Fairy",
+  "category": "special",
+  "power": 95,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary"
+  ]
+ },
+ {
+  "name": "Calm Mind",
+  "type": "Psychic",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 20,
+  "priority": 0,
+  "tags": [
+   "setup_spa"
+  ]
+ },
+ {
+  "name": "Psychic",
+  "type": "Psychic",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary"
+  ]
+ },
+ {
+  "name": "Body Slam",
+  "type": "Normal",
+  "category": "physical",
+  "power": 85,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "secondary"
+  ]
+ },
+ {
+  "name": "Extreme Speed",
+  "type": "Normal",
+  "category": "physical",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 2,
+  "tags": [
+   "contact"
+  ]
+ },
+ {
+  "name": "Close Combat",
+  "type": "Fighting",
+  "category": "physical",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "self_drop"
+  ]
+ },
+ {
+  "name": "Mach Punch",
+  "type": "Fighting",
+  "category": "physical",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 1,
+  "tags": [
+   "contact",
+   "punch"
+  ]
+ },
+ {
+  "name": "Ice Punch",
+  "type": "Ice",
+  "category": "physical",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "contact",
+   "punch",
+   "secondary"
+  ]
+ },
+ {
+  "name": "Bullet Punch",
+  "type": "Steel",
+  "category": "physical",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 1,
+  "tags": [
+   "contact",
+   "punch"
+  ]
+ },
+ {
+  "name": "Giga Drain",
+  "type": "Grass",
+  "category": "special",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "drain"
+  ]
+ },
+ {
+  "name": "Leech Seed",
+  "type": "Grass",
+  "category": "status",
+  "power": null,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "recovery"
+  ]
+ },
+ {
+  "name": "Toxic",
+  "type": "Poison",
+  "category": "status",
+  "power": null,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "status_toxic"
+  ]
+ },
+ {
+  "name": "Scald",
+  "type": "Water",
+  "category": "special",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary"
+  ]
+ },
+ {
+  "name": "Ice Beam",
+  "type": "Ice",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "secondary"
+  ]
+ },
+ {
+  "name": "Recover",
+  "type": "Normal",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 5,
+  "priority": 0,
+  "tags": [
+   "recovery"
+  ]
+ },
+ {
+  "name": "Last Respects",
+  "type": "Ghost",
+  "category": "physical",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": []
+ },
+ {
+  "name": "Seismic Toss",
+  "type": "Fighting",
+  "category": "physical",
+  "power": null,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "tags": [
+   "fixed_level"
+  ]
+ }
+]

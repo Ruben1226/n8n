@@ -1,0 +1,91 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "moves.json (lista)",
+ "type": "array",
+ "items": {
+  "type": "object",
+  "required": [
+   "name",
+   "type",
+   "category"
+  ],
+  "properties": {
+   "name": {
+    "type": "string"
+   },
+   "name_es": {
+    "type": "string"
+   },
+   "aliases": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   },
+   "type": {
+    "type": "string"
+   },
+   "category": {
+    "enum": [
+     "physical",
+     "special",
+     "status"
+    ]
+   },
+   "power": {
+    "type": [
+     "integer",
+     "null"
+    ]
+   },
+   "accuracy": {
+    "type": [
+     "integer",
+     "null"
+    ],
+    "description": "null = nunca falla"
+   },
+   "pp": {
+    "type": "integer"
+   },
+   "priority": {
+    "type": "integer",
+    "default": 0
+   },
+   "multi_hit": {
+    "oneOf": [
+     {
+      "type": "integer"
+     },
+     {
+      "type": "array",
+      "items": {
+       "type": "integer"
+      },
+      "minItems": 2,
+      "maxItems": 2
+     }
+    ]
+   },
+   "tags": {
+    "type": "array",
+    "items": {
+     "type": "string"
+    },
+    "description": "Ver knowledge/04-movimientos.md"
+   },
+   "effect": {
+    "type": "string",
+    "description": "Texto del efecto según el juego"
+   },
+   "custom_anil": {
+    "type": "boolean",
+    "description": "true si es exclusivo o modificado en Añil"
+   },
+   "data_assumed": {
+    "type": "boolean",
+    "description": "true si los datos se tomaron del juego oficial por faltar en el fichero"
+   }
+  }
+ }
+}
