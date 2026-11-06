@@ -79,6 +79,15 @@ def _build() -> dict:
     for a, ds in _IMMUNE.items():
         for d in ds:
             chart[a][d] = 0.0
+    # Modo Inverso de Añil (config/reglas.json -> "modo_inverso": true): x2 <-> x0.5 y las inmunidades pasan a x2
+    reglas = os.path.join(os.path.dirname(__file__), "..", "..", "config", "reglas.json")
+    if os.path.exists(reglas):
+        with open(reglas, encoding="utf-8") as f:
+            if json.load(f).get("modo_inverso"):
+                for a in TYPES:
+                    for d in TYPES:
+                        m = chart[a][d]
+                        chart[a][d] = 0.5 if m == 2.0 else 2.0 if m in (0.5, 0.0) else m
     override = os.path.join(os.path.dirname(__file__), "..", "..", "config", "tabla_tipos_override.json")
     if os.path.exists(override):
         with open(override, encoding="utf-8") as f:

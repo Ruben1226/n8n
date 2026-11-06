@@ -5,6 +5,8 @@
 
 ## Contexto
 - **Juego:** Pokémon Añil, un fangame en RPG Maker XP / Essentials que reimagina Rojo/Azul con mecánicas modernas e incluye Pokémon de las 9 generaciones.
+- **Añil modifica stats base** de muchos Pokémon respecto a los oficiales (la Pokédex del juego lo muestra). **Usa siempre los del fichero.**
+- Añil Definitive Edition tiene **Megaevoluciones** (incluidas las de Leyendas Z-A) y modos especiales: Randomlocke personalizable, **Modo Inverso** (tabla de tipos invertida) y Modo VGC (dobles). Esta partida es singles; si es inversa, `modo_inverso: true`.
 - **Partida randomizada:**
   - Las habilidades, los movimientos y los learnsets **no tienen por qué coincidir** con los oficiales.
   - Puede haber movimientos y habilidades exclusivos de Añil.
@@ -48,6 +50,9 @@
    - Velocidad suficiente o prioridad.
    - Un plan de victoria claro.
 
+## Filosofía
+**No existe el equipo perfecto** (ver `knowledge/13`). Se busca el mayor winrate, aceptando huecos razonables.
+
 ## Pendiente de confirmar con el jugador (el orquestador debe preguntar si no está en los datos)
 - Número de mentas disponibles.
 - Si Añil usa la división físico/especial por movimiento (casi seguro que sí, por ser Essentials moderno) y si existe el tipo Hada.
@@ -55,3 +60,4 @@
 - Lista de MTs y objetos en propiedad, con cantidades.
 - IVs de cada Pokémon (¿el juego tiene juez de IVs?).
 - Mecánica de clima en Añil: ¿granizo o nieve?
+- ¿Partida en Modo Inverso? ¿Megaevolución disponible antes del 5.º gimnasio?

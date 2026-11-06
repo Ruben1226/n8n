@@ -1,16 +1,20 @@
 {
-  "_comentario": "Pesos de la función objetivo del arquitecto. El crítico puede proponer ajustarlos justificándolo.",
-  "defensa_tipos": 1.0,
+  "_comentario": "Pesos de la función objetivo (surrogate rápido). La SIMULACIÓN valida y manda por encima. No existe el equipo perfecto: la cobertura de tipos tiene rendimiento decreciente y la potencia real (presion_ofensiva) pesa tanto como ella.",
+  "defensa_tipos": 0.8,
   "amenazas": 2.0,
-  "roles": 1.0,
+  "presion_ofensiva": 1.5,
+  "roles": 0.8,
   "velocidad": 0.8,
-  "calidad_individual": 1.0,
-  "penal_debilidad_compartida": 1.5,
+  "calidad_individual": 1.2,
+  "penal_debilidad_compartida": 1.0,
+  "penal_eslabon_debil": 2.0,
+  "percentil_eslabon": 0.4,
+  "_eslabon_nota": "Un miembro cuya puntuación individual está por debajo del percentil 40 del pool penaliza (no meter Pokémon flojos solo por cubrir un tipo).",
   "penal_menta": 50.0,
   "penal_objeto": 50.0,
   "penal_especie": 100.0,
   "roles_deseados": {
-    "hazard_set": 1.0, "hazard_remove": 0.8, "pivot": 0.8, "speed_control": 1.0,
-    "setup_wincon": 1.0, "recovery": 0.6, "status_spreader": 0.5, "priority": 0.5
+    "hazard_set": 1.0, "hazard_remove": 0.6, "pivot": 0.7, "speed_control": 1.0,
+    "setup_wincon": 1.0, "recovery": 0.5, "status_spreader": 0.5, "priority": 0.5
   }
 }

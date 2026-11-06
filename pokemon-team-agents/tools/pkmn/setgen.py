@@ -216,6 +216,8 @@ def generate_for(dex: Dex, mon: dict, speed_threshold: int) -> list[dict]:
                                else f"atacante_{'physical' if lean != 'special' else 'special'}"]
             if role == "atacante" and not fast and st["spe"] >= speed_threshold * 0.8:
                 prefs = ["Choice Scarf"] + prefs
+            if any((dex.move(m) or {}).get("category") == "status" for m in moves):
+                prefs = [p for p in prefs if not p.startswith("Choice")] or ITEM_PREFS["setup"]
             item = _pick_item(dex, prefs, mon.get("can_evolve", False))
             variants = [(current, False)]
             if not _same_effect(ideal, current):
@@ -300,24 +302,62 @@ def build_set(dex: Dex, mon: dict, ability: str, item: str | None, nature: str, 
     return s
 
 
-def generate_all(dex: Dex) -> list[dict]:
+def speed_threshold(dex: Dex) -> int:
     level = dex.rules.get("nivel", 49)
     speeds = sorted(calc_all(p["base_stats"], level, p.get("ivs", {}))["spe"] for p in dex.pokemon) or [100]
-    threshold = speeds[int(len(speeds) * 0.6)] if speeds else 100
+    return speeds[int(len(speeds) * 0.6)]
+
+
+def score_set(dex: Dex, s: dict, threshold: int) -> dict:
+    """(Re)calcula role_tags y puntuaciones de un set (también sirve para sets editados a mano)."""
+    sp = dex.species(s["species"]) or {}
+    mon = {"name": s["species"], "types": s.get("types") or sp.get("types"), "base_stats": s.get("base_stats") or sp.get("base_stats"),
+           "ivs": s.get("ivs") or sp.get("ivs", {}), "can_evolve": s.get("can_evolve", sp.get("can_evolve", False))}
+    fresh = build_set(dex, mon, s["ability"], s.get("item"), s.get("nature", "Serious"), s["moves"],
+                      s.get("role", "atacante"), s.get("lean", "physical"), s.get("needs_mint", False))
+    for k, v in s.items():  # conservar campos extra (origen, notas, showdown_*...)
+        if k not in fresh:
+            fresh[k] = v
+    fresh["id"] = s.get("id", fresh["id"])
+    fresh["role_tags"] = role_tags(dex, fresh, threshold)
+    util = sum(v for tg, v in UTILITY_PRIORITY if tg in fresh["role_tags"])
+    sc = fresh["scores"]
+    sc["utility"] = round(util, 2)
+    bulk = (sc["phys_bulk"] + sc["spec_bulk"]) / 2
+    spd_factor = min(1.5, sc["speed"] / threshold)
+    if fresh["role"] == "soporte":
+        sc["total"] = round(bulk * 4 + util * 0.8 + sc["offense"] * 0.8, 3)
+    else:
+        sc["total"] = round(sc["offense"] * (0.7 + 0.5 * spd_factor) + bulk * 1.5 + util * 0.3, 3)
+    return fresh
+
+
+def add_percentiles(sets: list[dict]) -> None:
+    """Percentil de cada set DENTRO de su rol (atacante / setup / soporte): hace comparables los roles."""
+    by_role: dict[str, list[dict]] = {}
+    for s in sets:
+        by_role.setdefault(s.get("role", "atacante"), []).append(s)
+    for group in by_role.values():
+        group.sort(key=lambda s: s["scores"]["total"])
+        n = len(group)
+        for i, s in enumerate(group):
+            s["scores"]["percentil_rol"] = round((i + 1) / n, 3) if n > 1 else 1.0
+
+
+def rescore_all(dex: Dex, sets: list[dict]) -> list[dict]:
+    thr = speed_threshold(dex)
+    out = [score_set(dex, s, thr) for s in sets]
+    add_percentiles(out)
+    out.sort(key=lambda s: s["scores"]["total"], reverse=True)
+    return out
+
+
+def generate_all(dex: Dex):
+    threshold = speed_threshold(dex)
     out = []
     for mon in dex.pokemon:
-        mon_sets = generate_for(dex, mon, threshold)
-        for s in mon_sets:
-            s["role_tags"] = role_tags(dex, s, threshold)
-            util = sum(v for tg, v in UTILITY_PRIORITY if tg in s["role_tags"])
-            sc = s["scores"]
-            sc["utility"] = round(util, 2)
-            bulk = (sc["phys_bulk"] + sc["spec_bulk"]) / 2
-            spd_factor = min(1.5, sc["speed"] / threshold)
-            if s["role"] == "soporte":
-                sc["total"] = round(bulk * 4 + util * 0.8 + sc["offense"] * 0.8, 3)
-            else:
-                sc["total"] = round(sc["offense"] * (0.7 + 0.5 * spd_factor) + bulk * 1.5 + util * 0.3, 3)
-        out.extend(mon_sets)
+        for s in generate_for(dex, mon, threshold):
+            out.append(score_set(dex, s, threshold))
+    add_percentiles(out)
     out.sort(key=lambda s: s["scores"]["total"], reverse=True)
     return out, threshold

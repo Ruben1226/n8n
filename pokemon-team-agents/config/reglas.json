@@ -11,6 +11,8 @@
   "clausula_especie": true,
   "clausula_objeto": false,
   "_clausula_objeto_nota": "false = se permiten objetos repetidos si tienes varias unidades (items.json -> quantity).",
+  "modo_inverso": false,
+  "_modo_inverso_nota": "Añil Definitive Edition tiene un Modo Inverso (tabla de tipos invertida). Ponlo a true si vuestra partida lo usa.",
   "habilidad_cambiable": true,
   "_habilidad_nota": "true = se exploran las 1-3 habilidades posibles (cápsula/parche). false = solo current_ability de cada ejemplar.",
   "boosts_limitados": false,

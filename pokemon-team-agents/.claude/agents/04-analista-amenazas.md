@@ -34,5 +34,7 @@ Eres el **analista de amenazas**. Como no hay meta, tu trabajo es construir un "
   - Rangos de velocidad del pool: percentiles y los 10 más rápidos con y sin naturaleza +Vel.
 
 ## Reglas
+- **No** hace falta que el equipo responda a todo (`knowledge/13`). Tu trabajo es dar **pesos realistas** para que el arquitecto priorice. Un arquetipo raro con peso alto distorsiona la búsqueda.
+- La simulación (`knowledge/14`) añade además rivales "random" del generador oficial de Showdown. Tu lista de amenazas sirve para el surrogate y para que el crítico diseñe rivales.
 - No uses equipos del meta oficial ni de Smogon. Usa principios generales, arquetipos y el propio pool.
 - Las afirmaciones numéricas salen del motor, no de estimaciones.

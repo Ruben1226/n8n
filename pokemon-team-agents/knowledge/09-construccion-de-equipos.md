@@ -1,5 +1,7 @@
 # 09 · Metodología de construcción de equipos
 
+> Lee antes `knowledge/13`: **no existe el equipo perfecto**. Estos principios son guías para ganar más partidas, no casillas obligatorias.
+
 ## Principios (en orden de importancia)
 1. **Condición de victoria clara.** ¿Cómo gana este equipo? Ejemplos: "Gyarados +1 barre tras quitar al muro físico" o "desgaste con hazards y Tóxico".
 2. **Robustez defensiva:**
@@ -29,17 +31,22 @@
   - Pivotes que llevan a los wallbreakers.
 - Proponer variaciones con `--fijar` y reevaluarlas con `evaluar`.
 
-## Función objetivo del motor (resumen de `teamsearch.py`; pesos en `config/pesos_equipo.json`)
+## Función objetivo del motor (surrogate rápido; pesos en `config/pesos_equipo.json`)
 | Componente | Cómo se calcula |
 |---|---|
-| `defensa_tipos` | Por cada tipo: +0,5 por resistencia (máx. 3), +0,5 por inmunidad, −0,6 por débil |
-| `amenazas` | Por amenaza: 0,5 por check (máx. 2) + 0,5 si hay counter, ponderado por peso de amenaza |
+| `amenazas` | Por amenaza: 0,5 por check (máx. 2) + 0,5 si hay counter, ponderado por peso |
+| `presion_ofensiva` | Por amenaza: mayor daño mínimo que le hace algún miembro (tope 100 %) + bonus si alguien la deja KO de un golpe. **Premia los "botones"** |
+| `defensa_tipos` | Rendimiento decreciente: 2.ª resistencia vale menos; solo penaliza a partir del 2.º débil |
 | `roles` | Suma de pesos de los roles deseados presentes |
 | `velocidad` | Miembros rápidos o con control de velocidad (máx. 3) |
-| `calidad_individual` | Media de la puntuación total de los sets |
-| Penalizaciones | Debilidad compartida, especie repetida, objetos o mentas por encima del stock |
+| `calidad_individual` | Media del **percentil dentro del rol** de cada set |
+| Penalizaciones | **Eslabón débil** (miembro < percentil 40 de su rol); debilidad compartida (blanda, ×0,25 si está compensada ofensivamente); especie repetida; objetos o mentas por encima del stock |
 
-**El desglose de cada equipo se guarda en `top_equipos.json`.** Úsalo para explicar decisiones: "este equipo pierde puntos porque nadie responde al atacante genérico Lucha físico".
+- **El surrogate no es la verdad:** sirve para explorar miles de equipos.
+- **La verdad operativa es la simulación** (`knowledge/14`).
+- Los pesos se pueden **calibrar con la simulación** (`cli calibrar`): una regresión dice qué componentes predicen de verdad el winrate. Así el equilibrio cobertura/potencia lo deciden los datos (`knowledge/13`).
+
+**El desglose de cada equipo se guarda en `top_equipos.json`.** Úsalo para explicar decisiones.
 
 ## Errores típicos a evitar
 - 6 atacantes sin ningún plan contra un muro con recuperación.
