@@ -58,7 +58,8 @@ class Dex:
         a = self.abilities.get(key(name))
         if a and a.get("effects") is not None:
             return a["effects"]
-        return self._std_abilities.get(key(name), [])
+        canon = a["name"] if a else name  # alias en español -> nombre canónico -> efectos estándar
+        return self._std_abilities.get(key(canon), self._std_abilities.get(key(name), []))
 
     def item_effects(self, name: str | None) -> list[dict]:
         if not name:
@@ -66,7 +67,8 @@ class Dex:
         i = self.items.get(key(name))
         if i and i.get("effects") is not None:
             return i["effects"]
-        return self._std_items.get(key(name), [])
+        canon = i["name"] if i else name
+        return self._std_items.get(key(canon), self._std_items.get(key(name), []))
 
     def species(self, name: str) -> dict | None:
         k = key(name)

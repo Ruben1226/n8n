@@ -79,5 +79,5 @@ def calibrate(rows, weights, ridge: float = 1.0) -> dict:
         "pesos_actuales": {c: weights[c] for c in COMPONENTS},
         "pesos_sugeridos": sugg,
         "nota": ("Si spearman_calibrado > spearman_actual + 0.1 con >= 25 equipos, copia pesos_sugeridos a "
-                 "config/pesos_equipo.json y repite la búsqueda (equipo). Con pocos equipos la calibración es ruidosa y "spearman_calibrado" es "dentro de muestra" (optimista)."),
+                 "config/pesos_equipo.json y repite la búsqueda (equipo). Con pocos equipos la calibración es ruidosa y spearman_calibrado se mide dentro de muestra (optimista)."),
     }

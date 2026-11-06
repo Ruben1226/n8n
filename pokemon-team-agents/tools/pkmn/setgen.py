@@ -255,9 +255,30 @@ def role_tags(dex: Dex, s: dict, speed_threshold: int) -> list[str]:
     return sorted(tags)
 
 
+def _showdown_equivalents(dex: Dex, ability, item, moves) -> dict:
+    """Copia los equivalentes de Showdown que fijó el oráculo (campo showdown_equivalent) para cosas de Añil."""
+    out = {}
+    a = dex.abilities.get(key(ability)) if ability else None
+    if a and a.get("showdown_equivalent"):
+        out["showdown_ability"] = a["showdown_equivalent"]
+    i = dex.items.get(key(item)) if item else None
+    if i and i.get("showdown_equivalent"):
+        out["showdown_item"] = i["showdown_equivalent"]
+    mm = {m: dex.move(m)["showdown_equivalent"] for m in moves if (dex.move(m) or {}).get("showdown_equivalent")}
+    if mm:
+        out["showdown_moves"] = mm
+    return out
+
+
 def build_set(dex: Dex, mon: dict, ability: str, item: str | None, nature: str, moves: list[str],
               role: str, lean: str, needs_mint: bool) -> dict:
     level = dex.rules.get("nivel", 49)
+    # nombres canónicos (inglés) para que el simulador de Showdown los reconozca
+    ab_entry = dex.abilities.get(key(ability)) if ability else None
+    ability = ab_entry["name"] if ab_entry else ability
+    it_entry = dex.items.get(key(item)) if item else None
+    item = it_entry["name"] if it_entry else item
+    moves = [(dex.move(m) or {}).get("name", m) for m in moves]
     st = calc_all(mon["base_stats"], level, mon.get("ivs", {}), {}, nature)
     b = Battler(mon["name"], mon["types"], mon["base_stats"], ability=ability, item=item, level=level,
                 ivs=mon.get("ivs", {}), nature=nature, can_evolve=mon.get("can_evolve", False),
@@ -287,6 +308,8 @@ def build_set(dex: Dex, mon: dict, ability: str, item: str | None, nature: str, 
     s = {
         "id": f"{mon['name']}|{ability}|{role}|{nature}",
         "species": mon["name"], "types": mon["types"], "base_stats": mon["base_stats"],
+        **({"showdown_species": mon["showdown_name"]} if mon.get("showdown_name") else {}),
+        **_showdown_equivalents(dex, ability, item, moves),
         "ivs": mon.get("ivs", {}), "can_evolve": mon.get("can_evolve", False),
         "ability": ability, "ability_effects": dex.ability_effects(ability),
         "item": item, "item_effects": dex.item_effects(item),
@@ -312,7 +335,8 @@ def score_set(dex: Dex, s: dict, threshold: int) -> dict:
     """(Re)calcula role_tags y puntuaciones de un set (también sirve para sets editados a mano)."""
     sp = dex.species(s["species"]) or {}
     mon = {"name": s["species"], "types": s.get("types") or sp.get("types"), "base_stats": s.get("base_stats") or sp.get("base_stats"),
-           "ivs": s.get("ivs") or sp.get("ivs", {}), "can_evolve": s.get("can_evolve", sp.get("can_evolve", False))}
+           "ivs": s.get("ivs") or sp.get("ivs", {}), "can_evolve": s.get("can_evolve", sp.get("can_evolve", False)),
+           "showdown_name": s.get("showdown_species") or sp.get("showdown_name")}
     fresh = build_set(dex, mon, s["ability"], s.get("item"), s.get("nature", "Serious"), s["moves"],
                       s.get("role", "atacante"), s.get("lean", "physical"), s.get("needs_mint", False))
     for k, v in s.items():  # conservar campos extra (origen, notas, showdown_*...)

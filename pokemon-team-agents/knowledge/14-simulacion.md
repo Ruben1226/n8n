@@ -14,7 +14,7 @@
   - Inverse Mod si `modo_inverso`.
   - Nivel 49 y 0 EVs.
 - **Datos de Añil:** los tipos y stats base de `pokemon.json` se inyectan en las especies de Showdown, porque Añil modifica stats respecto a los oficiales.
-- **Bot (calibrado: gana ~80 % al bot aleatorio con el mismo equipo):** heurístico y **omnisciente** (ve el equipo rival). Usa `@smogon/calc` para estimar daños y sigue estas prioridades:
+- **Bot (gana ~85 % a un bot aleatorio con el mismo equipo; parámetros ajustados por barrido, ver `sim/motor-sim.js → P`):** heurístico y **omnisciente** (ve el equipo rival). Usa `@smogon/calc` para estimar daños y sigue estas prioridades:
   1. Rematar si puede.
   2. Prioridad que remata.
   3. Cambiar si le van a debilitar antes y hay un relevo que aguanta.
@@ -45,6 +45,9 @@ python -m tools.pkmn.cli refinar --indice 0 --rondas 3 --por-hueco 2 --n 6 --ran
   - Por miembro: veces debilitado y KOs.
 - `logs/`: registros de partidas perdidas, para que el crítico los lea.
 
+## Refinado y sobreajuste
+`refinar` elige variantes midiendo contra un conjunto fijo de rivales, así que puede **sobreajustarse** a esos rivales. Por eso, al terminar, vuelve a enfrentar el original con el refinado contra **rivales nuevos** (otra semilla, otros equipos del pool y otros equipos random). Solo cuenta la mejora que se mantiene ahí.
+
 ## Calibrar el surrogate con la simulación
 `python -m tools.pkmn.cli calibrar --top 15 --aleatorios 15 --n 4 --random-rivales 30`
 1. Simula unos 30 equipos: los mejores del GA más equipos aleatorios, para tener variedad.
@@ -64,6 +67,14 @@ python -m tools.pkmn.cli refinar --indice 0 --rondas 3 --por-hueco 2 --n 6 --ran
   - Lo ideal es que ambos sean altos.
 - **Miembros:** uno que muere primero en la mayoría de derrotas y hace pocos KOs es candidato a cambio. **Pero mira los logs**: quizá se sacrifica bien.
 - **Peores rivales:** el crítico debe abrir sus logs y explicar *por qué* se pierde.
+
+## Decisiones de diseño del bot (probadas, no supuestas)
+- Un bot con **previsión de 1 turno** (lookahead) se probó y perdió el 71 % de las partidas contra el heurístico: cambiaba demasiado. **Descartado.**
+- Barrido de parámetros contra la versión base, validado con semillas nuevas (400 partidas por variante):
+  - Cambiar solo ante una amenaza de KO **si el relevo es claramente bueno** (`switchKO 0.65`).
+  - Hacer setup con algo más de valentía (`setupSafety 1.5`).
+  - Resultado: **~60–64 % contra la versión anterior** y 85 % contra un bot aleatorio.
+- **Comprobado: no hay sesgo de lado** (p1 gana el 51,7 % de 300 espejos).
 
 ## Limitaciones (decláralas en el informe)
 - El bot no predice, no hace "mind games" y juega con información completa. Un humano jugará distinto.

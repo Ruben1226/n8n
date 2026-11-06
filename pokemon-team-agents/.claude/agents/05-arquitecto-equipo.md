@@ -26,6 +26,7 @@ Eres el **arquitecto de equipo**. Objetivo: el equipo de 6 con **mayor probabili
 5. **Refinado.** Para los 1–2 mejores por simulación:
    `python -m tools.pkmn.cli refinar --indice I --rondas 3 --por-hueco 2 --n 6 --random-rivales 40`
    - Prueba sustituciones hueco a hueco y se queda con las que mejoran el winrate más allá del margen.
+   - Al final **valida contra rivales nuevos** (reserva) el original frente al refinado: `validacion_rivales_nuevos` en `workspace/07_sim/refinado.json`. **Si la mejora no se mantiene con rivales nuevos, quédate con el original**: fue ruido o sobreajuste.
    - Para refinar un finalista concreto: `refinar --desde workspace/05_equipos/equipo_X.json` (fichero `{"sets": [...]}`).
 6. **Revisión experta** del mejor equipo (y del 2.º si su IC se solapa). Responde por escrito:
    - **Condición de victoria** y plan B.

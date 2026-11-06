@@ -282,7 +282,27 @@ def main(argv=None):
                 print("Sin mejora significativa: se detiene el refinado.")
                 break
             base = next(v["sets"] for v in variantes if v["nombre"] == best["nombre"])
-        _dump({"equipo": [s_["id"] for s_ in base], "sets": base, "historial": historial,
+        # Validación con rivales NUEVOS (reserva): evita el "sesgo del ganador" de elegir y medir con los mismos rivales
+        validacion = None
+        original = top[a.indice]["sets"] if not a.desde else None
+        if historial and (original is None or [x["id"] for x in original] != [x["id"] for x in base]):
+            import copy
+            a2 = copy.copy(a)
+            a2.semilla = a.semilla + 997
+            if a.desde:
+                src = _load(a.desde)
+                orig_sets = src["sets"] if isinstance(src, dict) else (src[0]["sets"] if src and "sets" in src[0] else src)
+            else:
+                orig_sets = original
+            riv2 = _build_rivals(sets, [{"nombre": _team_name(i, t["sets"]), "sets": t["sets"]} for i, t in enumerate(top[4:8])],
+                                 a.rivales_pool, a2.semilla)
+            rc, res2 = _run_sim([{"nombre": "ORIGINAL", "sets": orig_sets}, {"nombre": "REFINADO", "sets": base}],
+                                riv2, d, datos, a2, tag="refinar_validacion")
+            if rc == 0:
+                by2 = {r["nombre"]: r for r in res2["resultados"]}
+                validacion = {k: {"winrate": by2[k]["winrate"], "ic95": by2[k]["ic95"]} for k in by2}
+                print(f"Validación (rivales nuevos): ORIGINAL {by2['ORIGINAL']['winrate']:.3f} vs REFINADO {by2['REFINADO']['winrate']:.3f}")
+        _dump({"equipo": [s_["id"] for s_ in base], "sets": base, "historial": historial, "validacion_rivales_nuevos": validacion,
                "desglose_motor": evaluate(base, matrix, threats, rules, w, qf)}, os.path.join(d, "refinado.json"))
         return 0
 

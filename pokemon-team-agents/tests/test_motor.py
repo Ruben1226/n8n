@@ -73,3 +73,35 @@ class TestDatos(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestAlias(unittest.TestCase):
+    def test_alias_espanol_resuelve_efectos_estandar(self):
+        import json
+        import tempfile
+        d = tempfile.mkdtemp()
+        for f in ("pokemon", "moves", "items"):
+            with open(os.path.join(EJ, f + ".json"), encoding="utf-8") as src, open(os.path.join(d, f + ".json"), "w", encoding="utf-8") as dst:
+                dst.write(src.read())
+        with open(os.path.join(d, "abilities.json"), "w", encoding="utf-8") as f:
+            json.dump([{"name": "Levitate", "name_es": "Levitación"}], f)
+        dex = Dex(d)
+        self.assertEqual(dex.ability_effects("Levitación"), [{"kind": "immunity", "type": "Ground"}])
+
+
+class TestCalibracion(unittest.TestCase):
+    def test_recupera_pesos(self):
+        from tools.pkmn.calibrate import COMPONENTS, calibrate, spearman
+        import random
+        rng = random.Random(1)
+        rows = []
+        for _ in range(40):
+            br = {c: rng.random() * 3 for c in COMPONENTS}
+            br["penalizacion"] = 0
+            wr = 0.2 * br["presion_ofensiva"] + 0.05 * br["defensa_tipos"] + rng.gauss(0, 0.02)
+            rows.append((br, wr))
+        rep = calibrate(rows, {c: 1.0 for c in COMPONENTS})
+        s = rep["pesos_sugeridos"]
+        self.assertGreater(s["presion_ofensiva"], s["defensa_tipos"])
+        self.assertGreater(rep["spearman_calibrado"], rep["spearman_actual"])
+        self.assertEqual(spearman([1, 2, 3], [10, 20, 30]), 1.0)

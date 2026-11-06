@@ -12,6 +12,8 @@ const {Dex, Battle, Teams} = require('pokemon-showdown');
 const calc = require('@smogon/calc');
 
 const GEN = calc.Generations.get(9);
+// Parámetros del bot (ajustados por barrido contra la versión base; ver knowledge/14)
+const P = {switchKO: 0.65, badMatchup: 0.3, badMatchupDealt: 0.22, setupSafety: 1.5};
 const fs = require('fs');
 const path = require('path');
 let REGLAS = {};
@@ -226,14 +228,14 @@ function chooseMove(battle, side, req, rng, opts) {
   // 2) Cambiar si me van a debilitar primero y hay alguien que aguante mucho mejor
   if (!r.trapped && !r.maybeTrapped && their.frac >= 1 && !iOutspeed(my.priority)) {
     const sw = bestSwitch(battle, side, req, opp);
-    if (sw && sw.score > 0.35) return `switch ${sw.slot}`;
+    if (sw && sw.score > (opts.P || P).switchKO) return `switch ${sw.slot}`;
   }
 
   // 2a) Enfrentamiento malo (no hago casi nada y hay un relevo claramente mejor): cambiar
-  if (!r.trapped && !r.maybeTrapped && my.frac < 0.22) {
+  if (!r.trapped && !r.maybeTrapped && my.frac < (opts.P || P).badMatchupDealt) {
     const cur = (1 - Math.min(1, their.frac)) * 0.7 + Math.min(1, my.frac) * (meFaster ? 0.5 : 0.3);
     const sw = bestSwitch(battle, side, req, opp);
-    if (sw && sw.score > cur + 0.3) return `switch ${sw.slot}`;
+    if (sw && sw.score > cur + (opts.P || P).badMatchup) return `switch ${sw.slot}`;
   }
   const hpFrac = me.hp / me.maxhp;
   // 2b) Si puedo debilitar y no hay cambio mejor, atacar (nunca hacer setup delante de un rival a tiro)
@@ -251,7 +253,7 @@ function chooseMove(battle, side, req, rng, opts) {
     const key = Object.keys(boosts)[0];
     if (key && me.boosts[key] >= 4) continue;
     if (m.id === 'bellydrum' && hpFrac < 0.75) continue;
-    if (their.frac * 2.2 < hpFrac && my.frac < 1) return pick(m.id);
+    if (their.frac * (opts.P || P).setupSafety < hpFrac && my.frac < 1) return pick(m.id);
   }
   // 5) Recuperación
   for (const m of usable) {
@@ -332,7 +334,7 @@ function mulberry32(a) {
 }
 
 /** Juega una partida. Devuelve {winner: 'p1'|'p2'|'tie', turns, log?} */
-function playBattle(team1, team2, {seed = 1, keepLog = false, maxTurns = 300, epsilon = 0.03, epsilons = null} = {}) {
+function playBattle(team1, team2, {seed = 1, keepLog = false, maxTurns = 300, epsilon = 0.03, epsilons = null, params = null} = {}) {
   const battle = new Battle({formatid: FORMAT, seed: [seed, seed * 7 + 1, seed * 13 + 2, seed * 31 + 3]});
   battle.setPlayer('p1', {name: 'A', team: team1});
   battle.setPlayer('p2', {name: 'B', team: team2});
@@ -343,7 +345,7 @@ function playBattle(team1, team2, {seed = 1, keepLog = false, maxTurns = 300, ep
     for (const side of [battle.p1, battle.p2]) {
       if (side.activeRequest && !side.activeRequest.wait && !side.isChoiceDone()) {
         const eps = epsilons ? epsilons[side.id === 'p1' ? 0 : 1] : epsilon;
-        const c = decide(battle, side, rng, {epsilon: eps});
+        const c = decide(battle, side, rng, {epsilon: eps, P: params ? params[side.id === 'p1' ? 0 : 1] : null});
         try { battle.choose(side.id, c || 'default'); } catch (e) { battle.choose(side.id, 'default'); }
         if (!side.isChoiceDone()) battle.choose(side.id, 'default');
         acted = true;
@@ -356,4 +358,4 @@ function playBattle(team1, team2, {seed = 1, keepLog = false, maxTurns = 300, ep
   return res;
 }
 
-module.exports = {applyAnilSpecies, toShowdownSet, randomForeignTeam, playBattle, normNature, FORMAT};
+module.exports = {BOT_PARAMS: P, applyAnilSpecies, toShowdownSet, randomForeignTeam, playBattle, normNature, FORMAT};

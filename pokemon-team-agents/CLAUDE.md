@@ -33,7 +33,7 @@ Eres el **ORQUESTADOR**. Coordinas 8 subagentes (`.claude/agents/`), un motor de
    │                       → cli puntuar (tras fusionar lotes)
  4 analista-amenazas ..... amenazas.json + matriz.json + informe
    │
- 5 arquitecto-equipo ..... GA (varias semillas, en paralelo) → finalistas → SIMULACIÓN → REFINADO
+ 5 arquitecto-equipo ..... GA (varias semillas) → CALIBRACIÓN → finalistas → SIMULACIÓN → REFINADO (+validación con rivales nuevos)
    │        ▲
    ▼        │  máx. 3 rondas · parar con APROBADO o mejora < 2 pts / dentro del IC
  7 critico-red-team ─┘     (lee los logs de derrotas)
@@ -73,7 +73,7 @@ Concatena `workspace/03_sets/lotes/sets_revisados_*.json` en `workspace/03_sets/
 | 1–2 | `validar` = OK o problemas justificados en `dudas.md`. Recuentos coherentes con el fichero original |
 | 3 | Cada Pokémon tiene veredicto. Ningún movimiento ilegal (`legal_moves`). `puntuar` ejecutado |
 | 4 | `matriz.json` existe. Pesos de amenazas justificados |
-| 5 | Finalistas simulados con IC. `equipo_propuesto.json` con 6 especies distintas, objetos dentro del stock |
+| 5 | Calibración hecha (y adoptada o rechazada con motivo). Finalistas simulados con IC. Refinado validado con rivales nuevos. `equipo_propuesto.json` con 6 especies distintas y objetos dentro del stock |
 | 7 | Veredicto explícito. Propuestas con resultado simulado |
 | 8 | Informe con todas las secciones. Exportación en formato Showdown válida |
 
@@ -98,6 +98,7 @@ python -m tools.pkmn.cli evaluar id1 id2 id3 id4 id5 id6
 python -m tools.pkmn.cli calc <sets.json> <idAtacante> <idDefensor> [--clima rain] [--critico] [--etapas-atq 2]
 python -m tools.pkmn.cli simular [--top 8 | --top 0 --extra equipos.json] [--n 6] [--random-rivales 40] [--rivales-pool 24]
 python -m tools.pkmn.cli refinar [--indice 0 | --desde equipo.json] [--rondas 3] [--por-hueco 2] [--n 6] [--random-rivales 40]
+python -m tools.pkmn.cli calibrar [--top 15] [--aleatorios 15] [--n 4] [--random-rivales 30]
 python -m tools.pkmn.cli exportar workspace/05_equipos/top_equipos.json 0
 ```
 Usa `--datos data/ejemplo` para probar con el dataset de ejemplo.
