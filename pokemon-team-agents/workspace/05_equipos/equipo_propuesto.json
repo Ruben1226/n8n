@@ -63,8 +63,7 @@
     "spec_bulk": 0.89,
     "speed": 105,
     "utility": 2.0,
-    "total": 20.113,
-    "percentil_rol": 0.886
+    "total": 20.113
    },
    "role_tags": [
     "fast",
@@ -216,8 +215,7 @@
     "spec_bulk": 1.182,
     "speed": 104,
     "utility": 0,
-    "total": 16.655,
-    "percentil_rol": 0.657
+    "total": 16.655
    },
    "role_tags": [
     "fast",
@@ -298,10 +296,10 @@
    ]
   },
   {
-   "id": "Kingambit|Adaptability|soporte|Lonely",
+   "id": "Kingambit|Neuroforce|soporte|Lonely",
    "species": "Kingambit",
    "species_key": "Kingambit",
-   "needs_seta": true,
+   "needs_seta": false,
    "types": [
     "Dark",
     "Steel"
@@ -323,11 +321,11 @@
     "spe": 12
    },
    "can_evolve": false,
-   "ability": "Adaptability",
+   "ability": "Neuroforce",
    "ability_effects": [
     {
-     "kind": "stab_mult",
-     "mult": 2
+     "kind": "se_power_mult",
+     "mult": 1.25
     }
    ],
    "item": "Air Balloon",
@@ -361,13 +359,12 @@
    },
    "level": 49,
    "scores": {
-    "offense": 14.694,
+    "offense": 12.59,
     "phys_bulk": 1.244,
     "spec_bulk": 0.938,
     "speed": 59,
     "utility": 6.5,
-    "total": 21.319,
-    "percentil_rol": 0.987
+    "total": 19.636
    },
    "role_tags": [
     "pivot",
@@ -440,8 +437,7 @@
     "spec_bulk": 0.72,
     "speed": 98,
     "utility": 5.5,
-    "total": 17.606,
-    "percentil_rol": 0.751
+    "total": 17.606
    },
    "role_tags": [
     "fast",

@@ -39,7 +39,7 @@ IVs: 2 HP / 24 ATK / 12 DEF / 23 SPA / 30 SPD / 26 SPE
 - Wave Crash
 
 Kingambit @ Air Balloon
-Ability: Adaptability
+Ability: Neuroforce
 Level: 49
 Lonely Nature
 IVs: 0 HP / 9 ATK / 21 DEF / 21 SPA / 3 SPD / 12 SPE

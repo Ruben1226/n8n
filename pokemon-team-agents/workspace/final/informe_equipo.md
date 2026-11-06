@@ -7,9 +7,9 @@
 
 | | Resultado simulado (motor oficial de Showdown, 1.120 partidas contra rivales nuevos) |
 |---|---|
-| **Global** | **76,9 %** (IC 95 %: 74,3–79,2 %) |
-| Contra equipos hechos con tu propio pool (lo más parecido a tus colegas) | **99,4 %** |
-| Contra equipos competitivos aleatorios de Showdown (con legendarios) | 67,9 % |
+| **Global** | **75,0 %** (IC 95 %: 72,4–77,4 %) |
+| Contra equipos hechos con tu propio pool (lo más parecido a tus colegas) | **96,3 %** |
+| Contra equipos competitivos aleatorios de Showdown (con legendarios) | 66,5 % |
 
 > El porcentaje mide la **calidad relativa** del equipo con un bot que juega bien pero sin faroles. No es tu winrate real contra humanos. Sí garantiza que este equipo ganó a todas las alternativas probadas.
 
@@ -65,7 +65,7 @@ IVs: 2 HP / 24 Atk / 12 Def / 23 SpA / 30 SpD / 26 Spe
 - Wave Crash
 
 Kingambit @ Air Balloon
-Ability: Adaptability
+Ability: Neuroforce
 Level: 49
 Lonely Nature
 IVs: 0 HP / 9 Atk / 21 Def / 21 SpA / 3 SpD / 12 Spe
@@ -84,25 +84,24 @@ IVs: 25 HP / 0 Atk / 20 Def / 13 SpA / 1 SpD / 20 Spe
 - Magical Torque
 - Land's Wrath
 ```
-Recuerda: **0 EVs** en todos. Kingambit lleva Realeza en el juego; el exportador la pasa a Adaptability.
+Recuerda: **0 EVs** en todos.
 
 ### Rol de cada miembro
 | Pokémon | Rol | Por qué está | Nunca dejarlo contra… |
 |---|---|---|---|
 | **Mega Charizard X** (Fuego/Dragón, Garra Dura) | Wallbreaker mixto | 130/130 en ataques. Garra Dura potencia Danza Acuática, Pikaturbo (con prioridad) y Machada. Cañón Armadura como golpe especial. Resiste Agua, Fuego, Planta y Eléctrico | Atacantes de Tierra o Roca rápidos (Arremetida de Mamoswine le hace 146–175 %) |
-| **Gliscor** (Tierra/Volador, Guardia Espectro) | **Condición de victoria principal** (1.848 KOs en la simulación: el MVP) | Guardia Espectro reduce a la mitad el daño a PS completos, así que la Danza Triunfal sale segura. Arremetida es STAB brutal: hace KO directo a Nidoking, Delphox y Typhlosion-H | Agua e Hielo (Envite Acuático de Mamoswine le hace 91–107 %) |
+| **Gliscor** (Tierra/Volador, Guardia Espectro) | **Condición de victoria principal** (1.906 KOs en la simulación: el MVP) | Guardia Espectro reduce a la mitad el daño a PS completos, así que la Danza Triunfal sale segura. Arremetida es STAB brutal: hace KO directo a Nidoking, Delphox y Typhlosion-H | Agua e Hielo (Envite Acuático de Mamoswine le hace 91–107 %) |
 | **Tinkaton** (Hada/Acero, Multiescamas) | 2.ª condición de victoria | Multiescamas + Danza Triunfal. Tipos defensivos excelentes. Feerichoque deja KO a Zoroark | Fuego y Tierra fuertes |
 | **Sneasler** (Lucha/Veneno) | Lead, Púas, revenge killer | El más rápido del pool (135). Combat Torque y Envite Acuático dejan KO a medio pool. Última Palabra para pivotar debilitando al rival | Cualquier golpe fuerte: es frágil. Psíquico ×4 (lleva Baya Payapa) |
-| **Kingambit** (Siniestro/Acero, Adaptable) | Wallbreaker lento y pivote | Adaptable convierte Golpe Mordaz (siempre crítico) y Quemarrueda en bombas: KO directo a Mamoswine, Delphox y Zoroark. Deslumbrar paraliza. El Globo lo hace inmune a Tierra mientras no le golpeen | Lucha (×4) |
+| **Kingambit** (Siniestro/Acero, Fuerza Cerebral) | Wallbreaker lento y pivote | Golpe Mordaz (siempre crítico) y Quemarrueda con STAB; Fuerza Cerebral añade +25 % a los súper eficaces. Deslumbrar paraliza. El Globo lo hace inmune a Tierra mientras no le golpeen | Lucha (×4) |
 | **Haxorus** (Dragón, Guardia Espectro) | Pivote defensivo y control | Absorbefuerza (cura y baja el Ataque del rival), Cambio de Cancha (te quita las trampas y se las da al rival), Feerichoque y Fuerza Telúrica | Hada, Hielo y Dragón especiales |
 
 ## 3. Preparación en el juego (checklist)
 - [ ] **Menta Firme → Gliscor** (pasa de Modesta a Firme). La Menta Mansa no hace falta.
-- [ ] **Mini Setas (3 de 7)** con la Experta en Habilidades:
+- [ ] **Mini Setas (2 de 7)** con la Experta en Habilidades:
   - Tinkaton: Raíz robusta → **Multiescamas**.
-  - Kingambit: Fuerza Cerebral → **Realeza**.
   - Haxorus: Cálculo Final → **Guardia Espectro**.
-  - Charizard y Sneasler conservan la suya.
+  - Charizard, Sneasler y Kingambit (Fuerza Cerebral) conservan la suya.
 - [ ] **Objetos:** Charizardita X (con Megaaro), Placa Cielo, Vidasfera, Baya Payapa, Globo Helio, Capa Furtiva.
 - [ ] **Movimientos:**
   - **Charizard:** Cañón Armadura (Recordador), Danza Acuática (MT26), Pikaturbo (MT23), Machada (MT62).
@@ -142,22 +141,23 @@ Más cálculos, miembro a miembro, en `workspace/final/calculos.md`. Ojo: la cal
 
 ## 6. Riesgos aceptados (no existe el equipo perfecto)
 - **Lluvia o equipos de Agua muy ofensivos y atacantes especiales legendarios** (Kyogre, Miraidon, Palkia): son los que más partidas nos ganan en simulación. El equipo es sobre todo físico y Gliscor sufre contra Agua y Hielo.
-  - Se acepta porque contra equipos como los de tu pool apenas pierde (99,4 %), y cambiarlo costaba winrate global en todas las pruebas.
+  - Se acepta porque contra equipos como los de tu pool apenas pierde (96,3 %), y cambiarlo costaba winrate global en todas las pruebas.
   - **En juego:** guarda a Mega Charizard X (resiste Agua) y a Haxorus para ese rival; no expongas a Gliscor pronto.
 - **Debilidad compartida a Lucha** (Kingambit ×4 y Tinkaton ×2): Gliscor y Charizard la resisten o es neutra, y Sneasler la frena primero.
 - **IVs bajos en algunos stats** (Haxorus 0 en Ataque, Kingambit 0 en PS): están incluidos en todos los cálculos y simulaciones.
 
-## 7. Alternativas (también simuladas)
+## 7. Alternativas (simuladas con los mismos rivales, tras la corrección de Realeza)
 | Equipo | Winrate |
 |---|---|
-| **Este** (Mega X, Gliscor, Tinkaton, Sneasler, Kingambit, Haxorus) | 69–76 % según rivales |
-| Igual pero Golisopod (Beast Boost, Absorbefuerza, Tidy Up) en lugar de Haxorus-soporte | ~3 puntos menos |
-| Mamoswine (Pompa Acuática, Envite Acuático ×2), Mega X, Sneasler, Haxorus, Kingambit, Golisopod | ~4 puntos menos. Buena variante si quieres a Mamoswine |
-| Delphox, Gliscor, Golisopod, Mamoswine, Haxorus, Kingambit (sin mega) | ~6–9 puntos menos |
+| **Este** (Mega X, Gliscor, Tinkaton, Sneasler, Kingambit, Haxorus) | **81,2 %** |
+| Tinkaton, Haxorus, Kingambit, Mega X, Nidoking, Golisopod | 70,6 % |
+| Mega X, Mamoswine, Sneasler, Kingambit, Golisopod, Haxorus | 68,5 % |
+| Haxorus, Golisopod, Tinkaton, Mamoswine, Mega X, Kingambit | 68,0 % |
+
+Las variantes sin megaevolución quedan entre 5 y 10 puntos por debajo de su versión con Mega X.
 
 ## 8. Supuestos y dudas
 - **Combates en Showdown Custom Game ⇒ mandan los tipos y stats OFICIALES de Showdown**, no los de Añil. En Showdown, por ejemplo, Samurott es Agua pura y Meganium Planta pura. Si jugáis con un servidor con datos de Añil, avísame y se recalcula (`datos_especie: "anil"`).
-- **Realeza = Adaptability** en Showdown (según la nota del exportador).
-- **Habilidades exclusivas de Añil sin equivalente en Showdown** (Poder Gélido, Coleóptero, Raíz robusta, Camorrista, Poder Sabio, Tintineo, Inflamable) se trataron como "sin efecto" y se evitaron.
+- **Habilidades exclusivas de Añil, que no existen en Showdown** (Realeza, Poder Gélido, Coleóptero, Raíz robusta, Camorrista, Poder Sabio, Tintineo, Inflamable): se tratan como "sin efecto" y se evitan. Corregido: en una versión anterior se supuso Realeza = Adaptable; tras quitarlo se rehízo todo el proceso y este equipo volvió a salir primero (81 % frente al 71 % del siguiente).
 - **Objetos:** solo los de tu mochila (no tienes Restos ni objetos Elegidos). Si en Showdown podéis usar cualquier objeto, el equipo mejoraría y conviene recalcularlo.
 - Los movimientos Deslizamiento y Escalofrío no existen en Showdown y se descartaron.

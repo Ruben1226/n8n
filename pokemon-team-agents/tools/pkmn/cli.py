@@ -286,7 +286,10 @@ def main(argv=None):
         # Validación con rivales NUEVOS (reserva): evita el "sesgo del ganador" de elegir y medir con los mismos rivales
         validacion = None
         original = top[a.indice]["sets"] if not a.desde else None
-        if historial and (original is None or [x["id"] for x in original] != [x["id"] for x in base]):
+        if a.desde:
+            _src = _load(a.desde)
+            original = _src["sets"] if isinstance(_src, dict) else (_src[0]["sets"] if _src and "sets" in _src[0] else _src)
+        if historial and [x["id"] for x in original] != [x["id"] for x in base]:
             import copy
             a2 = copy.copy(a)
             a2.semilla = a.semilla + 997

@@ -26,3 +26,10 @@
    Objetos: Placa Cielo en Gliscor (+1,4) en lugar del Dado Trucado, inútil con Doble Ala. Sneasler mantiene Ojo Compuesto (ahorra una Mini Seta).
 7. Crítico: las derrotas vienen de equipos de lluvia/agua y de atacantes especiales legendarios → riesgo aceptado y documentado.
 8. Informe: `workspace/final/informe_equipo.md`, `equipo_showdown.txt`, `calculos.md`. Simulación final: 76,9 % (1.120 partidas; 99,4 % contra el pool).
+
+## Corrección (indicada por el jugador): Realeza NO existe en Showdown
+- Ya no se mapea a Adaptability: Realeza pasa a "sin efecto". Efectos de habilidades del pool movidos a `config/efectos_estandar.json` para que sobrevivan a reconversiones.
+- Pipeline rehecho: sets (1182) → matriz → GA (3 semillas + núcleos) → 20 finalistas simulados.
+- El equipo anterior con **Kingambit en Fuerza Cerebral** (habilidad actual, sin Mini Seta) sigue primero: 81,2 % frente a 70,6 % del siguiente. El refinado no encuentra mejoras.
+- Simulación final de informe (mismos rivales que antes): 75,0 % (antes 76,9 % con Adaptability), 96,3 % contra el pool.
+- Ruido medido: el mismo equipo contra sí mismo en dos procesos da ±2–3 puntos. Por eso los cambios exigen mejorar con varias semillas.

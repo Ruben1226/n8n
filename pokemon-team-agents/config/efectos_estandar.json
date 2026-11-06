@@ -1050,6 +1050,92 @@
     "kind": "note",
     "text": "forma Heroica tras cambiar"
    }
+  ],
+  "Dark Aura": [
+   {
+    "kind": "type_power_mult",
+    "type": "Dark",
+    "mult": 1.33
+   }
+  ],
+  "Toxic Boost": [
+   {
+    "kind": "stat_mult",
+    "stat": "atk",
+    "mult": 1.5,
+    "condition": "statused"
+   },
+   {
+    "kind": "note",
+    "text": "con Toxiorbe: x1.5 Ataque permanente"
+   }
+  ],
+  "Vessel of Ruin": [
+   {
+    "kind": "incoming_category_mult",
+    "category": "special",
+    "mult": 0.75
+   },
+   {
+    "kind": "note",
+    "text": "baja un 25% el At.Esp de todos los demás"
+   }
+  ],
+  "Tera Shell": [
+   {
+    "kind": "incoming_full_hp_mult",
+    "mult": 0.5
+   },
+   {
+    "kind": "note",
+    "text": "a PS completos todos los golpes son poco eficaces"
+   }
+  ],
+  "Flower Gift": [
+   {
+    "kind": "stat_mult",
+    "stat": "atk",
+    "mult": 1.5,
+    "condition": "weather:sun"
+   },
+   {
+    "kind": "defense_mult",
+    "stat": "spd",
+    "mult": 1.5,
+    "condition": "weather:sun"
+   }
+  ],
+  "Grass Pelt": [
+   {
+    "kind": "defense_mult",
+    "stat": "def",
+    "mult": 1.5,
+    "condition": "terrain:grassy"
+   }
+  ],
+  "Stakeout": [
+   {
+    "kind": "note",
+    "text": "x2 de daño al rival que acaba de entrar"
+   }
+  ],
+  "Anger Shell": [
+   {
+    "kind": "note",
+    "text": "bajo 50% PS: +1 Atq/AtEsp/Vel, -1 Def/DefEsp"
+   }
+  ],
+  "Guard Dog": [
+   {
+    "kind": "note",
+    "text": "Intimidación le sube el Ataque; inmune a fase"
+   }
+  ],
+  "Toxic Debris": [
+   {
+    "kind": "note",
+    "text": "pone Púas Tóxicas al recibir golpes físicos"
+   }
   ]
  },
  "items": {

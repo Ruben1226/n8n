@@ -24,8 +24,7 @@ TY = {"Normal": "Normal", "Fuego": "Fire", "Agua": "Water", "Eléctrico": "Elect
       "Roca": "Rock", "Fantasma": "Ghost", "Dragón": "Dragon", "Siniestro": "Dark", "Acero": "Steel", "Hada": "Fairy"}
 # Habilidades exclusivas de Añil: cómo quedan en Showdown
 CUSTOM_AB = {
-    "REALEZA": {"showdown_equivalent": "Adaptability",
-                "nota": "El exportador a Showdown la convierte en Adaptability: en el combate real es Adaptable (STAB x2)."},
+    # REALEZA: exclusiva de Añil, NO existe en Showdown (confirmado por el jugador) -> sin efecto en combate
     "ASONECHILLINGNEIGH": {"showdown_equivalent": "As One (Glastrier)", "nota": "Existe en Showdown como As One (Glastrier)."},
 }
 
