@@ -12,6 +12,19 @@ const {Dex, Battle, Teams} = require('pokemon-showdown');
 const calc = require('@smogon/calc');
 
 const GEN = calc.Generations.get(9);
+
+// Habilidad exclusiva de Añil "Realeza": x1.5 a los ataques que NO son del tipo del usuario.
+// En Showdown el jugador la emula sin habilidad y eligiendo un movimiento de más potencia; aquí se
+// registra como habilidad propia para simularla con exactitud.
+Dex.data.Abilities.realeza = {
+  name: 'Realeza', num: 90001, rating: 3.5, flags: {},
+  onBasePowerPriority: 23,
+  onBasePower(basePower, source, target, move) {
+    if (move.category !== 'Status' && !source.hasType(move.type)) return this.chainModify(1.5);
+  },
+};
+Dex.abilities.abilityCache.clear();
+Dex.abilities.allCache = null;
 // Parámetros del bot (ajustados por barrido contra la versión base; ver knowledge/14)
 const P = {switchKO: 0.65, badMatchup: 0.3, badMatchupDealt: 0.22, setupSafety: 1.5};
 const fs = require('fs');
@@ -129,6 +142,8 @@ function expectedDamage(battle, att, def, moveId) {
       const avg = arr.reduce((s, v) => s + v, 0) / arr.length;
       const acc = move.accuracy === true ? 1 : move.accuracy / 100;
       frac = (avg * acc) / Math.max(1, def.hp);
+      // @smogon/calc no conoce Realeza: se corrige a mano
+      if (toID(att.ability) === 'realeza' && !att.getTypes().includes(move.type)) frac *= 1.5;
     }
   } catch (e) { frac = 0; }
   if (cache.size > 200000) cache.clear();

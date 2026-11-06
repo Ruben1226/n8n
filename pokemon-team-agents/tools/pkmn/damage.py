@@ -128,6 +128,8 @@ def move_type_and_power(att: Battler, move: dict, fld: dict) -> tuple[str, float
             power *= e["mult"]
         elif e["kind"] == "type_power_mult" and norm_type(e["type"]) == mtype and _cond_ok(e, att, fld):
             power *= e["mult"]
+        elif e["kind"] == "nonstab_power_mult" and mtype not in att.types:
+            power *= e["mult"]  # Realeza (Añil): ataques que no son del tipo del usuario
     return mtype, power, converted
 
 

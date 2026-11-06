@@ -33,3 +33,8 @@
 - El equipo anterior con **Kingambit en Fuerza Cerebral** (habilidad actual, sin Mini Seta) sigue primero: 81,2 % frente a 70,6 % del siguiente. El refinado no encuentra mejoras.
 - Simulación final de informe (mismos rivales que antes): 75,0 % (antes 76,9 % con Adaptability), 96,3 % contra el pool.
 - Ruido medido: el mismo equipo contra sí mismo en dos procesos da ±2–3 puntos. Por eso los cambios exigen mejorar con varias semillas.
+
+## Aclaración del jugador: Realeza se EMULA en Showdown
+- Sin habilidad; al usar un ataque sin STAB elige uno de mayor potencia (≈ ×1,5). Modelado en el motor (`nonstab_power_mult`) y en el simulador (habilidad propia registrada).
+- Pipeline rehecho. Mismo equipo primero. Kingambit Realeza (mismos movimientos) 80,7 % frente a Fuerza Cerebral 80,5 % → empate (movimientos con STAB). Set de cobertura con Realeza: 76,8 %.
+- Se mantiene Fuerza Cerebral (más simple, sin Mini Seta).

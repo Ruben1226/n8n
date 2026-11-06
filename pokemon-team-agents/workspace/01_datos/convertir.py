@@ -24,7 +24,10 @@ TY = {"Normal": "Normal", "Fuego": "Fire", "Agua": "Water", "Eléctrico": "Elect
       "Roca": "Rock", "Fantasma": "Ghost", "Dragón": "Dragon", "Siniestro": "Dark", "Acero": "Steel", "Hada": "Fairy"}
 # Habilidades exclusivas de Añil: cómo quedan en Showdown
 CUSTOM_AB = {
-    # REALEZA: exclusiva de Añil, NO existe en Showdown (confirmado por el jugador) -> sin efecto en combate
+    # REALEZA: no existe en Showdown; el jugador la EMULA (sin habilidad + movimiento de más potencia si no es STAB)
+    "REALEZA": {"showdown_equivalent": "Realeza",
+                "effects": [{"kind": "nonstab_power_mult", "mult": 1.5}],
+                "nota": "En Showdown: sin habilidad y, al usar un ataque sin STAB, el jugador elige uno de mayor potencia (equivale a x1.5)."},
     "ASONECHILLINGNEIGH": {"showdown_equivalent": "As One (Glastrier)", "nota": "Existe en Showdown como As One (Glastrier)."},
 }
 
@@ -120,6 +123,9 @@ for p in src["pokemon"]:
                           "custom_anil": True, "sin_efecto_en_showdown": True})
             if a["id"] in CUSTOM_AB:
                 e["nota"] = CUSTOM_AB[a["id"]]["nota"]
+                if "effects" in CUSTOM_AB[a["id"]]:
+                    e["effects"] = CUSTOM_AB[a["id"]]["effects"]
+                    e["custom_anil"] = True
             abilities[nm] = e
     act = p["habilidad"]["actual"]["id"]
     ra = ref["abilities"].get(act, {})

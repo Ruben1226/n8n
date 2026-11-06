@@ -158,6 +158,7 @@ Las variantes sin megaevolución quedan entre 5 y 10 puntos por debajo de su ver
 
 ## 8. Supuestos y dudas
 - **Combates en Showdown Custom Game ⇒ mandan los tipos y stats OFICIALES de Showdown**, no los de Añil. En Showdown, por ejemplo, Samurott es Agua pura y Meganium Planta pura. Si jugáis con un servidor con datos de Añil, avísame y se recalcula (`datos_especie: "anil"`).
-- **Habilidades exclusivas de Añil, que no existen en Showdown** (Realeza, Poder Gélido, Coleóptero, Raíz robusta, Camorrista, Poder Sabio, Tintineo, Inflamable): se tratan como "sin efecto" y se evitan. Corregido: en una versión anterior se supuso Realeza = Adaptable; tras quitarlo se rehízo todo el proceso y este equipo volvió a salir primero (81 % frente al 71 % del siguiente).
+- **Realeza (Kingambit):** en Showdown se juega sin habilidad y, al usar un ataque sin STAB, eliges uno de mayor potencia (equivale a ×1,5). Está modelada así y simulada: con este set **empata con Fuerza Cerebral** (80,7 % frente a 80,5 %), porque Golpe Mordaz y Quemarrueda son de su tipo y Realeza no los potencia. Un set de cobertura para aprovecharla (Envite Acuático, Huesomerang) rinde menos (76,8 %). **Recomendación: Fuerza Cerebral**, que es igual de buena, no exige emular nada y no gasta Mini Seta.
+- **Habilidades exclusivas de Añil sin equivalente en Showdown** (Poder Gélido, Coleóptero, Raíz robusta, Camorrista, Poder Sabio, Tintineo, Inflamable): se tratan como "sin efecto" y se evitan.
 - **Objetos:** solo los de tu mochila (no tienes Restos ni objetos Elegidos). Si en Showdown podéis usar cualquier objeto, el equipo mejoraría y conviene recalcularlo.
 - Los movimientos Deslizamiento y Escalofrío no existen en Showdown y se descartaron.
