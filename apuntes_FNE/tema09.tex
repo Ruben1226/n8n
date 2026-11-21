@@ -1,0 +1,113 @@
+\chapter[Simulaciones Monte Carlo]{Introducción a las simulaciones\\ Monte Carlo}
+
+\section{Qué es el método Monte Carlo}
+\begin{clave}[Definición y componentes]
+\textbf{Simulación estadística} de procesos físicos mediante el \textbf{muestreo de las variables aleatorias} que los caracterizan,
+a partir de números aleatorios uniformes en $(0,1)$. Componentes:
+\begin{enumerate}
+\item \textbf{Funciones de densidad de probabilidad} que describen la física (secciones eficaces).
+\item \textbf{Generador de números aleatorios} uniformes en $(0,1)$.
+\item \textbf{Método de muestreo} de las variables a partir de esas distribuciones.
+\item \textbf{Conteo} (\emph{scoring/tallies}): acumular las magnitudes de interés.
+\item \textbf{Estimación del error} estadístico en función del número de historias.
+\item Opcional: \textbf{reducción de varianza} y paralelización (el método es aditivo).
+\end{enumerate}
+\end{clave}
+\begin{dato}[Historia]
+Aguja de Buffon (1777): probabilidad de cruzar una línea $=2/\pi$. El método moderno nace en el Proyecto Manhattan
+(Los Álamos; Ulam, von Neumann, Metropolis) para el transporte de neutrones.
+\end{dato}
+
+\section{Números aleatorios}
+En un ordenador son \textbf{pseudoaleatorios}: los genera un algoritmo determinista a partir de una \textbf{semilla}; la misma
+semilla da la misma secuencia (usar semillas distintas en cada simulación independiente). Requisitos:
+\textbf{distribución uniforme}, \textbf{periodo largo} y \textbf{reproducibilidad}.
+
+\section{Muestreo}
+Se quiere generar $x\in(x_{min},x_{max})$ con densidad $p(x)\ge0$ normalizada, $\int p(x)\,\mathrm{d}x=1$.
+\begin{clave}[Métodos de muestreo]
+\textbf{Transformada inversa}: con $\xi$ uniforme en $(0,1)$,
+\[ F(x)=\int_{x_{min}}^{x}p(x')\,\mathrm{d}x'=\xi\quad\Rightarrow\quad x=F^{-1}(\xi) \]
+Ejemplo clave, \textbf{recorrido libre} hasta la siguiente interacción:
+\[ p(s)=\mu e^{-\mu s}\ \Rightarrow\ s=-\frac{\ln\xi}{\mu}=-\lambda\ln\xi \]
+\textbf{Rechazo} (cuando $F^{-1}$ no es analítica): se genera $x$ uniforme y $y$ uniforme en $(0,p_{max})$; se acepta $x$ si $y<p(x)$.
+(Es el mismo principio que estimar $\pi$ o áreas lanzando puntos.)\\
+\textbf{Variable discreta}: con probabilidades $P_i$, se divide $(0,1)$ en tramos de longitud $P_i$ y se elige el tramo donde cae $\xi$.
+\end{clave}
+
+\begin{ejemplo}[Elección de la interacción]
+Fotón de 2 MeV: $\mu_C=0.1$, $\mu_{pp}=0.01$, $\mu_{fe}=0.0001$ cm$^{-1}$. Probabilidades $P_i=\mu_i/\mu_{tot}$:
+Compton $[0,0.90)$, pares $[0.90,0.999)$, fotoeléctrico $[0.999,1)$. Con $\xi=0.418\to$ Compton; con $\xi=0.925\to$ pares.
+\end{ejemplo}
+
+\section{Incertidumbre estadística}
+\begin{clave}[Error $\propto1/\sqrt N$]
+Los resultados MC siempre llevan incertidumbre estadística, que decrece como
+\[ \sigma\propto\frac{1}{\sqrt N}\qquad(N=\text{número de historias}) \]
+Para reducirla a la mitad hay que simular \textbf{4 veces más} historias; para dividirla por 10, \textbf{100 veces más}.
+
+\textbf{Eficiencia simulada} ($n$ de $N$ fotones en el fotopico): $\varepsilon=n/N$, distribución binomial:
+\[ \sigma_\varepsilon=\sqrt{\frac{\varepsilon(1-\varepsilon)}{N}},\qquad \frac{\sigma_\varepsilon}{\varepsilon}=\sqrt{\frac{1-\varepsilon}{\varepsilon N}}\approx\frac{1}{\sqrt n}\ (\varepsilon\ll1) \]
+\end{clave}
+\begin{ejemplo}
+$\gamma$ de 662 keV en NaI ($\mu=0.282$ cm$^{-1}$), $\xi=0.5\Rightarrow s=\ln2/0.282\approx2.5$ cm.
+$N=10^6$, $n=2\cdot10^5$: $\varepsilon=0.2000\pm0.0004$ (0.2\%). Con $\varepsilon=2\%$ y $N=10^6$: $\sigma_\varepsilon/\varepsilon\approx0.7\%$; para 0.1\% harían falta $5\cdot10^7$ historias.
+\end{ejemplo}
+
+\paragraph{Ventajas e inconvenientes.} \emph{Pros}: problemas complejos sin simplificar; la precisión mejora simplemente simulando
+más; no hace falta formular las ecuaciones de las magnitudes de interés. \emph{Contras}: alto coste computacional y resultados con incertidumbre estadística.
+
+\section{Transporte de radiación}
+\begin{clave}[Algoritmo básico (bucle sobre partículas primarias)]
+\begin{enumerate}
+\item Inicializar posición, dirección y energía de la partícula.
+\item Si está en vacío, propagar hasta la primera interfase.
+\item Calcular la sección eficaz total $\sigma$ (o $\mu$) a esa energía y material.
+\item Recorrido libre medio $\lambda=1/(N\sigma)$.
+\item Muestrear la distancia a la siguiente interacción: $p(s)=\frac1\lambda e^{-s/\lambda}\Rightarrow s=-\lambda\ln\xi$.
+\item Elegir el proceso: $P_i=\sigma_i/\sigma$.
+\item Muestrear pérdida de energía y nueva dirección de la sección eficaz diferencial del proceso $i$.
+\item Añadir los secundarios a la pila (\emph{stack}).
+\item Registrar la contribución a los observables (energía depositada, tiempo\dots).
+\item Volver a 3 hasta que la energía baje del umbral (\emph{cut}) o la partícula salga del volumen de interés.
+\end{enumerate}
+\end{clave}
+Para partículas cargadas, en lugar de simular cada colisión se usan \textbf{historias condensadas} (pasos con pérdida continua + dispersión múltiple) y
+sólo se simulan explícitamente los sucesos ``duros'' (rayos $\delta$, bremsstrahlung por encima de un umbral).
+
+\section{Reducción de varianza}
+\begin{clave}[Idea]
+Coste computacional $\propto\sigma^2\times t$ (varianza $\times$ tiempo de CPU por primaria). Las técnicas de \emph{biasing} reducen $\sigma$ o $t$
+(a menudo una a costa de la otra); hay que \textbf{minimizar el producto}. MC \textbf{sesgado}: se muestrea de distribuciones artificiales y se
+corrige con un \textbf{peso estadístico}, de modo que el valor esperado no cambia. Misma media con menos varianza, pero \emph{no} reproduce
+correlaciones ni fluctuaciones suceso a suceso (el MC \textbf{analógico} sí).
+\end{clave}
+\begin{itemize}
+\item \textbf{Forzado de interacciones / sesgo del camino libre}: aumentar artificialmente procesos poco probables (bremsstrahlung, fotonucleares, blancos finos).
+\item \textbf{Particionado} (\emph{splitting}): al entrar en la región de interés una partícula se divide en $n$ con peso $w/n$ (reduce $\sigma$, aumenta $t$).
+\item \textbf{Ruleta rusa}: al salir de la región de interés se elimina con cierta probabilidad, aumentando el peso de las supervivientes (reduce $t$, aumenta $\sigma$).
+\item \textbf{Sesgo por importancia}: el usuario asigna importancias relativas a regiones (combina splitting y ruleta rusa). Útil en blindajes gruesos.
+\item \textbf{Sesgo de la partícula principal} (cascadas EM): sólo se sigue uno de los dos secundarios, con probabilidad $\propto$ energía.
+\end{itemize}
+
+\section{Principales códigos}
+\begin{dato}[Códigos de transporte]
+\begin{tabularx}{\linewidth}{lX}
+\textbf{Geant4} & CERN; todo tipo de partículas, 250 eV--10 TeV; geometrías complejas; C++; código abierto. Física nuclear, altas energías, física médica.\\
+\textbf{MCNP} & Los Álamos; n, $\gamma$, $e^-$ (MCNPX/MCNP6: casi todas las partículas). \textbf{Referencia para neutrones}. Licencia controlada.\\
+\textbf{FLUKA} & CERN/INFN; $\sim$60 partículas, hasta 1000 TeV, neutrones térmicos, iones. Aceleradores y protección radiológica.\\
+\textbf{EGSnrc} & Sólo electromagnético (e$^\pm$, $\gamma$), 1 keV--10 GeV; BEAMnrc; muy usado en física médica (radioterapia).\\
+\textbf{PENELOPE} & e$^\pm$, $\gamma$, 50 eV--1 GeV; geometría con cuádricas; física médica.\\
+\textbf{ETRAN} & Primer código de transporte de e$^-$ y $\gamma$.\\
+Específicos & NRESP, SCINFUL (respuesta de centelleadores a neutrones), SRIM/TRIM (iones).\\
+\end{tabularx}
+\end{dato}
+
+\section{Aplicaciones}
+\begin{itemize}
+\item \textbf{Detectores}: funciones respuesta y eficiencias (Bonner, NaI, HPGe, neutrones), ángulos sólidos de fuentes extensas.
+\item \textbf{Preparación y análisis de experimentos}: optimizar geometría, distancias y tamaños; entender el fondo. Requiere una descripción detallada de la geometría y del haz.
+\item \textbf{Física médica}: dosis en radioterapia (los métodos semianalíticos tipo \emph{pencil beam} fallan en tejidos heterogéneos), protonterapia, imagen (PET, SPECT, TC).
+\item \textbf{Aceleradores e instalaciones}: blindajes, absorbedores de haz, activación y tiempos de enfriamiento (protección radiológica).
+\item Fuera de la física: epidemiología, finanzas, producción, transporte.
+\end{itemize}

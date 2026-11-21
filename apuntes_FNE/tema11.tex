@@ -1,0 +1,124 @@
+\chapter{Medida de vidas medias en física nuclear}
+
+\section{Ley de desintegración}
+\begin{clave}[Ley exponencial]
+La desintegración es un proceso \textbf{estocástico} a nivel de cada núcleo; el ritmo es proporcional al número de núcleos presentes:
+\[
+\frac{\mathrm{d}N}{\mathrm{d}t}=-\lambda N\ \Rightarrow\ N(t)=N_0e^{-\lambda t}=N_0e^{-t/\tau},\qquad
+\tau=\frac1\lambda,\qquad T_{1/2}=\tau\ln2,\qquad A=\lambda N
+\]
+La vida media es una \textbf{propiedad de cada nivel} (estado fundamental o excitado). Anchura del nivel: $\Gamma=\hbar/\tau$
+($\hbar=6.58\cdot10^{-16}$ eV s).
+\end{clave}
+\begin{itemize}
+\item \textbf{Ramas de desintegración}: si un nivel decae por varios caminos, $\lambda=\sum_i\lambda_i$. \emph{Todas} las ramas muestran la misma
+pendiente temporal $T_{1/2}$ (la del nivel). Vida media parcial y cociente de ramificación:
+\[ BR_i=\frac{\lambda_i}{\lambda},\qquad T_{1/2}^{(i)}=\frac{T_{1/2}}{BR_i} \]
+Para una transición $\gamma$ hay que tener en cuenta además la conversión interna: $\lambda_\gamma=\lambda_i/(1+\alpha)$.
+\item \textbf{Vidas muy largas}: no se puede esperar a ver la caída; se mide la actividad $A=\lambda N$ conociendo $N$ (o se usa el
+\textbf{equilibrio secular} en una cadena: $\lambda_1N_1=\lambda_2N_2$). Ej.: $^{230}$Th y $^{234}$U para datación (245\,250 y 75\,690 años).
+\end{itemize}
+
+\section{Elementos de matriz de transición}
+\begin{clave}[¿Por qué medir vidas medias de estados excitados?]
+La vida media de un estado que decae por emisión $\gamma$ da acceso directo a la \textbf{probabilidad de transición reducida} $B(\sigma L)$, que es un
+elemento de matriz \emph{no diagonal} del operador electromagnético y está ligado a la \textbf{estructura}: carácter de partícula independiente o
+\textbf{colectivo}, \textbf{forma y deformación} nuclear.
+\[
+\lambda(\sigma L)=\frac{8\pi(L+1)}{\hbar L[(2L+1)!!]^2}\left(\frac{E_\gamma}{\hbar c}\right)^{2L+1}B(\sigma L)
+\]
+\begin{itemize}
+\item La tasa depende fuertemente de la energía ($E_\gamma^{2L+1}$) y de la multipolaridad $L$. Ejemplo: $\lambda(E2)[\mathrm{s^{-1}}]\approx1.22\cdot10^9\,E_\gamma^5[\mathrm{MeV}]\,B(E2)[e^2\mathrm{fm}^4]$.
+\item Procedimiento: medir $T_{1/2}$ $\to$ vida parcial de la transición (BR, $\alpha$, mezcla multipolar) $\to$ quitar la dependencia energética: $B(\sigma L)$
+$\to$ expresar en \textbf{unidades Weisskopf} (W.u.) para quitar la dependencia en $A$.
+\end{itemize}
+\end{clave}
+
+\paragraph{Estimaciones de Weisskopf.} Estimación burda suponiendo que la transición la hace un solo nucleón entre capas
+(funciones de onda de partícula independiente): $B_W(E2)=0.0594\,A^{4/3}\ e^2\mathrm{fm}^4$, $B_W(E1)=0.0645\,A^{2/3}\ e^2\mathrm{fm}^2$, $B_W(M1)=1.79\ \mu_N^2$.
+\begin{itemize}
+\item $B\sim1$ W.u.: transición de partícula independiente. $B\gg1$ W.u. (decenas--cientos en E2): \textbf{colectiva} (muchos nucleones coherentes).
+$B\ll1$ W.u.: transición inhibida (isómeros, cambios de estructura).
+\end{itemize}
+
+\paragraph{Deformación.} Para núcleos deformados (parámetro $\beta$), el momento cuadrupolar intrínseco $Q_0$ se relaciona con $B(E2)$ de las transiciones
+colectivas:
+\[
+B(E2;0^+\to2^+)=\frac{5}{16\pi}e^2Q_0^2,\qquad Q_0\approx\frac{3}{\sqrt{5\pi}}ZR_0^2\beta\,(1+0.16\beta)
+\]
+de modo que la vida media del primer $2^+$ de los pares--pares mide la deformación. Aplicaciones: evolución de capas, simetría especular,
+sistemática de $B(E2)$, modos colectivos, coexistencia de formas.
+
+\paragraph{Excitación coulombiana (COULEX).} Método complementario y directo: la excitación es puramente electromagnética, y da los elementos de
+matriz (incluidos signos relativos y momentos cuadrupolares espectroscópicos $Q_s$: distingue prolato de oblato) a partir de energías e intensidades.
+
+\section{Técnicas de medida}
+\begin{clave}[Técnica según la escala de tiempo]
+Idea general: medidas \textbf{start/stop} y ajuste de la distribución temporal $N(t)\propto e^{-t/\tau}$.
+\begin{center}\small
+\begin{tabular}{p{2.6cm}p{7.2cm}p{3.6cm}}
+\toprule
+& Técnica & Rango\\
+\midrule
+Directas (electrónicas) & Irradiación y contaje & $>$ minutos\\
+& Espectroscopía etiquetada (implant.--desint.) & $>\mu$s\\
+& Haz pulsado & ns -- ms\\
+& Coincidencias $\gamma$--$\gamma$ & ns -- 100 ns\\
+& \textbf{Fast timing} (centelleadores LaBr$_3$) & $>10$ ps\\
+\midrule
+Indirectas (Doppler) & \textbf{RDDS} (plunger) & ps -- ns\\
+& \textbf{DSAM} & 100 fs -- ps\\
+& FDS & 10 -- 100 fs\\
+\midrule
+Otras & COULEX, anchuras de resonancia ($\Gamma=\hbar/\tau$) & $<$ fs\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{clave}
+
+\subsection{Técnicas electrónicas directas}
+\begin{itemize}
+\item \textbf{Irradiación y contaje} ($>1$ min): se irradia la muestra para producir el núcleo (fundamental o isómero) y se mide su actividad en un lugar de bajo fondo.
+\item \textbf{Espectroscopía etiquetada por retroceso} ($>\mu$s): diferencia de tiempo entre la implantación de un núcleo (identificado en un separador) en un detector
+de Si y su desintegración ($\alpha$, p, $\gamma$\dots).
+\item \textbf{Haz pulsado} (ns--ms): el pulso del haz da el start, el $\gamma$ el stop (isómeros).
+\item \textbf{Coincidencias retardadas}: start con una radiación que puebla el nivel, stop con la que lo despuebla.
+\end{itemize}
+
+\subsection{Métodos Doppler}
+\begin{clave}[Principio]
+Los núcleos se producen con gran velocidad de retroceso ($\beta\sim$ unos \%) en fusión--evaporación o COULEX en cinemática inversa.
+Con $\beta=1\%$ recorren $1\,\mu$m en 3 ps: la \textbf{distancia recorrida es la escala de tiempo}. Los $\gamma$ emitidos en vuelo están desplazados:
+\[ E_\gamma=E_0\left(1+\beta\cos\theta\right)\quad(\text{a primer orden}) \]
+y se distinguen de los emitidos en reposo. \textbf{Sólo con HPGe} (hace falta gran resolución en energía).
+\end{clave}
+\begin{itemize}
+\item \textbf{RDDS (plunger)}: blanco fino y, a distancia variable $d$ (motor lineal, $\mu$m--mm), un \emph{stopper} (Au) que para los núcleos. Se observan dos picos:
+desplazado (emitido en vuelo, $I_s$) y no desplazado (emitido parado, $I_u$). La fracción que decae en vuelo da la vida media:
+\[ \frac{I_u}{I_u+I_s}=e^{-d/(v\tau)} \]
+Variante \textbf{diferencial (DDCM)}: se usa un degradador en vez de stopper (dos velocidades $\beta_1>\beta_2$) y coincidencias $\gamma$--$\gamma$
+(``gating from above'' elimina la alimentación lateral). Se mejora el pico/fondo con detectores auxiliares (separador de retrocesos, detectores de neutrones).
+\item \textbf{DSAM}: blanco sobre un soporte grueso de $Z$ alto: el núcleo se frena en el soporte mientras emite. La \textbf{forma de línea} (mezcla de
+energías Doppler entre $\beta_0$ y 0) depende de la relación entre $\tau$ y el tiempo de frenado ($\sim$ps); se ajusta con simulaciones del frenado.
+\item \textbf{FDS}: para $\tau<100$ fs (bandas superdeformadas) el núcleo emite antes de frenarse apreciablemente; se mide la fracción de desplazamiento
+$F(\tau)=\langle\beta\rangle/\beta_0$ en función del ángulo.
+\end{itemize}
+
+\subsection{Fast timing}
+\begin{clave}[Método de retardo temporal avanzado ($\beta\gamma\gamma$ / $\gamma\gamma\gamma$)]
+Combina detectores con funciones complementarias:
+\begin{itemize}
+\item \textbf{HPGe}: alta resolución en energía para \textbf{seleccionar la cascada} (puerta), pero mala respuesta temporal.
+\item \textbf{LaBr$_3$(Ce)} (o BaF$_2$): respuesta muy rápida para el \textbf{timing}, con resolución en energía moderada (suficiente para seleccionar transiciones).
+\item Centelleador plástico $\beta$ (en desintegraciones): rápido, da el start.
+\end{itemize}
+Análisis de la distribución de diferencias de tiempo:
+\begin{itemize}
+\item $\tau\gtrsim50$ ps: \textbf{deconvolución de la pendiente} de la cola exponencial (pendiente $=1/\tau$).
+\item $\tau\sim5$--70 ps: \textbf{desplazamiento del centroide} respecto a la respuesta prompt: $\Delta C=\tau$.
+\end{itemize}
+La clave es la \textbf{calibración temporal}: dependencia del tiempo prompt con la energía (walk) del fotopico y del Compton.
+\end{clave}
+\begin{dato}
+Método de H. Mach et al.\ (NIM A 280, 1989). Ejemplo reciente: desintegración de $^{128}$Cd (Llanos-Expósito et al., PRC 111, 2025). Arrays FATIMA y similares.
+\end{dato}

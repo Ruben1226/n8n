@@ -1,0 +1,305 @@
+\chapter{Interacción de la radiación con la materia}
+
+\section{Idea general}
+Casi todos los detectores funcionan igual: la radiación entra, interacciona con los átomos
+(o núcleos) del medio y cede toda o parte de su energía a electrones ligados. Se libera un
+número grande de electrones de baja energía (o pares $e$--$h$, o fotones de centelleo) que se
+recogen y analizan electrónicamente.
+
+\begin{clave}[Lo que el detector mide siempre son cargas]
+En los tres casos (cargadas, fotones, neutrones) lo que el detector mide al final son
+electrones/iones, pares $e$--$h$ o fotones de centelleo \emph{liberados por partículas cargadas}.
+Fotones y neutrones sólo se ven a través de las partículas cargadas secundarias que producen.
+\end{clave}
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{lXXXX}
+\toprule
+Radiación & Mecanismo dominante & Pérdida de energía & Alcance & Blindaje \\
+\midrule
+$\alpha$, p, iones & Colisiones coulombianas con $e^-$ (Bethe--Bloch) & Continua; pico de Bragg & Bien definido ($\alpha$ 5 MeV en Si $\approx\SI{25}{\micro m}$) & Papel, $\mu$m--mm de sólido\\
+$e^-$, $\beta$ & Colisiones + bremsstrahlung & Continua + radiativa; trayectorias erráticas & Mal definido (mm); $\rho R\approx$ cte & Pocos mm de Al o plástico\\
+$\gamma$, X & Fotoeléctrico, Compton, pares & Discreta (sucesos ``catastróficos'') & No definido: $I=I_0e^{-\mu x}$ & Pb, hormigón ($Z$, $\rho$ altos)\\
+n & Dispersión elástica, reacciones nucleares & Discreta; retroceso nuclear & No definido; moderación & Material hidrogenado + absorbente (B, Li, Cd)\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{dato}[¿Cuánto material hace falta para pararla? (en Si)]
+$\alpha$ de 5 MeV: $\approx\SI{25}{\micro m}$; p de 5 MeV: $\approx\SI{0.2}{mm}$; $e^-$ de 1 MeV: $\approx\SI{1.8}{mm}$;
+capa hemirreductora de un $\gamma$ de 1 MeV: $\approx\SI{4.7}{cm}$. Cuatro órdenes de magnitud:
+un detector de $\alpha$ es una lámina y uno de $\gamma$ un bloque. Para $\beta$ basta 0.1--1 mm;
+para $\gamma$ de MeV, 5 cm puede ser insuficiente.
+\end{dato}
+
+\paragraph{Elección del material según lo que se quiere medir.}
+\begin{itemize}
+\item \textbf{Energía}: amplitud proporcional a la energía y \emph{muchos} portadores (pequeñas fluctuaciones estadísticas).
+\item \textbf{Tiempo}: recogida rápida de la carga (el número de portadores importa menos).
+\item \textbf{Tipo de partícula}: que masa o carga produzcan un efecto distintivo (p.ej.\ $\Delta E$--$E$).
+\item \textbf{Ritmo alto}: recuperación rápida (poco tiempo muerto). \textbf{Ritmo bajo}: reducir fondo.
+\item \textbf{Trayectoria}: sensibilidad a la posición (segmentación).
+\end{itemize}
+
+%=====================================================
+\section{Partículas cargadas pesadas}
+Todas las cargadas más pesadas que el electrón ($\pi$, $\mu$, p, d, $\alpha$, iones). Interaccionan
+con los electrones y núcleos del medio mediante la fuerza de Coulomb, transfiriendo en cada
+colisión fracciones mínimas de energía: \textbf{aproximación de frenado continuo (CSDA)}.
+Una partícula de 1 MeV sufre $\sim10^5$ interacciones antes de pararse.
+
+\paragraph{Tipos de colisión según el parámetro de impacto $b$ frente al radio atómico $a$:}
+\begin{itemize}
+\item \textbf{Blandas} ($b\gg a$): excitan o ionizan el átomo entero; pocos eV por colisión; son las más numerosas.
+Una fracción $<0.1\%$ puede salir como \emph{luz Cherenkov} si $\beta>1/n$.
+\item \textbf{Duras} ($b\sim a$): choque con un electrón concreto que sale con energía considerable
+(\textbf{rayo $\delta$}) y deja su propia traza. Son pocas pero se llevan una fracción de energía comparable a las blandas.
+\item \textbf{Con el núcleo} ($b\ll a$): dispersión de Rutherford; casi no frena pero desvía (dispersión múltiple).
+\end{itemize}
+
+\begin{clave}[¿Quién frena y quién desvía?]
+La \textbf{pérdida de energía} la dominan los \textbf{electrones}: hay $Z$ electrones por núcleo y la
+energía cedida va como $1/m_{\text{blanco}}$ ($m_e\ll M$). La \textbf{desviación angular} la dominan los
+\textbf{núcleos} (dispersión múltiple). Como $M\gg m_e$, la partícula pesada apenas se desvía:
+\textbf{trayectoria recta y alcance bien definido}.
+\end{clave}
+
+\begin{dato}[Cherenkov]
+Umbral $\beta>1/n$; en agua ($n=1.33$) $\beta>0.75$: $\approx0.26$ MeV para $e^-$, $\approx485$ MeV para p.
+Ángulo $\cos\theta=1/(n\beta)$, máximo $\approx41^\circ$ en agua. Espectro $\propto1/\lambda^2$ (luz azul).
+\end{dato}
+
+\paragraph{Máxima energía transferida a un electrón.}
+\[
+T_{max}=\frac{2m_ec^2\beta^2\gamma^2}{1+2\gamma m_e/M+(m_e/M)^2}\;\approx\;2m_ec^2\beta^2\gamma^2
+\]
+Crece como $\beta^2\gamma^2$: con iones lentos los $\delta$ son despreciables; a GeV dominan las fluctuaciones.
+En un detector fino los rayos $\delta$ pueden escapar: \emph{energía depositada $<$ energía perdida}.
+Para dosimetría se usa el LET restringido (sólo lo depositado cerca de la traza).
+
+\begin{dato}[$T_{max}$]
+$\alpha$ 5 MeV: 2.7 keV; p 10 MeV: 22 keV; p 150 MeV: 0.35 MeV; p 1 GeV: 3.3 MeV.
+\end{dato}
+
+\subsection{Fórmula de Bethe--Bloch}
+\begin{formula}[Poder de frenado (pérdida por colisión)]
+\[
+-\left\langle\frac{\mathrm{d}E}{\mathrm{d}x}\right\rangle
+= K z^2\,\frac{Z}{A}\,\frac{1}{\beta^2}
+\left[\frac12\ln\frac{2m_ec^2\beta^2\gamma^2T_{max}}{I^2}-\beta^2-\frac{\delta(\beta\gamma)}{2}\right]
+\]
+\[ K=4\pi N_A r_e^2m_ec^2=\SI{0.307}{MeV\,cm^2/mol} \]
+\end{formula}
+\begin{itemize}
+\item $z$, $\beta$: carga y velocidad del proyectil. $Z/A\approx0.5$ e $I$ (energía media de
+excitación, $I\approx10Z$ eV) caracterizan el medio. $\delta$: efecto densidad.
+\item Expresada en $\mathrm{MeV\,cm^2/g}$ (dividiendo por $\rho$) casi no depende del material.
+\item Válida para $\beta\gamma\gtrsim0.1$; por debajo: correcciones de capas y de carga efectiva.
+\end{itemize}
+
+\begin{clave}[Dependencias de Bethe--Bloch]
+\begin{itemize}
+\item $\dEdx\propto z^2/\beta^2$: depende de la \textbf{carga y velocidad} del proyectil, \textbf{no de su masa}.
+\item A baja energía domina $1/\beta^2$: cuanto más lenta, más ioniza $\Rightarrow$ \textbf{pico de Bragg}.
+\item Mínimo hacia $\beta\gamma\approx3$--3.5, casi igual en todos los materiales:
+\textbf{partículas de ionización mínima (MIP)}. Después, subida relativista suave (logarítmica), frenada por $\delta$.
+\item A igual energía no relativista: $\dEdx\propto Mz^2/E$ $\Rightarrow$ $\Delta E\cdot E\propto Mz^2$:
+base de la identificación de partículas con telescopios $\Delta E$--$E$ (Tema 4).
+\end{itemize}
+\end{clave}
+
+\begin{dato}[MIP en Si]
+Una MIP deja $\approx\SI{0.39}{keV/\micro m}$ en Si ($\approx108$ pares $e$--$h$/$\mu$m, $\approx 1.66$ MeV cm$^2$/g).
+Protones en Si: mínimo hacia 2--3 GeV. Electrones: mínimo de colisión hacia 1--1.5 MeV.
+Valores de $I$: agua 75 eV, aire 85.7 eV, Si 173 eV, Ge 350 eV, Pb 823 eV.
+\end{dato}
+
+\paragraph{Correcciones.} Capas (electrones internos no libres a baja $v$); términos de Barkas
+($\propto z^3$) y Bloch ($\propto z^4$), distinguen partícula y antipartícula; efecto densidad
+(polarización del medio, alta energía). \textbf{Compuestos}: regla de Bragg,
+$\frac{1}{\rho}\dEdx=\sum_i w_i\frac{1}{\rho_i}\left(\dEdx\right)_i$ ($w_i$ fracción en masa).
+
+\paragraph{Iones lentos: carga efectiva.} Cuando la velocidad del ion es comparable a la de sus
+electrones, captura/pierde electrones y su carga media baja: $z\to z_{ef}$. Esto produce que el
+máximo de $\dEdx$ de iones pesados aparezca antes del final. A keV/nucleón aparece el
+\textbf{frenado nuclear} (choques elásticos con átomos, daño por desplazamiento). Herramienta: SRIM/TRIM.
+
+\subsection{Alcance y pico de Bragg}
+\begin{formula}[Alcance CSDA]
+\[ R(E_0)=\int_0^{E_0}\left(\frac{\mathrm{d}E}{\mathrm{d}x}\right)^{-1}\mathrm{d}E \]
+\end{formula}
+\begin{itemize}
+\item Para pesadas, el alcance medio (lo alcanza el 50\%) está muy bien definido y casi coincide con la profundidad alcanzada.
+\item \textbf{Escalado}: a igual velocidad, $R\propto M/z^2$ (un d de 10 MeV recorre el doble que un p de 5 MeV).
+\item En g/cm$^2$ depende poco del material.
+\item \textbf{Pico de Bragg}: la máxima densidad de ionización se da al final del recorrido. Base de la
+protonterapia/hadronterapia frente a fotones (dosis máxima en profundidad).
+\item \textbf{Straggling}: cada partícula sufre un número distinto de colisiones $\Rightarrow$ alcances
+casi gaussianos ($\sigma_R\approx1$--1.2\% de $R$ para p en agua). Iones más pesados: straggling relativo menor ($\propto\sqrt{m_p/M}$), pico más nítido.
+\item El alcance disminuye drásticamente con $z$.
+\end{itemize}
+
+\begin{dato}[Alcances a 5 MeV en Si]
+p: 220 $\mu$m; $\alpha$: 25 $\mu$m; $^{16}$O: 4.3 $\mu$m; $^{40}$Ca: 3.0 $\mu$m; $^{132}$Xe: 2.0 $\mu$m; $^{197}$Au: 1.4 $\mu$m.
+Bases de datos: NIST PSTAR/ASTAR/ESTAR y SRIM.
+\end{dato}
+
+\begin{ejemplo}[telescopio $\Delta E$--$E$]
+Si de 100 $\mu$m delante de un detector grueso. Partículas de 10 MeV: el protón deja
+$\Delta E\approx0.85$ MeV ($E_{res}\approx9.15$ MeV), el deuterón $\Delta E\approx1.48$ MeV. A 20 MeV:
+0.48 y 0.83 MeV. Cada especie cae en una hipérbola distinta del diagrama $\Delta E$--$E$.
+\end{ejemplo}
+
+%=====================================================
+\section{Electrones y positrones}
+Misma física de colisión que las pesadas pero con diferencias importantes:
+\begin{itemize}
+\item Suelen ser relativistas (p.ej.\ $\beta^-$).
+\item Chocan con partículas de su misma masa: \textbf{grandes desviaciones}, trayectoria tortuosa,
+\textbf{alcance difuso} y retrodispersión. Longitud de trayectoria $\gg$ penetración.
+\item \textbf{Partículas idénticas}: Bethe se sustituye por Møller ($e^-e^-$) o Bhabha ($e^+e^-$); $T_{max}=T/2$.
+\item \textbf{Radiación de frenado (bremsstrahlung)}: la aceleración en el campo nuclear emite fotones.
+\end{itemize}
+
+\begin{clave}[Bremsstrahlung y energía crítica]
+\[
+\left(\frac{\mathrm{d}E}{\mathrm{d}x}\right)_{tot}=\left(\frac{\mathrm{d}E}{\mathrm{d}x}\right)_{col}+\left(\frac{\mathrm{d}E}{\mathrm{d}x}\right)_{rad},
+\qquad
+\frac{(\mathrm{d}E/\mathrm{d}x)_{rad}}{(\mathrm{d}E/\mathrm{d}x)_{col}}\approx\frac{E\,Z}{700}\ (E\text{ en MeV})
+\]
+\begin{itemize}
+\item La pérdida radiativa crece con $E$ y con $Z^2$ ($\propto Z^2E/m^2$: despreciable para pesadas).
+\item \textbf{Energía crítica $E_c$}: aquella en que ambas pérdidas se igualan, $E_c\approx\frac{\SI{800}{MeV}}{Z+1.2}$
+(sólidos: $\approx 610/(Z+1.24)$). Por encima de $E_c$ domina la radiación.
+\item \textbf{Longitud de radiación $X_0$}: distancia en la que un $e^-$ de alta energía conserva $1/e$ de su energía:
+$E(x)=E_0e^{-x/X_0}$. Escala natural de cascadas electromagnéticas y calorímetros; fija también la producción de pares.
+\item Para detectar $\beta$: \textbf{materiales de $Z$ bajo} (plástico, Si) y ventanas finas: menos bremsstrahlung y retrodispersión.
+\end{itemize}
+\end{clave}
+
+\begin{dato}[$X_0$ y $E_c$]
+\begin{tabular}{lccc}
+\toprule
+Material & $X_0$ (g/cm$^2$) & $X_0$ (cm) & $E_c$ (MeV)\\
+\midrule
+Al & 24.3 & 9.0 & 43\\ Si & 22.1 & 9.5 & 40\\ Ge & 12.6 & 2.4 & 18\\ Pb & 6.3 & 0.56 & 7.3\\
+\bottomrule
+\end{tabular}\quad
+Cociente rad/col a 1 MeV: agua $\approx1\%$, Si $\approx2\%$, Pb $\approx12\%$.\\
+Ejemplo: $e^-$ de 1 GeV en 1 cm de Pb ($1.8X_0$) conserva $e^{-1.8}\approx17\%$.
+\end{dato}
+
+\paragraph{Alcance de electrones.} No hay alcance único: la curva de transmisión cae poco a poco.
+Se usa el \textbf{alcance extrapolado} $R_{ex}$ (prolongar el tramo recto de la curva hasta cortar el eje).
+En g/cm$^2$ casi no depende del material: $R_1\rho_1\approx R_2\rho_2$.
+\begin{dato}[Katz--Penfold (0.01--2.5 MeV)]
+$R_{ex}[\mathrm{mg/cm^2}]=412\,T^{\,1.265-0.0954\ln T}$ ($T$ en MeV). 1 MeV $\to$ 0.41 g/cm$^2$ $\to$ 1.5 mm Al, 1.8 mm Si, 4 mm agua.
+\end{dato}
+
+\paragraph{Positrones.} Se frenan como electrones y, casi en reposo, \textbf{se aniquilan}: dos fotones
+de \SI{511}{keV} a $\approx180^\circ$ (base de la PET). En un detector $\gamma$ estos fotones pueden
+escapar: picos de escape simple y doble.
+
+%=====================================================
+\section{Radiación neutra: idea general}
+Puede no interaccionar en absoluto o perder su energía en uno o pocos sucesos ``catastróficos''.
+No se puede predecir hasta dónde penetrará: se describe por el \textbf{recorrido libre medio}
+$\lambda=1/\mu$, no por un alcance.
+
+\section{Radiación gamma}
+\begin{clave}[Atenuación exponencial]
+\[
+I(x)=I_0\,e^{-\mu x},\qquad \mu=\mu_{fe}+\mu_{C}+\mu_{pp}=n\,\sigma_{tot},\qquad x_{1/2}=\frac{\ln2}{\mu},\qquad \lambda=\frac1\mu
+\]
+$\mu$: coeficiente de atenuación \textbf{lineal} (cm$^{-1}$), suma de los procesos. $\mu/\rho$ (cm$^2$/g)
+elimina la dependencia con la densidad; en mezclas se suma ponderado en masa. Válido para
+\emph{haz estrecho}; con haz ancho se añade un \textbf{factor de acumulación} (build-up) porque los
+fotones dispersados Compton siguen contribuyendo.
+\end{clave}
+
+\begin{dato}[$\gamma$ de 1 MeV]
+$\mu/\rho\approx0.06$--$0.07$ cm$^2$/g en casi todo (Compton domina): $x_{1/2}$ = 4.7 cm (Si), 2.3 cm (Ge), 0.86 cm (Pb), 9.8 cm (agua).
+\end{dato}
+
+\begin{clave}[Los tres procesos]
+\begin{center}\small
+\begin{tabularx}{\linewidth}{XXX}
+\toprule
+\textbf{Fotoeléctrico} & \textbf{Compton} & \textbf{Producción de pares}\\
+\midrule
+Absorbe el fotón entero; toda la energía queda en el detector. &
+Choque con un $e^-$ casi libre: el fotón sigue con menos energía. &
+$\gamma\to e^-e^+$ en el campo del núcleo; umbral $2m_ec^2=1.022$ MeV.\\
+$\sigma\propto Z^{n}/E^{3.5}$, $n\approx4$--5 & $\sigma\propto Z$ (por átomo) & $\sigma\propto Z^2$\\
+Domina a baja $E$ y alto $Z$ & Domina en torno a 1 MeV & Domina por encima de unos MeV\\
+\bottomrule
+\end{tabularx}
+\end{center}
+Por la fuerte dependencia $Z^{4-5}$, en espectroscopía $\gamma$ se buscan materiales de \textbf{$Z$ alto}
+(Ge, NaI, BGO, LaBr$_3$\dots) para maximizar la fracción de fotopico.
+\end{clave}
+
+\subsection{Efecto fotoeléctrico}
+El fotón es absorbido por un átomo y sale un electrón ligado (preferentemente de la capa K):
+\[ T_{e^-}=E_\gamma-E_b. \]
+Un electrón libre no puede absorber un fotón (no se conservarían a la vez energía y momento).
+La vacante se llena emitiendo rayos X característicos o electrones Auger, que normalmente también
+se absorben: \textbf{toda la energía queda en el detector} $\Rightarrow$ fotopico. La sección eficaz
+presenta bordes de absorción (K, L\dots).
+
+\subsection{Dispersión Compton}
+\begin{formula}[Cinemática Compton]
+\[
+E'_\gamma=\frac{E_\gamma}{1+\alpha(1-\cos\theta)},\qquad \alpha=\frac{E_\gamma}{m_ec^2},\qquad
+T_{e^-}=E_\gamma-E'_\gamma
+\]
+\[
+\text{Borde Compton }(\theta=\pi):\quad T_{max}=E_\gamma\frac{2\alpha}{1+2\alpha}
+\]
+\[
+E'_\gamma(\pi)=\frac{E_\gamma}{1+2\alpha}\xrightarrow{E_\gamma\gg m_ec^2}\frac{m_ec^2}{2}=\SI{256}{keV}
+\]
+\end{formula}
+\begin{itemize}
+\item El electrón se lleva una energía continua entre 0 y $T_{max}$: \textbf{continuo Compton} con su \textbf{borde}.
+\item El fotón retrodispersado (en el entorno) da el \textbf{pico de retrodispersión} a $E'_\gamma(\pi)$ (entre 184 y 256 keV).
+\item Distribución angular: Klein--Nishina; a alta energía, dispersión hacia delante.
+\end{itemize}
+
+\subsection{Producción de pares}
+Sólo si $E_\gamma>1.022$ MeV, en el campo del núcleo. La energía cinética del par es $E_\gamma-2m_ec^2$.
+El positrón se aniquila y emite dos fotones de 511 keV, que pueden escapar del detector:
+\begin{itemize}
+\item \textbf{Pico de escape simple}: $E_\gamma-511$ keV. \textbf{Pico de escape doble}: $E_\gamma-1022$ keV.
+\item Pico de aniquilación a 511 keV (pares creados en el material circundante).
+\end{itemize}
+
+\begin{dato}[Fronteras entre procesos]
+Fotoeléctrico = Compton: $\approx50$ keV en Al, $\approx560$ keV en Pb. Compton = pares: $\approx15$ MeV en Al, $\approx4.5$ MeV en Pb.
+Diagrama $Z$--$E_\gamma$: líneas de igual contribución de procesos vecinos.
+\end{dato}
+
+\begin{clave}[Espectro $\gamma$ típico (p.ej.\ $^{137}$Cs en NaI)]
+\begin{itemize}
+\item \textbf{Fotopico}: toda la energía depositada (en uno o varios pasos).
+\item \textbf{Continuo y borde Compton}: un Compton y el fotón escapa (477 keV para 662 keV).
+\item \textbf{Valle} entre borde y fotopico: Compton múltiple.
+\item \textbf{Pico de retrodispersión} (184 keV para $^{137}$Cs), rayos X del blindaje (Pb), escapes y 511 keV si $E_\gamma>1.022$ MeV.
+\end{itemize}
+Detector pequeño: escapan secundarios (más Compton y escapes). Detector grande: casi todo acaba en el
+fotopico. El material circundante aporta retrodispersión, rayos X y aniquilación.
+\end{clave}
+
+%=====================================================
+\section{Neutrones (introducción)}
+Sin carga: sólo interacciones nucleares (no hay barrera coulombiana), con sección eficaz pequeña.
+La energía se deposita a través de los núcleos de retroceso o productos de reacción.
+\begin{formula}[Máxima energía transferida en choque elástico frontal]
+\[ E_{max}=\frac{4A}{(A+1)^2}E_n \qquad\Rightarrow\quad \text{H: } E_{max}=E_n;\quad \text{C: } 0.28\,E_n \]
+\end{formula}
+\begin{itemize}
+\item El mejor absorbente/moderador es el \textbf{hidrógeno} (centelleadores orgánicos, polietileno). Un bloque de Pb
+apenas frena neutrones rápidos ($\sim$2\% por choque).
+\item Si la dispersión es isótropa en el CM ($E_n<10$ MeV en H), la energía del protón de retroceso es \textbf{uniforme entre 0 y $E_n$}.
+\item Neutrones lentos/térmicos: reacciones de captura $^3$He(n,p), $^{10}$B(n,$\alpha$), $^6$Li(n,$\alpha$) (ver Tema 6).
+\end{itemize}

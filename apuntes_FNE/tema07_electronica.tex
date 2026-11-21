@@ -1,0 +1,98 @@
+\chapter{Electrónica nuclear}
+\begin{dato}
+Este tema corresponde a las diapositivas ``Tema 9 -- Electrónica nuclear'' (J.M. Udías). Se coloca aquí porque completa
+la cadena de detección (amplificación, conformado y digitalización) de los Temas 2--6.
+\end{dato}
+
+\section{Objetivos y cadena de lectura}
+\begin{clave}[Cadena electrónica]
+\begin{center}Detector (+HV) $\to$ Preamplificador $\to$ Amplificador/conformador $\to$ ADC/TDC, contador o digitalizador\end{center}
+\begin{itemize}
+\item La señal del detector es una \textbf{corriente}; su integral es la \textbf{carga}, proporcional a la energía depositada.
+\item Objetivos: detectar pulsos individuales y medir su \textbf{energía} (amplitud/área), su \textbf{forma} y su \textbf{tiempo} de llegada (trigger, coincidencias, timing).
+\item Funciones: adquisición de la señal, conformado, digitalización y lectura de datos.
+\end{itemize}
+\end{clave}
+La mayoría de detectores en física nuclear opera en modo pulso; con flujos enormes, en modo corriente.
+
+\section{Preamplificador}
+\begin{clave}[Preamplificador sensible a carga]
+Dos tipos: \textbf{sensible a tensión} ($V_o=-\frac{R_2}{R_1}V_i$, depende de la capacidad del detector) y
+\textbf{sensible a carga} (el estándar para detectores de semiconductor):
+\[ V_o\approx-\frac{Q}{C_f},\qquad V(t)=V_0\,e^{-t/R_fC_f} \]
+La amplitud de salida sólo depende de la carga y de la capacidad de realimentación $C_f$, \emph{no} de la capacidad del
+detector (que puede variar con la tensión o la temperatura). La resistencia $R_f$ descarga lentamente $C_f$ (cola de
+$\sim$50--500 $\mu$s).
+\begin{itemize}
+\item Debe ser lineal (conservar la proporcionalidad carga--energía) y estar \textbf{lo más cerca posible del detector} (minimizar capacidad y ruido).
+\end{itemize}
+\end{clave}
+Amplificador operacional ideal: $V_+-V_-=0$, sin corriente por las entradas; la ganancia la fija la realimentación (válido mientras la
+frecuencia de la señal sea menor que el ancho de banda).
+
+\section{Amplificador y conformado}
+\begin{clave}[¿Por qué conformar?]
+La salida del preamplificador tiene una cola larga ($\sim500\,\mu$s): a tasas $>100$ s$^{-1}$ los pulsos se montan unos sobre la cola de otros
+(\textbf{apilamiento}) y la amplitud deja de medir la energía. El amplificador:
+\begin{itemize}
+\item \textbf{Acorta} los pulsos (reduce apilamiento).
+\item \textbf{Mejora la relación señal/ruido} filtrando frecuencias: el \textbf{diferenciador CR} (paso alto, $\tau_d=C_dR_d$) elimina el ruido de baja
+frecuencia; el \textbf{integrador RC} (paso bajo, $\tau_i=R_iC_i$) elimina el de alta frecuencia.
+\item CR--RC$^n$ (varias integraciones) da un pulso \textbf{semigaussiano}; también conformado trapezoidal (digital).
+\end{itemize}
+\end{clave}
+\begin{itemize}
+\item \textbf{Déficit balístico}: si el tiempo de pico del conformador es menor que el tiempo de colección de carga, se pierde señal
+(importante en HPGe grandes con tiempos de colección variables).
+\item \textbf{Desplazamiento de línea base} (undershoot del pulso unipolar): se corrige con \textbf{cancelación polo-cero}.
+\item \textbf{Apilamiento}: se reduce con constantes de tiempo cortas, a costa de peor S/N y resolución. Compromiso entre tasa y resolución.
+\end{itemize}
+
+\section{Ruido}
+Ruido intrínseco: térmico (resistencias), de disparo (\emph{shot}, corriente de fuga), $1/f$. Se expresa como carga equivalente de ruido (ENC).
+Depende de la capacidad del detector, la corriente de fuga y la constante de conformado (existe un $\tau$ óptimo).
+
+\section{Medidas de tiempo}
+\begin{clave}[Discriminadores y time walk]
+\begin{itemize}
+\item \textbf{Discriminador de umbral fijo} (\emph{leading edge}): marca el tiempo cuando la señal cruza un umbral.
+Problema: \textbf{time walk}: pulsos de mayor amplitud cruzan antes que los pequeños (dependencia tiempo--energía).
+\item \textbf{Discriminador de fracción constante (CFD)}: se suma la señal retrasada con una copia invertida y atenuada (fracción $f$);
+el cruce por cero ocurre a una fracción fija de la amplitud $\Rightarrow$ \textbf{independiente de la amplitud} (elimina el walk para pulsos de igual forma).
+\item \textbf{Jitter}: el ruido de tensión se traduce en incertidumbre temporal
+\[ \Delta t\approx\frac{\Delta U}{U}\,t_r\qquad(\text{pendiente }U/t_r) \]
+$\Rightarrow$ buen timing requiere \textbf{flancos rápidos} y alta S/N. Ej.: $U=100$ mV, ruido 1 mV, $t_r=1$ ns $\Rightarrow\Delta t\approx10$ ps.
+\end{itemize}
+\end{clave}
+Un filtro paso bajo reduce el ruido manteniendo la mayor parte de la señal. Los TDC actuales tienen LSB de $\sim$10 ps.
+Diferencias de tiempo: TAC (convertidor tiempo-amplitud) + ADC, o TDC.
+
+\section{Análisis de alturas de pulso}
+\begin{itemize}
+\item \textbf{SCA} (analizador monocanal): discriminador inferior (LLD) y superior (ULD) en anticoincidencia; da un pulso lógico si la amplitud está
+en la ventana $[E,E+\Delta E]$ (se pierde la información de energía). Alimenta contadores (\emph{scalers}).
+\item \textbf{MCA} (multicanal): un \textbf{ADC} asigna cada pulso a un canal y se acumula un histograma = \textbf{espectro}.
+\item \textbf{ADC}: \textbf{Wilkinson} (rampa: se carga un condensador y se cuenta el tiempo de descarga con un reloj; lineal, lento) y
+\textbf{aproximaciones sucesivas} (rápido); también \emph{flash} (comparadores en paralelo). El ADC es el corazón del MCA y suele fijar el tiempo muerto.
+\end{itemize}
+\begin{dato}[Estándares]
+\textbf{NIM} (módulos con alimentación $\pm6$, $\pm12$, $\pm24$ V; lógica NIM rápida), CAMAC (1 MB/s), \textbf{VME} (hasta 40 MB/s), y hoy digitalizadores en $\mu$TCA/PCIe.
+\end{dato}
+
+\section{Adquisición totalmente digital (FD-DAQ)}
+\begin{clave}[Digitalización completa del pulso]
+Se digitaliza la señal casi en bruto (ADC rápido, ``digitizer'' de cientos de MS/s a GS/s) y se procesa \textbf{numéricamente} para obtener energía y tiempo.
+\begin{itemize}
+\item \textbf{Ventajas}: sencillez (una tarjeta para energía y tiempo/coincidencias), conserva la forma del pulso (PSD offline),
+flexibilidad (cualquier filtro: trapezoidal, mediana, FFT\dots), estabilidad e inmunidad al ruido una vez digitalizado.
+\item \textbf{Inconvenientes}: otra cultura técnica, tecnología que evoluciona muy rápido, volumen de datos.
+\item \textbf{Energía}: integración del pulso menos línea base, conformado trapezoidal o semigaussiano digital; corrección de déficit balístico trivial.
+Resultados equivalentes a la electrónica analógica (LaBr$_3$: 4.6\% a 662 keV en ambos).
+\item \textbf{Tiempo}: umbral fijo con interpolación (con walk), CFD digital, \textbf{umbrales relativos} (fracción de la amplitud; fácil en digital),
+o algoritmos de optimización/\emph{machine learning} (mejora $\sim$15\% del CRT con LaBr$_3$).
+\end{itemize}
+\end{clave}
+\begin{dato}
+DRS4 (PSI): 4 canales, 1024 muestras, 1--5 GS/s, 12 bit. FATIMA (fast timing, UCM): LaBr$_3$(Ce) troncocónicos + PMT R9779.
+Comparativa clásica: montaje de coincidencias analógico con preamplificador, amplificador, CFD, TAC y puerta frente a un único digitalizador.
+\end{dato}

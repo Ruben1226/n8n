@@ -1,0 +1,150 @@
+\chapter{Características generales de los detectores}
+
+\section{Clasificación}
+\begin{clave}[Tipos de detectores]
+\begin{itemize}
+\item \textbf{Activos} (lectura electrónica) / \textbf{pasivos} (sin electrónica: placa fotográfica, película radiocrómica, TLD\dots).
+\item \textbf{Directos}: la señal sale directamente de la ionización del medio (gas, semiconductor).
+\textbf{Indirectos}: la radiación se convierte en luz, que luego se convierte en señal eléctrica (centelleador + fotosensor).
+\item \textbf{Integradores} (suman el efecto de muchas interacciones) / \textbf{contadores} (cada partícula individual).
+\item Según la información: \textbf{contadores} (número de partículas, p.ej.\ Geiger--Müller),
+\textbf{espectrómetros} (distribución en energía, p.ej.\ NaI, HPGe), \textbf{dosímetros} (energía neta depositada).
+\item Por material: \textbf{gas, semiconductor, centelleador} (no excluyentes).
+\end{itemize}
+\end{clave}
+
+\paragraph{Formación de la señal.} Si se deposita suficiente energía se crean portadores:
+\[ N=\frac{\Delta E}{W} \]
+donde $W$ es la energía media para crear un portador (par $e$--ion, par $e$--$h$, fotón\dots).
+\begin{dato}[Escalas de energía por portador]
+Gases $\approx30$ eV; semiconductores 3--10 eV (gap 1--5 eV; Si 3.6 eV, Ge 2.96 eV); centelleadores 20--500 eV por fotoelectrón ($\sim10$ eV para estados ópticos);
+fonones $\sim$meV. Duración típica de los pulsos: 1 ns -- 10 $\mu$s.
+\end{dato}
+Cuanto menor es $W$, más portadores y mejor resolución en energía (menor fluctuación estadística relativa).
+
+\paragraph{Materiales según bandas.} Conductores: sin gap, enorme corriente de fondo (inútiles).
+Dieléctricos (diamante): gap grande, poca corriente de fuga pero señal pequeña.
+\textbf{Semiconductores} (Si, Ge): gap moderado, permiten aplicar campos grandes con corriente de fuga
+pequeña; requieren gran pureza.
+
+\section{Modos de operación}
+\begin{clave}[Pulso vs corriente]
+\begin{itemize}
+\item \textbf{Modo pulso}: cada interacción se procesa individualmente. Permite espectroscopía (amplitud $\propto$ energía) y timing.
+Problema: \textbf{tiempo muerto}.
+\item \textbf{Modo corriente}: se promedian las señales; se pierde la información individual. La corriente
+es proporcional a la tasa de dosis. Se usa a tasas muy altas (dosimetría, monitores de haz).
+\end{itemize}
+\end{clave}
+
+\subsection{Tiempo muerto}
+Dos interacciones deben estar separadas un tiempo mínimo $\tau$ para dar señales distintas; si no, la
+segunda se pierde o distorsiona la primera (apilamiento). Lo fija el componente más lento de la cadena:
+el propio detector en un GM (decenas--cientos de $\mu$s), el ADC en sistemas con multicanal (pocos $\mu$s).
+
+\begin{clave}[Modelos de tiempo muerto ($n$: tasa real, $m$: tasa medida)]
+\begin{center}
+\begin{tabular}{cc}
+\textbf{No paralizable} & \textbf{Paralizable}\\[2pt]
+$\displaystyle n=\frac{m}{1-m\tau}$ & $\displaystyle m=n\,e^{-n\tau}$\\[8pt]
+Sucesos durante $\tau$ no se cuentan & Sucesos durante $\tau$ no se cuentan\\
+ni lo prolongan; $m\to1/\tau$ & \emph{y lo prolongan}; $m\to0$ a tasas altas\\
+\end{tabular}
+\end{center}
+A tasas bajas ($n\tau\ll1$) ambos coinciden: $m\approx n(1-n\tau)$.
+En un sistema paralizable $m$ tiene un máximo $m_{max}=1/(e\tau)$ en $n=1/\tau$: una tasa medida corresponde a dos tasas reales.
+\end{clave}
+\begin{dato}[Ejemplos]
+Paralizables: centelleadores con PMT, Si(Li)/Ge(Li) con electrónica lenta, HPGe con preamplificador RC.
+No paralizables: contador Geiger, centelleadores con electrónica rápida (PET), rechazadores de apilamiento.
+\end{dato}
+
+\section{Espectro de alturas de pulso}
+La mayoría de espectrómetros operan en modo pulso: la amplitud es proporcional a la energía
+\emph{depositada} (que no siempre es la energía total incidente). Se representa el \textbf{espectro
+diferencial} $\mathrm{d}N/\mathrm{d}H$ (cuentas por canal) frente a la amplitud/energía; el número de pulsos entre
+$H_1$ y $H_2$ es el área bajo la curva.
+
+\section{Eficiencia}
+\begin{clave}[Eficiencia]
+\[
+\varepsilon_{abs}=\frac{\text{n.º detectadas}}{\text{n.º emitidas}}
+=\underbrace{\frac{\text{n.º que llegan}}{\text{n.º emitidas}}}_{\varepsilon_{geo}=\Omega/4\pi}\times
+\underbrace{\frac{\text{n.º detectadas}}{\text{n.º que llegan}}}_{\varepsilon_{int}}
+\]
+\begin{itemize}
+\item \textbf{Geométrica}: ángulo sólido. Disco de radio $a$ a distancia $d$ en el eje:
+\[ \Omega=2\pi\left(1-\frac{d}{\sqrt{d^2+a^2}}\right),\qquad \Omega\xrightarrow{d\gg a}\frac{\pi a^2}{d^2}\ \text{(inverso del cuadrado)} \]
+\item \textbf{Intrínseca}: depende de $E$, $Z$, $\rho$ y espesor. Haz paralelo monoenergético: $\varepsilon_{int}=1-e^{-\mu x}$.
+\item Para $\gamma$ se usa la \textbf{eficiencia de fotopico}: área neta del fotopico / $\gamma$ emitidos. Se mide con
+fuentes calibradas a varias energías y se \textbf{interpola} con un ajuste (evitar extrapolar).
+\end{itemize}
+\end{clave}
+\begin{ejemplo}
+$a=2.5$ cm, $d=10$ cm $\Rightarrow\Omega=0.188$ sr, $\varepsilon_{geo}=1.5\%$. Duplicar $d$ la reduce $\approx4$ veces.
+Fuentes extensas o fuera de eje: integración numérica o Monte Carlo.
+\end{ejemplo}
+
+\section{Resolución en energía}
+Capacidad de distinguir dos energías próximas. La afectan: fluctuaciones estadísticas del número de
+portadores (o de fotones de centelleo), colección incompleta de carga/luz y ruido electrónico.
+\begin{clave}[Resolución]
+\[
+\mathrm{FWHM}=2\sqrt{2\ln2}\,\sigma\approx2.355\,\sigma,\qquad R=\frac{\mathrm{FWHM}}{H_0}
+\]
+Límite estadístico (Poisson con factor de Fano $F$):
+\[
+\sigma_N=\sqrt{FN},\quad N=\frac{E}{W}\ \Rightarrow\ R_{stat}=2.355\sqrt{\frac{FW}{E}}
+\]
+$F\approx0.1$--0.2 en gases y semiconductores ($F<1$ porque los sucesos de ionización no son independientes);
+$F\approx1$ en centelleadores. Las contribuciones independientes se suman en cuadratura:
+$\mathrm{FWHM}^2_{tot}=\mathrm{FWHM}^2_{stat}+\mathrm{FWHM}^2_{ruido}+\mathrm{FWHM}^2_{colección}+\dots$
+\end{clave}
+Cuando $R$ es pequeña (HPGe) se da directamente la FWHM en keV (p.ej.\ $\approx1.8$ keV a 1332 keV);
+en centelleadores se da en \% (NaI $\approx7\%$ a 662 keV). Dos picos se separan si distan más de una FWHM.
+
+\section{Respuesta y resolución temporal}
+\begin{itemize}
+\item \textbf{Respuesta temporal}: tiempo en formar la señal. Buen ``timing'' = flanco de subida rápido.
+\item \textbf{Tiempo de subida} (10\%$\to$90\%), \textbf{tiempo de caída} (90\%$\to$10\%), constante $\tau$ de la caída exponencial.
+\item \textbf{Resolución temporal}: anchura de la distribución de diferencias de tiempo entre dos detectores en coincidencia
+(CRT, \emph{coincidence resolving time}). Se mide con TAC (analógico) o con marcas de tiempo digitales.
+\end{itemize}
+
+\section{Detección de rayos gamma: material y tamaño}
+\begin{clave}[Elección del material]
+$N=N_0e^{-\mu x}$ y $\mu$ cae rápidamente con la energía. Para $\gamma$ de alta energía hacen falta
+materiales de \textbf{$Z$ y densidad altos}.
+\begin{itemize}
+\item Si a 10 keV: domina el fotoeléctrico ($\mu\approx10^2$ cm$^{-1}$); 300 $\mu$m absorben el 95\%. Bien para X.
+\item Si a 1 MeV: casi todo Compton ($\mu\approx0.1$ cm$^{-1}$); en 300 $\mu$m interacciona el 0.3\%; harían falta 3 cm para el 95\% y aun así escapa el fotón dispersado.
+\item Por eso: \textbf{Ge} (Z=32) para espectroscopía de alta resolución; \textbf{NaI(Tl)} (I, Z=53), \textbf{BGO} (Bi, Z=83) para alta eficiencia.
+\end{itemize}
+\end{clave}
+
+\begin{clave}[Efectos del tamaño del detector]
+\begin{itemize}
+\item \textbf{Muy pequeño}: sólo la primera interacción. Fotopico (fotoeléctrico), continuo Compton y, si $E_\gamma>1.022$ MeV,
+\textbf{pico de doble escape} ($E_\gamma-2m_ec^2$): ambos 511 keV escapan.
+\item \textbf{Intermedio}: Compton múltiples (cuentas entre borde Compton y fotopico), \textbf{pico de escape simple}
+($E_\gamma-m_ec^2$) y doble, y fotopico reforzado.
+\item \textbf{Muy grande} (absorción total): idealmente sólo el pico de energía total. Extendido a cascadas: \textbf{espectroscopía
+de absorción total} (TAS) para medir alimentaciones $\beta$.
+\end{itemize}
+\end{clave}
+
+\begin{clave}[Efectos del material circundante]
+Rayos X característicos (p.ej.\ Pb, 75--85 keV) por fotoeléctrico en el blindaje; pico de 511 keV por aniquilación de pares
+creados fuera; \textbf{pico de retrodispersión} ($\approx$200--250 keV): a $180^\circ$ todas las energías incidentes dan
+fotones dispersados con energía similar.
+\end{clave}
+
+\section{Etapas de la detección}
+\begin{enumerate}
+\item Deposición de energía en el medio (para medir energía: alta densidad y $Z$; para trazas: mínima perturbación).
+\item Conversión en señal eléctrica (directa o indirecta); carga $\propto$ energía.
+\item Amplificación (electrónica o multiplicación interna: avalancha, dínodos). Introduce ruido.
+\item \textbf{Conformado}: el pulso estrecho de corriente se transforma en un pulso más ancho (reduce ruido) con máximo
+redondeado en el tiempo de pico $T_P$ (facilita medir la amplitud). Si la forma no depende de la señal, amplitud $\propto$ energía.
+\item \textbf{Digitalización}: amplitud con ADC; diferencias de tiempo con TDC.
+\end{enumerate}

@@ -1,0 +1,64 @@
+\chapter*{Visión general: ideas que hay que tener claras}
+\addcontentsline{toc}{chapter}{Visión general: ideas que hay que tener claras}
+\markboth{Visión general}{}
+
+\begin{clave}[Cómo interacciona cada tipo de radiación]
+\begin{itemize}
+\item \textbf{Partículas cargadas}: interaccionan \imp{de forma continua} (miles de colisiones
+coulombianas con los electrones del medio). En el caso de $e^-$ y $e^+$, la
+\imp{radiación de frenado (bremsstrahlung)} domina sobre la ionización por encima de la
+\imp{energía crítica $E_c$}.
+\item \textbf{Rayos $\gamma$}: interaccionan mediante \imp{procesos discretos}. Los relevantes son
+\imp{efecto fotoeléctrico, dispersión Compton y producción de pares}. En espectroscopía $\gamma$
+se usan materiales de \imp{$Z$ alto} para que la sección eficaz fotoeléctrica domine.
+\item \textbf{Neutrones}: procesos discretos $\rightarrow$ \imp{reacciones nucleares} (dispersión
+elástica/moderación, captura). Su detección es siempre indirecta.
+\end{itemize}
+\end{clave}
+
+\begin{clave}[Ideas básicas sobre detectores]
+\begin{itemize}
+\item \textbf{Tipos}: activos/pasivos, directos/indirectos, integradores/contadores,
+dosímetros/espectrómetros; por material: gas, semiconductor, centelleador.
+\item \textbf{Modos de operación}: pulso y corriente.
+\item \textbf{Propiedades generales}: eficiencia, resolución, respuesta temporal (tiempo muerto).
+\item \textbf{Detección $\gamma$}: coeficiente de absorción lineal, elección de material, efectos del
+tamaño del detector, efectos del material circundante.
+\item \textbf{Cadena de detección}: interacción radiación--materia $\rightarrow$ la energía depositada
+se convierte en pulso eléctrico $\rightarrow$ amplificación y conformado $\rightarrow$ digitalización
+$\rightarrow$ espectro de energía.
+\end{itemize}
+\end{clave}
+
+\begin{center}
+\begin{tikzpicture}[node distance=0.25cm,
+  b/.style={draw=NavyBlue,fill=NavyBlue!6,rounded corners,align=center,font=\small,minimum height=1cm,text width=2.3cm,inner sep=2pt}]
+\node[b] (a) {Interacción\\rad.--materia};
+\node[b,right=of a] (b) {Carga / luz\\$\rightarrow$ pulso};
+\node[b,right=of b] (c) {Preamp. +\\conformado};
+\node[b,right=of c] (d) {Digitali-\\zación (ADC)};
+\node[b,right=of d] (e) {Espectro\\de energía};
+\foreach \x/\y in {a/b,b/c,c/d,d/e} \draw[-{Stealth},thick] (\x)--(\y);
+\end{tikzpicture}
+\end{center}
+
+\section*{Mapa rápido de la asignatura}
+\begin{center}\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+Tema & Qué hay que llevarse \\
+\midrule
+1. Interacción & Bethe--Bloch, pico de Bragg, alcance; $e^\pm$: bremsstrahlung, $E_c$, $X_0$; $\gamma$: foto/Compton/pares, $I=I_0e^{-\mu x}$; neutrones: retroceso nuclear.\\
+2. Caract. generales & Modos pulso/corriente, espectro diferencial, resolución (FWHM, Fano), eficiencias, tiempo muerto (paralizable/no paralizable), estadística de contaje.\\
+3. Gas & Curva de regiones (ionización, proporcional, GM), avalancha, gases, $W\approx 30$ eV.\\
+4. Semiconductores & Unión p--n, zona de deplexión $w\propto\sqrt{V}$, $V_{dep}$, Si (cargadas) vs HPGe ($\gamma$), segmentación, telescopios $\Delta E$--$E$.\\
+5. Centelleadores & Orgánicos vs inorgánicos, tabla de propiedades, PMT vs SiPM, NaI vs HPGe.\\
+6. Neutrones & Reacciones de captura ($^3$He, $^{10}$B, $^6$Li), moderación, ToF, esferas de Bonner, matrices moderadas.\\
+7. Electrónica & Preamplificador sensible a carga, conformado CR--RC (ruido, apilamiento), CFD y time walk, SCA/MCA/ADC, digitalización completa.\\
+9. Monte Carlo & Muestreo (transformada inversa, $s=-\lambda\ln\xi$), error $\propto1/\sqrt N$, algoritmo de transporte, reducción de varianza, códigos.\\
+10. Aceleradores & Electrostáticos y tándem, linac, ciclotrón ($f=qB/2\pi m$), sincrociclotrón, betatrón, sincrotrón; límites de cada uno.\\
+11. Vidas medias & Ley de desintegración, $B(\sigma L)$ y unidades Weisskopf, técnicas según escala: electrónicas, Doppler (RDDS, DSAM), fast timing.\\
+12. Análisis & SRIM/TRIM, NNDC, ROOT/jsROOT, Gnuplot.\\
+\bottomrule
+\end{tabularx}
+\end{center}

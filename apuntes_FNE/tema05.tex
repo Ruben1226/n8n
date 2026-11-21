@@ -1,0 +1,153 @@
+\chapter{Detectores de centelleo}
+
+\section{Principio}
+\begin{clave}[Detección indirecta]
+La radiación excita átomos/moléculas del centelleador; al desexcitarse emiten luz (UV/visible), que se
+guía hasta un \textbf{fotosensor} (PMT, APD, SiPM) que la convierte en señal eléctrica y la amplifica.
+\[ \text{centelleador}\ \to\ \text{guía de luz / WLS}\ \to\ \text{fotosensor}\ \to\ \text{pulso eléctrico} \]
+La cantidad de luz crece con la energía depositada $\Rightarrow$ pueden funcionar como espectrómetros en modo pulso.
+\end{clave}
+
+\paragraph{Propiedades deseables:} alta eficiencia de conversión (rendimiento luminoso, mejor resolución), tiempos de caída cortos,
+transparencia a su propia emisión, espectro de emisión adaptado al fotosensor, $\rho$ y $Z$ altos para $\gamma$, robustez,
+no higroscópicos, baratos. Emisiones: fluorescencia (inmediata), fluorescencia retardada y fosforescencia (retardada, distinta $\lambda$).
+
+Aplicaciones médicas: gammacámaras, TC, PET (BGO; PET-TOF moderno con LSO/LYSO), radiografía digital.
+
+\section{Centelleadores inorgánicos y orgánicos}
+\begin{clave}[Inorgánicos vs orgánicos]
+\begin{center}\small
+\begin{tabularx}{\linewidth}{lXX}
+\toprule
+& \textbf{Inorgánicos} (cristales) & \textbf{Orgánicos} (cristales, líquidos, plásticos)\\
+\midrule
+Mecanismo & Estructura de bandas de la red cristalina + \textbf{activadores} (impurezas) & Transiciones \textbf{moleculares} ($\pi$-electrones), independiente del estado físico\\
+$Z$, $\rho$ & Altos $\Rightarrow$ \textbf{radiación $\gamma$} & Bajos (C, H) $\Rightarrow$ domina Compton; buenos para cargadas, $\beta$ y \textbf{neutrones rápidos} (H)\\
+Luz & Mucha (NaI 38\,000 fot/MeV) & Menos ($\sim$10\,000 fot/MeV)\\
+Velocidad & Lentos (decenas--cientos de ns) & \textbf{Muy rápidos} ($\sim$2 ns)\\
+Ejemplos & NaI(Tl), CsI(Tl), BGO, BaF$_2$, LaBr$_3$(Ce), LSO, LYSO, PbWO$_4$ & Antraceno, estilbeno, líquidos (NE213), plásticos (BC-400, NE111)\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{clave}
+
+\subsection{Luminiscencia en cristales inorgánicos}
+En un cristal puro, el electrón excitado a la banda de conducción vuelve a la de valencia emitiendo un fotón de energía del gap:
+poco probable y en el UV, y el cristal lo reabsorbe. Se añaden \textbf{activadores} (Tl, Ce\dots) que crean niveles dentro del gap:
+el par $e$--$h$ migra hasta el activador, que se desexcita emitiendo un fotón de \textbf{menor energía} (visible) que
+\textbf{no es reabsorbido} por el cristal. Otros mecanismos: excitones, defectos, luminiscencia autoactivada (BGO) y
+luminiscencia cruzada (componente rápida del BaF$_2$).
+
+\subsection{Luminiscencia en orgánicos}
+La radiación excita los estados singlete $S_1$ (y vibracionales superiores), que decaen sin radiar al fondo de $S_1$ y de ahí a niveles
+vibracionales de $S_0$ emitiendo luz (fluorescencia rápida, ns). Como la emisión parte del fondo de $S_1$ y acaba en niveles
+vibracionales excitados de $S_0$, el espectro de emisión está desplazado a $\lambda$ mayores que el de absorción
+$\Rightarrow$ \textbf{transparente a su propia luz}. Los estados triplete (cruce intersistema) dan componentes lentas (fosforescencia/fluorescencia retardada).
+
+\paragraph{Forma del pulso.}
+\[ I(t)=I_0\left(e^{-t/\tau_f}-e^{-t/\tau_r}\right) \]
+$\tau_r\approx0.2$--0.4 ns (transferencia al estado fluorescente), $\tau_f\approx1$--3 ns (decaimiento) en orgánicos.
+
+\subsection{Ley de Birks (quenching de ionización)}
+\begin{clave}[Ley de Birks]
+\[
+\frac{\mathrm{d}L}{\mathrm{d}r}=\frac{S\,\dfrac{\mathrm{d}E}{\mathrm{d}r}}{1+kB\,\dfrac{\mathrm{d}E}{\mathrm{d}r}}
+\]
+\begin{itemize}
+\item $\mathrm{d}E/\mathrm{d}r$ pequeño (electrones): $\mathrm{d}L/\mathrm{d}r\approx S\,\mathrm{d}E/\mathrm{d}r$, luz proporcional a la energía.
+\item $\mathrm{d}E/\mathrm{d}r$ grande (p, $\alpha$, iones): \textbf{saturación}, $\mathrm{d}L/\mathrm{d}r\to S/kB$: menos luz por MeV.
+\item Consecuencia: la luz producida y la \textbf{forma del pulso} dependen del tipo de partícula $\Rightarrow$
+\textbf{discriminación por forma de pulso (PSD)}, p.ej.\ neutrones/$\gamma$ en centelleadores orgánicos líquidos; CsI(Tl) para p/$\alpha$.
+Por eso la energía se suele dar en keV equivalentes de electrón (keVee).
+\end{itemize}
+\end{clave}
+
+\section{Principales centelleadores}
+\begin{clave}[Tabla de centelleadores (del resumen oficial)]
+\begin{center}\small
+\begin{tabular}{lcccccc}
+\toprule
+& $\rho$ (g/cm$^3$) & $Z_{eff}$ & $\lambda_{max}$ (nm) & $n$ & $\tau$ (ns) & Luz (fot/MeV)\\
+\midrule
+NaI(Tl) & 3.67 & 51 & 415 & 1.85 & 230 & 38\,000\\
+CsI(Tl) & 4.51 & 54 & 540 & 1.80 & 680, 3340 & 40\,000, 25\,000\\
+BGO (Bi$_4$Ge$_3$O$_{12}$) & 7.13 & 75 & 480 & 2.15 & 300 & 8\,200\\
+BaF$_2$ & 4.89 & 53 & 220, 310 & 1.56 & 0.6, 630 & 1\,500, 9\,500\\
+CeF$_3$ & 6.16 & 53 & 310, 340 & 1.68 & 5, 27 & 4\,400\\
+YAlO$_3$(Ce) & 5.37 & 34 & 370 & 1.95 & 27 & 18\,000\\
+LSO (Lu$_2$SiO$_5$:Ce) & 7.4 & 66 & 420 & 1.82 & 47 & 25\,000\\
+LaBr$_3$(Ce) & 3.79 & 47 & 350 & 1.9 & 25 & 63\,000\\
+GSO & 6.71 & 59 & 440 & 1.85 & 60 & 7\,500\\
+LYSO & 7.1 & 65 & 420 & 1.81 & 40 & 41\,000\\
+Plástico BC-400 & 1.03 & 4 & 420 & 1.58 & 2.4 & 10\,000\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Qué retener} (más que los números exactos):
+\begin{itemize}
+\item \textbf{NaI(Tl)}: el estándar; mucha luz, barato, grande; \emph{higroscópico y frágil}; 230 ns. Medicina nuclear.
+\item \textbf{BGO}: $\rho$ y $Z$ máximos $\Rightarrow$ máxima eficiencia, pero poca luz (mala resolución). PET clásico, escudos anti-Compton.
+\item \textbf{BaF$_2$}: componente ultrarrápida (0.6 ns, UV) $\Rightarrow$ timing.
+\item \textbf{LaBr$_3$(Ce)}: máximo rendimiento luminoso y rápido $\Rightarrow$ mejor resolución entre centelleadores ($\approx$3\% a 662 keV) y timing (vidas medias, Tema 11).
+\item \textbf{LSO/LYSO}: densos y rápidos $\Rightarrow$ PET-TOF.
+\item \textbf{Plásticos}: muy rápidos, baratos, grandes; ricos en H (neutrones, ToF); $Z$ bajo.
+\end{itemize}
+\end{clave}
+\begin{dato}
+Plásticos: NE111 con subida 0.2 ns y caída 1.7 ns. Los orgánicos líquidos son resistentes al daño por radiación y la muestra
+radiactiva puede disolverse en ellos (centelleo líquido). Añadir Pb a un plástico aumenta el fotopico pero reduce la luz.
+PbWO$_4$ (CMS, ALICE): muy denso y rápido pero poca luz. La luz de muchos inorgánicos depende de la temperatura.
+\end{dato}
+
+\section{Colección de la luz}
+Ley de Snell $n_i\sin\theta_i=n_t\sin\theta_t$ (reflexión total interna) y fórmulas de Fresnel. Se envuelve el cristal con
+reflector (especular o difuso, p.ej.\ teflón), se acopla con grasa óptica (contacto óptico) y, si hace falta, guías de luz o
+fibras desplazadoras de longitud de onda (WLS).
+
+\section{Fotosensores}
+\subsection{Tubo fotomultiplicador (PMT)}
+\begin{clave}[PMT]
+Tubo de vidrio al vacío con \textbf{fotocátodo} (efecto fotoeléctrico, eficiencia cuántica QE $\approx25\%$), electrodo de
+focalización, 10--12 \textbf{dínodos} y ánodo. Cada electrón que llega a un dínodo arranca $\delta\approx5$ secundarios:
+\[ G=\delta^{\,n}\qquad(\delta=5,\ n=10\ \Rightarrow\ G\approx10^7) \]
+\begin{itemize}
+\item Ganancia $10^6$--$10^7$, se ajusta con la tensión (\textbf{$\sim$1 kV}); muy dependiente de la HV.
+\item Gran área, muy bajo ruido, rápido (200--500 ps).
+\item \textbf{Sensible a campos magnéticos} (desvían los electrones entre dínodos).
+\end{itemize}
+\end{clave}
+
+\subsection{Resolución de un centelleador}
+\begin{clave}[El cuello de botella son los fotoelectrones]
+\[
+N_{pe}=E\cdot LY\cdot\eta_{col}\cdot QE,\qquad R\approx2.355\sqrt{\frac{1+\nu}{N_{pe}}}
+\]
+($\nu\approx0.1$--0.2: varianza relativa de la ganancia del PMT).
+NaI(Tl) a 662 keV: $38\,000\times0.662\approx25\,000$ fotones; $\eta_{col}\approx0.5$, $QE\approx0.25$
+$\Rightarrow N_{pe}\approx3100\Rightarrow R\approx4.5\%$ (estadístico). Medido $\approx6.5$--7\% (no proporcionalidad intrínseca,
+inhomogeneidades). LaBr$_3$: $\approx2.6$--3\%. HPGe: $\approx2.2\cdot10^5$ pares $\Rightarrow\approx0.2\%$.
+\end{clave}
+
+\subsection{Fotosensores de estado sólido y otros}
+\begin{itemize}
+\item \textbf{Fotodiodo de avalancha (APD)}: unión polarizada con tensión alta (100--500 V, hasta 2 kV): el fotoelectrón crea más pares
+(modo proporcional). Ganancia moderada y \emph{muy dependiente de la temperatura}; mayor QE; \textbf{insensible a campos magnéticos}; compacto.
+\item \textbf{SiPM} (G-APD, MPPC): \textbf{matriz} de micro-APD (20--100 $\mu$m, $\sim$1000/mm$^2$) en \textbf{modo Geiger} (por encima de la tensión
+de ruptura). Cada celda da una señal fija; la salida es la suma $\Rightarrow$ cuenta fotones. Ganancia $\sim10^6$, \textbf{baja tensión (20--60 V)},
+rápidos, compactos, baratos, \textbf{inmunes a campos magnéticos}. Inconvenientes: ruido oscuro alto (térmico), saturación, PDE 20--50\%.
+\item \textbf{MCP} (placas de microcanales): capilares emisores de electrones secundarios; resolución temporal (20--100 ps) y espacial (10--50 $\mu$m) excelentes;
+área pequeña, vida limitada, caros.
+\end{itemize}
+\begin{clave}[Del resumen]
+\textbf{PMTs sensibles a campos magnéticos y SiPMs no. PMTs requieren voltajes del orden de 1 kV} (SiPM: decenas de V).
+\end{clave}
+
+\section{Centelleador NaI frente a semiconductor HPGe}
+\begin{clave}[Comparación (espectros de $^{137}$Cs y $^{60}$Co)]
+\begin{itemize}
+\item \textbf{HPGe: mejor resolución en energía} (FWHM $\sim$2 keV vs $\sim$50 keV a 662 keV): picos muy estrechos, separa líneas próximas.
+\item \textbf{NaI: mejor eficiencia intrínseca} ($Z$ del I, cristales grandes y baratos).
+\item \textbf{Los centelleadores son en general más rápidos}.
+\item NaI funciona a temperatura ambiente; HPGe necesita refrigeración.
+\end{itemize}
+\end{clave}

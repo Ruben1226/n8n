@@ -1,0 +1,134 @@
+\chapter{Detectores de semiconductor}
+
+\section{Idea básica}
+Un detector de semiconductor es una ``cámara de ionización de estado sólido'': volumen con campo
+eléctrico donde la energía depositada crea \textbf{pares electrón--hueco} que derivan hacia los
+electrodos e inducen una corriente en el circuito externo.
+
+\begin{clave}[Ventajas frente a gas]
+\begin{itemize}
+\item \textbf{Energía por par muy baja}: 3.6 eV en Si, 2.96 eV en Ge (vs $\approx30$ eV en gas) $\Rightarrow$ muchos
+portadores $\Rightarrow$ \textbf{excelente resolución en energía}.
+\item \textbf{Densidad alta} (sólido): menor alcance para la misma energía, detectores compactos.
+\item Campos altos y alta movilidad: \textbf{respuesta rápida} y buena eficiencia de colección (poco atrapamiento).
+\item Resolución en posición dada por el tamaño de los electrodos (segmentación).
+\end{itemize}
+\end{clave}
+\begin{dato}[gas / líquido / sólido]
+Densidad: baja / moderada / alta. $Z$: bajo / moderado / moderado. Energía de ionización: moderada / moderada / baja.
+Velocidad de señal: moderada / moderada / rápida.
+\end{dato}
+
+\section{Física del semiconductor}
+\begin{itemize}
+\item Si y Ge: 4 electrones de valencia, red tipo diamante. Gap: Si 1.12 eV, Ge 0.67 eV ($k_BT\approx25$--40 meV a temperatura ambiente).
+\item \textbf{Dopado tipo n}: impureza pentavalente (P, As): donores, electrones mayoritarios.
+\textbf{Tipo p}: impureza trivalente (B): aceptores, huecos mayoritarios.
+\item Problema: en Si intrínseco $n_i\approx1.45\cdot10^{10}$ cm$^{-3}$ $\Rightarrow$ en un volumen típico hay $\sim4.5\cdot10^8$ portadores libres frente
+a sólo $3.2\cdot10^4$ pares creados por una MIP. \textbf{Hay que eliminar los portadores libres: deplexionar} el detector
+con una unión p--n polarizada en inversa.
+\end{itemize}
+
+\subsection{Unión p--n}
+Por difusión, electrones del lado n pasan al p y huecos al revés, dejando carga espacial fija
+(donores ionizados $+$ en n, aceptores $-$ en p). Se forma una \textbf{zona de deplexión} sin portadores
+libres y una barrera de potencial que frena la difusión.
+\begin{itemize}
+\item \textbf{Polarización directa} ($+$ a p): baja la barrera, gran corriente.
+\item \textbf{Polarización inversa} ($+$ a n): aumenta la barrera y la zona deplexionada; sólo circula una pequeña
+\textbf{corriente de fuga} (portadores minoritarios), que crece con $T$, el espesor y la irradiación: es ruido.
+\end{itemize}
+
+\begin{clave}[Zona de deplexión y tensión de deplexión total]
+Ecuación de Poisson (unión abrupta p$^+$--n):
+\[ -\frac{\mathrm{d}^2\phi}{\mathrm{d}x^2}=\frac{q_0}{\varepsilon\varepsilon_0}N_{eff} \]
+La densidad de carga es constante en la zona deplexionada, el campo crece linealmente (máximo en la unión) y el potencial es parabólico.
+\[
+w=\sqrt{\frac{2\varepsilon\varepsilon_0}{q_0|N_{eff}|}V}\ \propto\sqrt{V_B},\qquad
+V_{dep}=\frac{q_0}{\varepsilon\varepsilon_0}\,|N_{eff}|\,d^2\quad\left(\text{exacto: }\tfrac{q_0}{2\varepsilon\varepsilon_0}|N_{eff}|d^2\right)
+\]
+\begin{itemize}
+\item La zona deplexionada \textbf{crece con la tensión} ($w\propto\sqrt{V_B}$).
+\item Los pares creados en la zona \emph{no} deplexionada (sin campo) no dan señal:
+\textbf{colección completa de carga sólo si el detector está totalmente deplexionado ($V_B>V_{dep}$)}.
+\item $V_{dep}\propto N_{eff}\,d^2$: material más puro (alta resistividad) o más fino $\Rightarrow$ menor tensión.
+\end{itemize}
+\end{clave}
+\begin{dato}
+Si tipo n de $\rho=2$ k$\Omega$cm ($N_D\approx2.2\cdot10^{12}$ cm$^{-3}$), 300 $\mu$m: $V_{dep}\approx150$ V, fuga $<1\,\mu$A.
+\end{dato}
+
+\section{Detectores de silicio}
+\begin{clave}[Si: principalmente partículas cargadas y rayos X]
+\begin{itemize}
+\item Gap 1.12 eV, 3.6 eV/par: funciona a temperatura ambiente.
+\item $\rho=2.33$ g/cm$^3$; MIP: $\dEdx\approx3.8$ MeV/cm $\approx108$ pares/$\mu$m.
+\item Alta movilidad ($\mu_e=1450$, $\mu_h=450$ cm$^2$/Vs) $\Rightarrow$ colección $<10$ ns. Velocidad de deriva $v=\mu E$.
+\item Muy puro, rígido (estructuras finas autoportantes), tecnología microelectrónica barata.
+\item $Z=14$ bajo: poco eficiente para $\gamma$ de alta energía.
+\end{itemize}
+\end{clave}
+
+\subsection{Silicios segmentados}
+Segmentando el contacto p$^+$ en \textbf{tiras} (\emph{strips}) leídas por canales independientes se obtiene la posición
+(resolución $\propto$ paso de las tiras, $\sigma\approx\text{paso}/\sqrt{12}$). Con tiras perpendiculares en ambas caras
+(\textbf{DSSD}, \emph{double-sided strip detector}) se obtiene $(x,y)$. Espesor típico \textbf{300 $\mu$m} (150--500 $\mu$m).
+Geometrías: cuadrados, anulares (tipo CD), en cajas alrededor del blanco; se combinan con Ge para medir partículas y $\gamma$ en coincidencia.
+
+\subsection{Telescopios $\Delta E$--$E$ e identificación de partículas}
+\begin{clave}[Telescopio $\Delta E$--$E$]
+Un detector \textbf{muy delgado (5--50 $\mu$m)} mide la pérdida $\Delta E$ y otro \textbf{grueso (200--1500 $\mu$m)} detrás
+para completamente la partícula ($E$ residual). \textbf{Sumando ambas señales se obtiene la energía total}.
+
+Por \textbf{Bethe--Bloch}, en régimen no relativista
+\[ \Delta E\propto\frac{Mz^2}{E}\quad\Rightarrow\quad \Delta E\cdot E\propto Mz^2 \]
+cada especie (p, d, t, $^3$He, $\alpha$\dots) ocupa una \textbf{hipérbola distinta} en el diagrama $\Delta E$--$E$:
+identificación de partículas. Seleccionando una banda se aísla un canal de reacción (p.ej.\ $^{163}$Dy($^3$He,$^4$He)$^{162}$Dy).
+\end{clave}
+
+\subsection{Relación señal/ruido}
+La distribución de pérdida en capas finas (Landau) tiene cola a baja energía, ensanchada por el ruido. Fuentes de ruido
+(ENC, carga equivalente de ruido): capacidad, corriente de fuga, ruido térmico de la resistencia de polarización.
+Se exige un umbral por encima de la cola de ruido (alto $\Rightarrow$ pérdida de eficiencia; bajo $\Rightarrow$ ocupación por ruido).
+Figura de mérito: $S/N>10$--15. El daño por radiación la degrada.
+
+\section{Detectores de germanio (HPGe)}
+\begin{clave}[HPGe: espectroscopía $\gamma$ y X de alta resolución]
+\begin{itemize}
+\item $Z=32$ (vs 14 del Si) y cristales grandes (coaxiales, cientos de cm$^3$): adecuado para $\gamma$.
+\item Gap pequeño (0.67 eV) $\Rightarrow$ \textbf{hay que enfriar a 77 K (N$_2$ líquido)} o con refrigeración eléctrica para suprimir la
+generación térmica de pares (corriente de fuga).
+\item Alta pureza ($\sim10^{9}$--$10^{10}$ impurezas/cm$^3$, frente a $10^{12}$ en los antiguos Ge(Li), que necesitaban estar siempre fríos):
+permite deplexionar varios cm con $V>1000$ V.
+\item \textbf{Resolución $\approx0.15\%$ a 1.33 MeV} (FWHM 1.7--2.3 keV) frente a $\approx7$--8\% del NaI. Mejor cociente pico/Compton.
+\item \textbf{Eficiencia intrínseca menor} que la de los centelleadores inorgánicos de $Z$ y $\rho$ altos.
+\end{itemize}
+\end{clave}
+\begin{itemize}
+\item Geometrías planar y coaxial; contactos de Li difundido (n$^+$, $\sim0.5$ mm, capa muerta gruesa) o B implantado (p$^+$, $\sim0.5\,\mu$m).
+\item Para X y $\gamma$ de baja energía la ventana de entrada debe ser fina: contacto p$^+$ delante $\Rightarrow$ cristal tipo n
+(además, el tipo n es más resistente al daño por neutrones). Ventana de Be para bajas energías, de Al para altas.
+\item Cadena: detector $\to$ preamplificador $\to$ amplificador $\to$ ADC $\to$ ordenador. Constantes de conformado 2--6 $\mu$s.
+\end{itemize}
+\begin{dato}[Parámetros estándar a 1332 keV ($^{60}$Co)]
+Eficiencia relativa (respecto a NaI 3''$\times$3'' a 25 cm, $\varepsilon=1.2\cdot10^{-3}$): 10--70\% (hoy $>100\%$).
+Pico/Compton 30--60. FWHM 1.7--2.3 keV. Forma: FWTM/FWHM $\approx2.0$ (gaussiana 1.82).
+\end{dato}
+
+\begin{clave}[Detectores HPGe compuestos y segmentados]
+\begin{itemize}
+\item Para \textbf{mejorar el cociente pico/Compton} y \textbf{corregir el desplazamiento Doppler} (fuentes en vuelo) hay que conocer
+dónde interacciona el $\gamma$: \textbf{tracking} $\Rightarrow$ cristales de Ge \textbf{segmentados} + análisis de forma de pulso.
+\item Para aumentar la eficiencia se agrupan en \textbf{arrays} (clústeres con criostato común; detectores \emph{clover}).
+\item Supresión Compton: escudos de BGO alrededor que vetan los sucesos en que el fotón escapa.
+\end{itemize}
+\end{clave}
+\begin{dato}[Ejemplos]
+Euroball, Exogam (clovers), Miniball (ISOLDE, cristales segmentados en 6), \textbf{AGATA} y \textbf{GRETINA/GRETA}
+(tracking: 36 segmentos por cristal, 6 longitudinales $\times$ 6 transversales).
+\end{dato}
+
+\section{Otros semiconductores}
+CdTe, CdZnTe (CZT), HgI$_2$: $Z$ alto y gap mayor $\Rightarrow$ \textbf{no requieren refrigeración} ($\varepsilon\approx4.4$ eV/par),
+pero peor transporte de carga (huecos); por ahora para energías bajas. Diamante, GaAs, SiC: resistentes a la radiación.
+SiPM (fotomultiplicadores de silicio): ver Tema 5.

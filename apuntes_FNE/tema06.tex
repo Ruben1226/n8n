@@ -1,0 +1,146 @@
+\chapter{Detección de neutrones}
+
+\section{Idea básica}
+\begin{clave}[Detección siempre indirecta]
+Los neutrones no tienen carga: no ionizan. Hay que usar \textbf{reacciones nucleares} que los ``conviertan'' en partículas
+cargadas (o $\gamma$), que luego se detectan con detectores convencionales (gas, centelleador, semiconductor).
+\begin{itemize}
+\item \textbf{Neutrones lentos/térmicos}: reacciones de \textbf{captura} exotérmicas con gran sección eficaz.
+\item \textbf{Neutrones rápidos}: \textbf{dispersión elástica} (protones de retroceso en materiales hidrogenados) o se moderan primero.
+\end{itemize}
+\end{clave}
+
+\paragraph{Canales de interacción:} dispersión elástica (n,n), inelástica (n,n'$\gamma$), captura radiativa (n,$\gamma$), multiplicación
+(n,xn), producción de cargadas (n,p), (n,$\alpha$), y fisión (n,f). Sin barrera coulombiana; algunas con umbral.
+Dependencia con la energía: región \textbf{$1/v$} a baja energía, \textbf{resonancias} y continuo a alta energía.
+
+\begin{clave}[Reacciones de conversión (secciones eficaces térmicas, 0.025 eV)]
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Reacción & $Q$ (MeV) & $\sigma_{th}$ (b)\\
+\midrule
+n + $^3$He $\to$ $^3$H + p & 0.764 & 5330\\
+n + $^{10}$B $\to$ $^7$Li$^*$ + $\alpha$ $\to$ $^7$Li + $\alpha$ + $\gamma$(0.48) & 2.31 (93\%) / 2.79 (7\%) & 3840\\
+n + $^6$Li $\to$ $^3$H + $\alpha$ & 4.78 & 940\\
+n + $^{155,157}$Gd $\to$ Gd$^*$ $\to\gamma$ + e$^-$ de conversión & -- & $\sim10^5$\\
+n + $^{235}$U, $^{239}$Pu $\to$ fisión & $\sim$160--200 & 585 / 750\\
+\bottomrule
+\end{tabular}
+\end{center}
+Todas siguen la ley \textbf{$\sigma\propto1/v$} a baja energía $\Rightarrow$ eficientes sólo para neutrones lentos: para neutrones rápidos hay
+que \textbf{moderar} primero. $Q$ grande facilita discriminar frente a $\gamma$ (pulsos más grandes que el fondo).
+\end{clave}
+
+\section{Clasificación}
+\begin{itemize}
+\item \textbf{Contadores} (sólo detectan): moderados o no moderados.
+\item \textbf{Espectrómetros} (energía): retroceso, reacción con partícula cargada, \textbf{tiempo de vuelo}, moderación (esferas de Bonner).
+\item Por forma física: gas (cámaras de ionización y proporcionales), líquido (centelleadores), sólido (centelleadores, semiconductores).
+\item Por material activo: autodetector, cargado (con $^{10}$B o $^6$Li añadido), recubierto (capa convertidora).
+\end{itemize}
+
+\section{Detectores gaseosos}
+\begin{clave}[Contadores proporcionales de $^3$He y BF$_3$]
+\begin{itemize}
+\item $^3$He(n,p)$^3$H: 0.764 MeV repartidos entre p (573 keV) y t (191 keV). $\sim25\,000$ pares por neutrón ($\sim4\cdot10^{-15}$ C).
+En modo proporcional, ganancias de hasta miles.
+\item Espectro térmico: pico a 764 keV + \textbf{efecto pared} (una de las partículas toca la pared antes de depositar toda su energía):
+continuo con escalones en 191 y 573 keV.
+\item Muy buena discriminación $n/\gamma$ por altura de pulso (los $\gamma$ depositan poco en el gas).
+\item BF$_3$: gas tóxico, menor $\sigma$; $^{10}$B(n,$\alpha$).
+\item Otros gases: H$_2$, CH$_4$, $^4$He (retroceso, neutrones rápidos).
+\end{itemize}
+\end{clave}
+\begin{dato}[Crisis del $^3$He]
+El $^3$He procede de la desintegración del tritio (arsenal nuclear): escasez desde $\sim$2009. Alternativas: BF$_3$, tubos recubiertos de $^{10}$B,
+láminas de $^{10}$B$_4$C (Multi-Grid, ESS), vidrios de $^6$Li, $^6$LiF:ZnS(Ag), elpasolitas (CLYC) con PSD.
+\end{dato}
+
+\section{Centelleadores}
+\begin{itemize}
+\item \textbf{Con $^6$Li} (neutrones lentos): vidrio Li(Ce), LiI(Eu), ZnS(Ag)--LiF (mucha luz por neutrón, opaco).
+\item \textbf{Orgánicos líquidos} (BC501/NE213) y plásticos (neutrones rápidos): protones de retroceso; espectro casi rectangular entre 0 y $E_n$
+(distorsionado por la no linealidad de Birks y la resolución). Permiten \textbf{PSD} n/$\gamma$ (la componente lenta es mayor para protones).
+\item CLYC (Cs$_2$LiYCl$_6$:Ce): neutrones térmicos ($^6$Li) y rápidos ($^{35}$Cl(n,p)) con PSD.
+\end{itemize}
+
+\section{Semiconductores}
+$\sim1.5\cdot10^6$ pares por neutrón: se detecta sin amplificación adicional. Pero los semiconductores convencionales no tienen
+núcleos absorbentes $\Rightarrow$ se deposita una \textbf{capa convertidora} ($^6$LiF, $^{10}$B) sobre el Si. La capa debe ser fina (pocos $\mu$m)
+para que salgan las partículas cargadas $\Rightarrow$ \textbf{eficiencia baja} (y sólo una de las dos partículas entra en el detector).
+
+\section{Dispersión elástica y moderación}
+\begin{clave}[Moderación]
+Tras una colisión elástica (isótropa en el CM, onda $s$) la energía del neutrón queda uniformemente entre:
+\[
+\alpha E_0\le E\le E_0,\qquad \alpha=\left(\frac{A-1}{A+1}\right)^2
+\]
+\begin{itemize}
+\item \textbf{Buen moderador: material ligero rico en hidrógeno} ($\alpha=0$: el neutrón puede perder toda su energía en un choque).
+Polietileno, agua, parafina.
+\item \textbf{Letargia}: $u=\ln(E_0/E)$. Decremento logarítmico medio por colisión:
+\[ \xi=\left\langle\ln\frac{E_0}{E}\right\rangle=1+\frac{\alpha}{1-\alpha}\ln\alpha=1-\frac{(A-1)^2}{2A}\ln\frac{A+1}{A-1} \]
+\item Número de colisiones para pasar de $E_0$ a $E_f$:
+\[ N=\frac{\ln(E_0/E_f)}{\xi} \]
+\end{itemize}
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule
+Núcleo & $1-\alpha$ & $\xi$ & $N$ (1 MeV $\to$ 25 meV)\\
+\midrule
+$^1$H & 1 & 1 & 18\\ $^2$H & 0.889 & 0.725 & 24\\ $^4$He & 0.640 & 0.425 & 41\\
+$^{12}$C & 0.284 & 0.158 & 111\\ $^{56}$Fe & 0.069 & 0.035 & 500\\ $^{208}$Pb & 0.019 & 0.010 & 1823\\
+\bottomrule
+\end{tabular}
+\end{center}
+Al moderar, el neutrón pasa a la región $1/v$ donde las secciones eficaces de captura ($^3$He, $^{10}$B, $^6$Li) son enormes.
+\end{clave}
+\begin{ejemplo}
+De 2 MeV a 0.025 eV en hidrógeno: $N=\ln(8\cdot10^7)/1\approx18$ colisiones.
+\end{ejemplo}
+
+\section{Espectrómetro de tiempo de vuelo (ToF)}
+\begin{clave}[ToF]
+\[ E=\frac12mv^2=\frac12m\frac{L^2}{t^2},\qquad \frac{\Delta E}{E}=2\sqrt{\left(\frac{\Delta L}{L}\right)^2+\left(\frac{\Delta t}{t}\right)^2} \]
+\begin{itemize}
+\item \textbf{Start}: origen pulsado en el tiempo (haz pulsado) o radiación acompañante ($\beta$, $\alpha$, $\gamma$\dots, \emph{no} el neutrón).
+\item \textbf{Stop}: el detector de neutrones.
+\item \textbf{Base de vuelo larga, detectores cortos (poca incertidumbre $\Delta L$ en el punto de interacción), buena resolución temporal}.
+\item Detectores típicos: centelleadores plásticos/orgánicos (rápidos, ricos en H).
+\end{itemize}
+\end{clave}
+\begin{ejemplo}[$L=1$ m]
+$E=1$ MeV: $\beta=0.046$, $t\approx72$ ns (regla: $t[\mathrm{ns}]\approx72.3\,L[\mathrm{m}]/\sqrt{E[\mathrm{MeV}]}$).
+Con $\Delta t=1$ ns y $\Delta L=1$ cm: $\Delta E/E=2\sqrt{0.01^2+(1/72)^2}\approx3.4\%$. A 10 MeV: $t\approx23$ ns, $\Delta E/E\approx9\%$.
+Neutrones rápidos $\Rightarrow$ bases largas (n\_TOF en el CERN: 185 m y $\sim$20 m).
+\end{ejemplo}
+\begin{dato}[Instrumentos]
+\textbf{TONERRE} (LPC-Caen, ISOLDE): centelleador plástico BC400, $\Delta\Omega/4\pi=50\%$, $\varepsilon_{int}=25\%$, $\Delta E/E=10\%$ (neutrones $\beta$-retardados).
+\textbf{MoNA} (NSCL): 144 barras plásticas de $200\times10\times10$ cm$^3$. \textbf{Neutron Wall} (EUROBALL): líquido BC501, $\Delta\Omega/4\pi=25\%$, $\varepsilon_{int}=50\%$.
+\end{dato}
+
+\section{Detectores moderados}
+\begin{clave}[Esferas de Bonner]
+Esferas de polietileno de distintos diámetros (2''--18'') con un contador de neutrones térmicos en el centro ($^3$He o $^6$LiI).
+Cada esfera tiene una \textbf{función respuesta} $R_d(E_n)$ distinta (calculada por Monte Carlo): las pequeñas responden a neutrones
+lentos, las grandes a rápidos (se añaden capas de Pb/Cu para $E>20$ MeV). Midiendo las tasas con todas las esferas
+\[ N_d=\int R_d(E)\,\varphi(E)\,\mathrm{d}E \]
+se obtiene el espectro $\varphi(E)$ por \textbf{deconvolución} (\emph{unfolding}, p.ej.\ código MAXED). Cubren de meV a GeV, pero con resolución pobre.
+Ejemplo: NEMUS (PTB-Braunschweig).
+\end{clave}
+\begin{itemize}
+\item \textbf{Long counter}: moderador + blindaje + BF$_3$; unidireccional, eficiencia casi plana con la energía.
+\item \textbf{Matriz cilíndrica moderada} (contador $4\pi$): bloque de polietileno con muchos contadores de $^3$He/BF$_3$ alrededor de la fuente.
+Alta eficiencia pero sin información de energía. Ej.: \textbf{NERO} (NSCL): $60\times60\times80$ cm$^3$, 16 contadores de $^3$He y 44 de BF$_3$,
+$\varepsilon\approx40\%$ (emisión de neutrones $\beta$-retardados).
+\item \textbf{Cámara de fisión}: depósito de $^{235}$U/$^{239}$Pu en una cámara de gas; los fragmentos ($\sim$160 MeV) dan pulsos enormes, ideal en campos $\gamma$ intensos.
+\end{itemize}
+
+\section{Discriminación y simulación}
+\begin{itemize}
+\item \textbf{Discriminación por altura de pulso}: umbrales para rechazar $\gamma$ y ruido ($^3$He excelente).
+\item \textbf{PSD}: la forma del pulso depende de la partícula (BC501, NE213, CLYC, LaCl$_3$).
+\item La respuesta se calcula por \textbf{Monte Carlo} (MCNP, Geant4, NRESP, SCINFUL), que necesita datos nucleares y la respuesta en luz del material.
+El método MC moderno nació precisamente para el transporte de neutrones.
+\end{itemize}

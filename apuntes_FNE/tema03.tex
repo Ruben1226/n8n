@@ -1,0 +1,108 @@
+\chapter{Detectores de gas}
+
+\section{Principio de funcionamiento}
+Recipiente con gas, dos electrodos aislados y alta tensión entre ellos. La radiación ionizante crea
+pares electrón--ion; los iones positivos van al cátodo y los electrones al ánodo. Habitualmente el
+cátodo es la pared del recipiente y el ánodo un hilo fino central (geometría coaxial).
+\begin{dato}[$W$ (eV/par) en gases]
+H$_2$ 37, He 41, N$_2$ 35, O$_2$ 31, aire 35, Ne 36, Ar 26. Valor típico: $W\approx30$ eV.
+\end{dato}
+Modos: \textbf{corriente} (dosímetro, energía integrada) o \textbf{pulso} (sucesos individuales).
+
+\section{Regímenes de operación}
+\begin{clave}[Número de iones recogidos frente a la tensión aplicada]
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.42cm,font=\small]
+\draw[-{Stealth}] (0,0)--(11,0) node[above left]{tensión $V$};
+\draw[-{Stealth}] (0,0)--(0,11) node[above right]{$\log N_{iones}$};
+\foreach \x/\l in {0.7/a,2.6/b,5/c,7.3/d,8.9/e} \node at (\x,10.5){(\l)};
+\foreach \x in {1.4,3.8,6.4,8.1,9.8} \draw[dashed,gray] (\x,0)--(\x,10);
+\fill[green!10] (3.8,0) rectangle (6.4,10);
+\draw[thick,BrickRed] (0.1,1.5) .. controls (0.6,4) .. (1.4,4.5) -- (3.8,4.6) -- (6.4,7.8) .. controls (7.3,9.2) .. (8.1,9.5) -- (9.8,9.5) -- (10.5,10.5);
+\draw[thick,NavyBlue] (0.1,0.5) .. controls (0.6,2.2) .. (1.4,2.5) -- (3.8,2.6) -- (6.4,5.8) .. controls (7.4,8.5) .. (8.1,9.5);
+\node[BrickRed,right] at (4.2,8.7){$\alpha$};
+\node[NavyBlue,right] at (5.2,3.9){$\beta$};
+\node[align=center,font=\scriptsize] at (2.6,-1.2){cámara de\\ionización};
+\node[align=center,font=\scriptsize] at (5.1,-1.2){contador\\proporcional};
+\node[align=center,font=\scriptsize] at (7.25,-1.2){prop.\\limitada};
+\node[align=center,font=\scriptsize] at (8.95,-1.2){Geiger--\\Müller};
+\node[align=center,font=\scriptsize] at (0.7,-1.2){recomb.};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Recombinación}: campo insuficiente; parte de los pares se recombina.
+\item \textbf{Cámara de ionización}: se recogen todos los pares primarios; meseta; señal $\propto$ energía e independiente de $V$.
+\item \textbf{Contador proporcional}: los electrones ganan energía suficiente para ionizar (avalancha de Townsend); carga
+$= M\times$ primarios, $M$ crece exponencialmente con $V$. Sigue siendo $\propto$ energía.
+\item \textbf{Proporcionalidad limitada}: la carga espacial de los iones distorsiona el campo; se pierde la proporcionalidad.
+\item \textbf{Geiger--Müller}: descarga en todo el hilo; misma señal para cualquier partícula: sólo cuenta. Después, descarga continua.
+\end{enumerate}
+El tipo de detector lo determina principalmente la tensión aplicada.
+\end{clave}
+
+\begin{clave}[Tamaño de la señal: por qué hace falta multiplicación]
+\begin{itemize}
+\item $\alpha$ de 5.5 MeV parada en Ar: $N=5.5\cdot10^6/26\approx2.1\cdot10^5$ pares $\Rightarrow Q\approx34$ fC $\Rightarrow\Delta V=Q/C\approx3.4$ mV sobre 10 pF.
+\item $\beta$ rápido que cruza unos cm de gas: $\sim10$ keV $\to\sim400$ pares $\to Q\approx0.06$ fC: demasiado pequeño para contar
+individualmente $\Rightarrow$ modo corriente o multiplicación.
+\item Proporcional con $M=10^3$: $Q\approx60$ fC, fácilmente medible.
+\item GM: $10^9$--$10^{10}$ electrones por descarga $\to$ pulsos de voltios, sin información de energía.
+\end{itemize}
+\end{clave}
+
+\section{Cámaras de ionización}
+\begin{itemize}
+\item Gas: He, N$_2$, Ar, Kr, Xe\dots Geometrías variadas (placas paralelas, cilindros).
+\item Amplitud $\propto$ número de iones $\propto$ energía depositada, independiente de $V$.
+\item Eficiencia $\sim100\%$ para cargadas, $\sim1\%$ para fotones (baja densidad del gas).
+\item Señales muy pequeñas ($\sim10^{-4}$ V) y lentas (la deriva de iones es lenta, hasta $\sim$ms) $\Rightarrow$ gran amplificación.
+\item Usos: dosimetría y monitores de radiación (modo corriente), detectores de humo (fuente $\alpha$ de $^{241}$Am; el humo
+reduce la corriente), etapa $\Delta E$ en telescopios $\Delta E$(gas)--$E$(Si) para iones pesados.
+\end{itemize}
+
+\section{Contadores proporcionales}
+\begin{itemize}
+\item Ánodo de hilo fino en un cátodo cilíndrico. El campo es
+\[ E(r)=\frac{V}{r\ln(b/a)} \]
+($a$ radio del hilo, $b$ del cátodo): sólo muy cerca del hilo es suficientemente intenso para la avalancha.
+Así la multiplicación es independiente del punto de interacción y la señal sigue siendo proporcional.
+\item Factor de multiplicación (ganancia gaseosa) $M\sim10^2$--$10^4$, dependencia \textbf{exponencial} con $V$
+$\Rightarrow$ fuente de alta tensión muy estable.
+\item Gases: Ar + gas de extinción (P10 = 90\% Ar + 10\% CH$_4$), isobutano, $^3$He o BF$_3$ (neutrones, Tema 6).
+\item Modo pulso, respuesta $\sim\mu$s. Permite espectroscopía de baja energía (X blandos, $\beta$).
+\end{itemize}
+
+\subsection{Detectores sensibles a posición}
+\begin{itemize}
+\item \textbf{MWPC} (cámara proporcional multihilos, Charpak 1968, Nobel 1992): plano de hilos anódicos finos
+($\sim0.1$ mm de diámetro... separados $\sim$mm) entre dos planos catódicos. Cada hilo actúa como un contador
+proporcional independiente: da energía y posición ($X,Y$).
+\item \textbf{Cámaras de deriva y TPC}: la posición se obtiene del tiempo de deriva de los electrones.
+\item \textbf{MPGD} (micropatrón): \textbf{GEM} (lámina de Kapton perforada, $\sim$400 V, ganancia 10--100 por lámina, en cascadas de 3)
+y \textbf{Micromegas} (micromalla a 50--130 $\mu$m del ánodo). Resolución $\sim$50--100 $\mu$m, tasas $>10^6$ Hz/mm$^2$, bajo retorno de iones.
+Uso: TPC de ALICE, TPC de blanco activo en física nuclear.
+\end{itemize}
+\begin{dato}
+Con MWPC se descubrieron el quark charm (Richter y Ting, 1974; Nobel 1976) y los bosones W y Z (Rubbia y van der Meer, 1983; Nobel 1984).
+\end{dato}
+
+\section{Contadores Geiger--Müller}
+\begin{itemize}
+\item Gas He, Ne o Ar (+ gas de extinción o \emph{quenching}, orgánico o halógeno); HV 400--1200 V.
+\item La avalancha se propaga por todo el hilo (fotones UV de desexcitación): pulso grande e igual para todas las partículas.
+\item \textbf{No permite espectroscopía}: sólo contar ($\beta$, $\gamma$). Ventana de vidrio (robusta, no ve $\beta$ blandos) o de mica (frágil, permite $\beta$/$\alpha$).
+\item Tiempo muerto grande (decenas--cientos de $\mu$s): la nube de iones positivos tarda en llegar al cátodo; no paralizable en la práctica.
+\end{itemize}
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{lXXX}
+\toprule
+& Cámara de ionización & Proporcional & Geiger--Müller\\
+\midrule
+Multiplicación & No ($M=1$) & Sí, $M\sim10^2$--$10^4$ & Descarga total\\
+Señal $\propto E$ & Sí & Sí & No\\
+Tamaño de señal & Muy pequeño & Medio & Grande (V)\\
+Uso típico & Dosimetría, $\Delta E$ & Espectroscopía X, neutrones, trazas & Contaje, protección radiológica\\
+\bottomrule
+\end{tabularx}
+\end{center}

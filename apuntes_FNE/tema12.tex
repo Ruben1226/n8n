@@ -1,0 +1,52 @@
+\chapter{Herramientas de análisis}
+Tema práctico: herramientas que se usan en las prácticas. Basta con saber \textbf{qué hace cada una y cuándo usarla}.
+
+\begin{clave}[Qué herramienta para qué]
+\begin{center}\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{SRIM} & Poder de frenado (electrónico y nuclear) y alcances de \textbf{iones} en materiales; tablas y gráficos (eV--GeV).\\
+\textbf{TRIM} & Parte \textbf{Monte Carlo} de SRIM: simula trayectorias ion a ion.\\
+\textbf{NNDC / NuDat3 / ENSDF} & Datos nucleares de referencia: carta de núclidos, niveles, $\gamma$, vidas medias, intensidades.\\
+\textbf{jsROOT} & Visor web de ficheros ROOT (prácticas de neutrones y de vidas medias).\\
+\textbf{Gnuplot} & Representación y ajustes sencillos (lineal, gaussiana + fondo lineal) de espectros.\\
+\textbf{NIST} (ESTAR/PSTAR/ASTAR, XCOM) & Poder de frenado de $e^-$, p, $\alpha$ y coeficientes de atenuación de fotones (Tema 1).\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{clave}
+
+\section{SRIM y TRIM}
+\textbf{SRIM} (\emph{The Stopping and Range of Ions in Matter}, \url{http://srim.org}) estima:
+\begin{itemize}
+\item pérdida de energía electrónica y nuclear de iones en distintos materiales (incluidos compuestos);
+\item alcances medios y sus distribuciones (straggling), perfiles de implantación;
+\item desplazamientos atómicos y daño por radiación.
+\end{itemize}
+Calcula el frenado electrónico de forma parecida a Bethe--Bloch pero con \textbf{correcciones semiempíricas} (carga efectiva, capas) válidas a baja energía,
+y el frenado nuclear con el potencial universal \textbf{ZBL} (Ziegler--Biersack--Littmark). No sigue partículas individuales.
+
+\textbf{TRIM} es el Monte Carlo del paquete: simula colisiones binarias y dispersión múltiple, y da la pérdida de energía por paso, la distribución angular,
+las trayectorias 3D, los defectos y cascadas de desplazamiento, el \emph{sputtering} y la distribución de energía depositada.
+
+\begin{ejemplo}[Uso típico]
+Espesor de un detector $\Delta E$ o de una ventana/degradador; energía con que llega una partícula tras atravesar el blanco; profundidad de implantación de un haz radiactivo.
+\end{ejemplo}
+
+\section{Bases de datos nucleares}
+\textbf{NNDC} (National Nuclear Data Center, Brookhaven): \textbf{NuDat3} (carta de núclidos interactiva, búsqueda de $\gamma$ y niveles) y \textbf{ENSDF}
+(evaluaciones de estructura nuclear). Se usan para identificar picos de un espectro, conocer intensidades absolutas (calibración de eficiencia),
+energías de fuentes de calibración y vidas medias.
+
+\section{ROOT y Gnuplot}
+\begin{itemize}
+\item \textbf{ROOT} (CERN): entorno de análisis de datos (histogramas, árboles, ajustes). \textbf{jsROOT}: visor web de ficheros \texttt{.root} sin instalar nada.
+\item \textbf{Gnuplot}: gratuito, sencillo; representar espectros (CassyLab, CoMPASS) y hacer ajustes. Se usa con macros en las prácticas computacionales
+(Monte Carlo y procesado de pulsos).
+\end{itemize}
+
+\begin{dato}[Ajuste típico de un fotopico]
+Gaussiana + fondo lineal:
+$f(E)=A\exp\!\left[-\frac{(E-E_0)^2}{2\sigma^2}\right]+a+bE$.
+Área neta $=\sqrt{2\pi}A\sigma$ (eficiencia de fotopico, Tema 2); FWHM $=2.355\sigma$ (resolución); centroide $E_0$ (calibración en energía, lineal canal--energía con fuentes conocidas).
+\end{dato}

@@ -1,0 +1,91 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={.},range-phrase=--,per-mode=symbol}
+\usepackage{booktabs,array,tabularx,multirow}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,decorations.pathmorphing}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=NavyBlue,urlcolor=NavyBlue}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Física Nuclear Experimental}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]{\Huge\bfseries\color{NavyBlue}}{\thechapter.}{0.5em}{}
+\titlespacing*{\chapter}{0pt}{-20pt}{18pt}
+
+% ---------- Niveles de relevancia ----------
+% CLAVE: imprescindible (ideas del resumen oficial, fórmulas que hay que saber)
+\newtcolorbox{clave}[1][]{enhanced,breakable,colback=red!4,colframe=BrickRed,
+  fonttitle=\bfseries,title={$\bigstar$ Clave\ifx&#1&\else: #1\fi},sharp corners=south}
+% FÓRMULA destacada
+\newtcolorbox{formula}[1][]{enhanced,colback=NavyBlue!4,colframe=NavyBlue,
+  fonttitle=\bfseries\small,title={#1},halign=center}
+% DATO: valores de referencia, no memorizar
+\newtcolorbox{dato}[1][]{enhanced,breakable,colback=gray!6,colframe=gray!50,
+  fontupper=\small,fonttitle=\bfseries\small,coltitle=black,
+  title={\textsf{i}\ Dato\ifx&#1&\else: #1\fi}}
+% EJEMPLO
+\newtcolorbox{ejemplo}[1][]{enhanced,breakable,colback=ForestGreen!4,colframe=ForestGreen!70!black,
+  fontupper=\small,fonttitle=\bfseries\small,title={Ejemplo\ifx&#1&\else: #1\fi}}
+
+\newcommand{\dEdx}{\ensuremath{\mathrm{d}E/\mathrm{d}x}}
+\newcommand{\imp}[1]{\textbf{\color{BrickRed}#1}}
+
+\title{\Huge\bfseries Física Nuclear Experimental\\[0.4em]\Large Apuntes de la asignatura\\[0.3em]\large Máster Interuniversitario en Física Nuclear --- Curso 2026-27}
+\author{Resumen elaborado a partir de las diapositivas de los Temas 1--12\\y del ``Repaso de Detectores''}
+\date{}
+
+\begin{document}
+\maketitle
+
+\chapter*{Cómo leer estos apuntes}
+\addcontentsline{toc}{chapter}{Cómo leer estos apuntes}
+El contenido está jerarquizado en tres niveles de relevancia, usando como guía el
+\emph{Repaso de Detectores} (resumen oficial de la asignatura):
+
+\begin{clave}
+\textbf{Imprescindible.} Ideas y fórmulas que aparecen en el resumen oficial o que vertebran el tema.
+Hay que saberlas, entenderlas y saber aplicarlas.
+\end{clave}
+
+\textbf{Texto normal: necesario.} Explicaciones, matices y desarrollo que hay que conocer para
+entender lo clave y responder preguntas de razonamiento.
+
+\begin{dato}
+\textbf{Dato de referencia.} Tablas, valores numéricos, nombres de instrumentos y detalles
+históricos o técnicos. Conviene tener el orden de magnitud, pero no memorizar.
+\end{dato}
+
+\begin{ejemplo}
+Aplicaciones numéricas para fijar ideas.
+\end{ejemplo}
+
+\tableofcontents
+
+\input{tema00_ideas}
+\input{tema01}
+\input{tema02}
+\input{tema03}
+\input{tema04}
+\input{tema05}
+\input{tema06}
+\setcounter{chapter}{6}
+\input{tema07_electronica}
+\setcounter{chapter}{8}
+\input{tema09}
+\input{tema10}
+\input{tema11}
+\input{tema12}
+\end{document}

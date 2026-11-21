@@ -1,0 +1,123 @@
+\chapter{Aceleradores de partículas}
+
+\section{Idea general}
+Un acelerador aumenta la energía de partículas cargadas mediante \textbf{campos eléctricos} y controla su trayectoria con
+\textbf{campos magnéticos} (el tubo de rayos catódicos de un televisor, 30 kV, es el ejemplo más sencillo). Más energía permite
+acceder a escalas más pequeñas.
+
+\begin{clave}[¿Cómo dar muchos MeV a un ion sin muchos megavoltios?]
+\begin{center}\small
+\begin{tabularx}{\linewidth}{XXX}
+\toprule
+\textbf{Una sola vez} & \textbf{Muchas veces en línea} & \textbf{Muchas veces en círculo}\\
+\midrule
+Electrostáticos: $T=qV$. Tándem: el ion cambia de signo y aprovecha $V$ dos veces. &
+Linac: cavidades de RF en fase con el haz. &
+Ciclotrón: $B$ fijo, $f$ fija. Sincrotrón: $B$ y $f$ siguen al haz.\\
+\midrule
+Límite: \textbf{ruptura dieléctrica} & Límite: \textbf{longitud} & Límite: \textbf{relatividad} y \textbf{radiación sincrotrón}\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{clave}
+
+\section{Aceleradores electrostáticos}
+Campos que no varían en el tiempo; la energía es proporcional a la tensión: $T=qV$.
+\begin{itemize}
+\item \textbf{Cockcroft--Walton}: multiplicador de tensión con diodos y condensadores (cada semiciclo carga el siguiente condensador).
+Iones acelerados por una serie de electrodos a potenciales crecientes. En aire $\lesssim1$ MV (ruptura); en SF$_6$ a presión, varios MV.
+Altas corrientes ($\sim$mA): también como inyector.
+\item \textbf{Van de Graaff} (1929): una correa aislante transporta mecánicamente carga hasta una cúpula (la carga reside en la superficie
+exterior del conductor). Varios MV en gas a presión.
+\end{itemize}
+\begin{clave}[Acelerador tándem]
+Dos etapas con el terminal de alta tensión positiva $V$ en el centro:
+\begin{enumerate}
+\item Iones \textbf{negativos} (1 electrón extra) se aceleran desde tierra hasta el terminal: ganan $eV$.
+\item En el terminal un \textbf{stripper} (lámina o gas) les arranca electrones: pasan a carga $+q$.
+\item Se aceleran de nuevo del terminal a tierra: ganan $qV$.
+\end{enumerate}
+\[ T=(1+q)\,eV \]
+Ejemplo: VdG de 10 MV: C$^-$ llega a 10 MeV y, como C$^{2+}$, sale con 30 MeV. Ventaja: fuente de iones y blanco a tierra.
+\end{clave}
+\begin{dato}
+CMAM (Universidad Autónoma de Madrid): Tandetron de 5 MV con fuente Cockcroft--Walton. Terminales electrostáticos $\lesssim25$ MV.
+\end{dato}
+
+\section{Aceleradores de campo oscilante}
+Las máquinas de tensión fija están limitadas por la ruptura; las \textbf{resonantes} reutilizan muchas veces un campo alterno moderado
+(cavidades de radiofrecuencia, RF). Widerøe (1928) propuso aplicar una tensión alterna a una serie de huecos: concepto de linac.
+
+\subsection{Acelerador lineal (linac)}
+\begin{itemize}
+\item Tubos metálicos en vacío conectados alternativamente a los terminales de un oscilador de RF. Dentro de los tubos no hay campo (jaula de Faraday);
+la partícula se acelera en los huecos. El campo cambia de sentido mientras la partícula está dentro del tubo.
+\item La \textbf{longitud de los tubos crece} con la velocidad para mantener la fase ($L_n=v_n/2f$). Cuando $v\to c$, cavidades equiespaciadas.
+\item Variantes: DTL (tubos de deriva), RFQ (cuadrupolo de RF, primera etapa para iones lentos: acelera, agrupa y focaliza).
+\item No hay límite teórico de energía (se vuelve a tierra tras cada cavidad); el límite es la \textbf{longitud}. Sin pérdidas por radiación: ideal para electrones de alta energía.
+\end{itemize}
+\begin{dato}
+ILC (propuesto): linacs de $\sim$20 km para $e^\pm$ hasta 1 TeV. Linac4 (CERN). Linacs médicos de electrones (radioterapia, 6--25 MeV).
+\end{dato}
+
+\subsection{Ciclotrón}
+\begin{clave}[Frecuencia ciclotrón]
+Dos electrodos huecos en forma de \textbf{D} conectados a una tensión alterna, dentro de un campo magnético intenso uniforme. Sólo hay
+campo eléctrico en el hueco entre las D. La fuerza de Lorentz da órbitas circulares:
+\[ \frac{mv^2}{r}=qvB\ \Rightarrow\ r=\frac{mv}{qB}=\frac{p}{qB},\qquad f=\frac{qB}{2\pi m} \]
+\textbf{La frecuencia no depende del radio ni de la velocidad} (no relativista): la partícula describe una espiral y llega siempre en fase al hueco.
+Energía final (radio de extracción $R$):
+\[ T=\frac{q^2B^2R^2}{2m} \]
+Para protones con $B=1$ T, $f\approx15$ MHz (RF).
+\end{clave}
+\begin{dato}[Historia]
+Lawrence (1929--31): primer ciclotrón de 4'' (11 cm), protones de 80 keV con sólo 2 kV; 1932, 11'' y 1.1 MeV. Nobel 1939.
+TRIUMF (Vancouver): el mayor, 18 m, p (H$^-$) hasta 520 MeV. GANIL: 5 ciclotrones (C01, C02, CSS1, CSS2, SPIRAL1). Ciclotrones de 17--18 MeV para producir radioisótopos PET.
+\end{dato}
+
+\paragraph{Limitación relativista.} $\omega=qB/(\gamma m)$ disminuye con la energía: las partículas llegan tarde al hueco y se desfasan.
+Soluciones:
+\begin{itemize}
+\item \textbf{Ciclotrón isócrono}: $B(r)$ crece con el radio $\propto\gamma(r)$ para mantener $f$ constante; haz continuo (CW). La desfocalización
+vertical se compensa con campo variable azimutalmente (sectores, colinas/valles, espirales: focalización de Thomas). Ej.: PSI 590 MeV, IBA C230.
+\item \textbf{Sincrociclotrón}: $B$ constante y $f$ variable: haz \textbf{pulsado}. Ej.: IBA Proteus One (protonterapia, 2.5 m, Quirónsalud Madrid).
+\end{itemize}
+
+\subsection{Betatrón}
+Acelera \textbf{electrones} por \textbf{inducción}: un campo magnético variable (corriente alterna) produce un flujo variable que induce una fem
+en una cámara toroidal; los electrones mantienen un radio constante. Kerst (1940): 2.3 MeV; hasta 300 MeV. Uso: rayos X de alta energía (blanco metálico).
+
+\subsection{Sincrotrón}
+\begin{clave}[Sincrotrón]
+Para $v\approx c$:
+\[ f=\frac{qB}{2\pi\gamma m},\qquad p=qBR \]
+Radio \textbf{fijo}: imanes dipolares a lo largo del anillo y cavidades de RF pequeñas. Durante la aceleración \textbf{$B$ aumenta} con el momento
+(y $f$ se ajusta para p/iones). Es el tipo de casi todos los aceleradores circulares modernos (LHC: 6.8 TeV por haz). Los colisionadores son sincrotrones.
+\end{clave}
+\begin{itemize}
+\item \textbf{Radiación sincrotrón}: una carga relativista en órbita circular radia. Potencia $\propto\gamma^4/R^2$ (a igual energía, $\propto1/m^4$):
+limita la energía de los sincrotrones de electrones (por eso para $e^\pm$ de muy alta energía se prefieren linacs) y, a la vez, es una potente
+\textbf{fuente de rayos X} (ALBA, 3 GeV, Barcelona).
+\item Necesita un inyector (linac o booster). Ejemplo: cadena del CERN (Linac4 $\to$ PSB $\to$ PS $\to$ SPS $\to$ LHC).
+\end{itemize}
+
+\section{Resumen}
+\begin{clave}[Tipos de aceleradores]
+\begin{center}\footnotesize
+\begin{tabularx}{\linewidth}{>{\raggedright}p{2.6cm}>{\raggedright}p{2.1cm}>{\raggedright}p{2.0cm}>{\raggedright}X>{\raggedright\arraybackslash}p{2.4cm}}
+\toprule
+Tipo & Campo & Órbita/haz & Partículas, energía & Ejemplo\\
+\midrule
+Electrostático (C-W, VdG, tándem) & $E$ estático & Lineal, continuo & Iones; $\lesssim25$ MV & CMAM 5 MV\\
+Linac de RF & $E$ de RF & Lineal & $e^-$ (MeV--GeV), p, iones & Linacs médicos, Linac4\\
+Ciclotrón (clásico/isócrono) & $B$ cte, $f$ fija & Espiral, continuo & p, iones; $\lesssim600$ MeV & PET; PSI 590 MeV\\
+Sincrociclotrón & $B$ cte, $f$ variable & Espiral, pulsado & p $\sim$250 MeV & IBA Proteus One\\
+Betatrón & $E$ inducido ($B$ variable) & Radio fijo & $e^-\lesssim300$ MeV & Kerst (1940)\\
+Sincrotrón & $B$ (y $f$) variable & Radio fijo & $e^-$ GeV, p hasta TeV & ALBA, LHC\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{clave}
+
+\paragraph{Aplicaciones médicas.} Protonterapia con sincrociclotrones (IBA Proteus One) o sincrotrones (Hitachi, Clínica Universidad de Navarra, Madrid);
+ciclotrones para radioisótopos PET; linacs de electrones para radioterapia convencional.
