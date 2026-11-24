@@ -1,0 +1,514 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[margin=1.5cm,top=1.6cm,bottom=1.6cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*,topsep=1pt}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\setlength{\columnsep}{0.6cm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=NavyBlue}
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{NavyBlue}}{Tema \thesection.}{0.5em}{}[\vspace{-2pt}{\color{NavyBlue}\titlerule[0.8pt]}]
+\titlespacing*{\section}{0pt}{0pt}{6pt}
+\titleformat{\subsection}{\normalsize\bfseries\color{BrickRed}}{}{0em}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+\pagestyle{plain}
+\setlength{\parindent}{0pt}\setlength{\parskip}{2pt}
+
+\newtcolorbox{clave}[1][]{enhanced,colback=red!4,colframe=BrickRed,boxrule=0.6pt,
+  left=3pt,right=3pt,top=2pt,bottom=2pt,fonttitle=\bfseries\small,title={$\bigstar$ #1}}
+\newcommand{\imp}[1]{\textbf{\color{BrickRed}#1}}
+\newcommand{\dEdx}{\ensuremath{\mathrm{d}E/\mathrm{d}x}}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries\color{NavyBlue} Física Nuclear Experimental --- Resumen}\\[2pt]
+{\small Máster Interuniversitario en Física Nuclear 2026-27 \textperiodcentered{} Una página por tema \textperiodcentered{} \imp{Rojo} = imprescindible}
+\end{center}
+
+%============================================================ 1
+\section{Interacción de la radiación con la materia}
+\begin{clave}[Idea central]
+\textbf{Cargadas}: interacción \imp{continua} (miles de colisiones coulombianas). \textbf{$e^\pm$}: además \imp{bremsstrahlung}, domina por encima de $E_c$.
+\textbf{$\gamma$}: \imp{procesos discretos} (fotoeléctrico, Compton, pares) $\Rightarrow$ atenuación exponencial. \textbf{Neutrones}: \imp{reacciones nucleares}.
+El detector siempre mide cargas liberadas por partículas cargadas (primarias o secundarias).
+\end{clave}
+\begin{multicols}{2}
+\subsection{Partículas cargadas pesadas}
+Frenan los \textbf{electrones} ($Z$ por núcleo, energía cedida $\propto1/m$); desvían los \textbf{núcleos}. Como $M\gg m_e$: trayectoria recta y \textbf{alcance bien definido}.
+\[ -\frac{\mathrm{d}E}{\mathrm{d}x}=Kz^2\frac{Z}{A}\frac{1}{\beta^2}\left[\tfrac12\ln\tfrac{2m_ec^2\beta^2\gamma^2T_{max}}{I^2}-\beta^2-\tfrac{\delta}{2}\right] \]
+$K=0.307$ MeV cm$^2$/mol, $I\approx10Z$ eV.
+\begin{itemize}
+\item $\dEdx\propto z^2/\beta^2$: no depende de la masa. Lenta $\Rightarrow$ ioniza más $\Rightarrow$ \imp{pico de Bragg} al final.
+\item Mínimo en $\beta\gamma\approx3$: \textbf{MIP} ($\approx1.7$ MeV cm$^2$/g; en Si 0.39 keV/$\mu$m, 108 pares/$\mu$m).
+\item No relativista: $\Delta E\cdot E\propto Mz^2$ $\Rightarrow$ identificación $\Delta E$--$E$.
+\item Alcance $R=\int_0^{E_0}(\dEdx)^{-1}\mathrm{d}E$; a igual $v$, $R\propto M/z^2$. Straggling $\sim1\%$.
+\item Iones lentos: carga efectiva $z_{ef}$; a keV/u frenado nuclear (SRIM).
+\item Rayos $\delta$: $T_{max}\approx2m_ec^2\beta^2\gamma^2$.
+\end{itemize}
+\subsection{Electrones y positrones}
+Grandes desvíos (misma masa), \textbf{alcance difuso} (se usa $R_{ex}$; $\rho R\approx$ cte), Møller/Bhabha con $T_{max}=T/2$.
+\[ \frac{(\dEdx)_{rad}}{(\dEdx)_{col}}\approx\frac{EZ}{700},\qquad E_c\approx\frac{800\text{ MeV}}{Z+1.2} \]
+Longitud de radiación: $E=E_0e^{-x/X_0}$.
+\imp{Para detectar $\beta$: $Z$ bajo} (plástico, Si): menos bremsstrahlung y retrodispersión. $e^+$: aniquilación $\to2\gamma$ de 511 keV a $180^\circ$.
+\columnbreak
+\subsection{Fotones}
+\[ I=I_0e^{-\mu x},\quad \mu=\mu_{fe}+\mu_C+\mu_{pp},\quad x_{1/2}=\frac{\ln2}{\mu} \]
+\begin{tabular}{@{}lll@{}}
+\toprule
+Proceso & $\sigma$ & Domina\\\midrule
+Fotoeléctrico & $Z^{4-5}/E^{3.5}$ & baja $E$, $Z$ alto\\
+Compton & $Z$ & $\sim$1 MeV\\
+Pares ($>1.022$ MeV) & $Z^2$ & varios MeV\\\bottomrule
+\end{tabular}
+
+\imp{Espectroscopía $\gamma$: $Z$ alto} (fotoeléctrico domina).
+\[ E'_\gamma=\frac{E_\gamma}{1+\alpha(1-\cos\theta)},\ \alpha=\frac{E_\gamma}{m_ec^2} \]
+\textbf{Borde Compton} $T_{max}=E_\gamma\frac{2\alpha}{1+2\alpha}$; retrodispersión $E'(\pi)\to256$ keV.
+\textbf{Espectro}: fotopico, continuo y borde Compton, valle (Compton múltiple), retrodispersión, escapes simple ($E-511$) y doble ($E-1022$), 511 keV, rayos X del Pb.
+\subsection{Neutrones}
+Sin carga: retroceso nuclear. $E_{max}=\frac{4A}{(A+1)^2}E_n$: \textbf{H} recibe hasta $E_n$ (espectro de protones uniforme $0$--$E_n$); Pb apenas frena.
+\subsection{Órdenes de magnitud (Si)}
+$\alpha$ 5 MeV: 25 $\mu$m \textperiodcentered{} p 5 MeV: 0.2 mm \textperiodcentered{} $e^-$ 1 MeV: 1.8 mm \textperiodcentered{} $\gamma$ 1 MeV: $x_{1/2}=4.7$ cm.
+Blindajes: $\alpha$ papel; $\beta$ mm de Al/plástico; $\gamma$ Pb/hormigón; n hidrogenado + B/Li/Cd.
+\end{multicols}
+\newpage
+
+%============================================================ 2
+\section{Características generales de los detectores}
+\begin{clave}[Clasificación y cadena]
+\textbf{Activos/pasivos}; \textbf{directos} (ionización: gas, semiconductor) / \textbf{indirectos} (luz: centelleador + fotosensor);
+\textbf{integradores/contadores}; \textbf{contadores} (GM), \textbf{espectrómetros} (NaI, HPGe), \textbf{dosímetros}.
+Cadena: interacción $\to$ pulso eléctrico ($Q\propto E$) $\to$ amplificación y conformado $\to$ digitalización (ADC/TDC) $\to$ espectro.
+\end{clave}
+\begin{multicols}{2}
+\subsection{Portadores}
+$N=\Delta E/W$: gas $\approx30$ eV, semiconductor 3--4 eV (Si 3.6, Ge 2.96), centelleador 20--500 eV/fotoelectrón. Menor $W$ $\Rightarrow$ más portadores $\Rightarrow$ mejor resolución.
+\subsection{Modos de operación}
+\textbf{Pulso}: cada suceso; espectroscopía y timing; problema: tiempo muerto. \textbf{Corriente}: promedio $\propto$ tasa de dosis; tasas muy altas.
+\subsection{Tiempo muerto ($n$ real, $m$ medida)}
+\[ \text{No paralizable: } n=\frac{m}{1-m\tau}\qquad \text{Paralizable: } m=ne^{-n\tau} \]
+Paralizable: los sucesos en $\tau$ lo prolongan; $m_{max}=1/(e\tau)$ y $m\to0$ a tasas altas. No paralizable: $m\to1/\tau$.
+Lo fija el elemento más lento (GM: el detector, 10--100 $\mu$s; con MCA: el ADC).
+\subsection{Eficiencia}
+\[ \varepsilon_{abs}=\varepsilon_{geo}\cdot\varepsilon_{int},\quad \varepsilon_{geo}=\frac{\Omega}{4\pi},\quad \varepsilon_{int}=1-e^{-\mu x} \]
+Disco: $\Omega=2\pi\left(1-\frac{d}{\sqrt{d^2+a^2}}\right)\xrightarrow{d\gg a}\frac{\pi a^2}{d^2}$.
+\textbf{Eficiencia de fotopico} = área neta / $\gamma$ emitidos; se calibra con fuentes e \textbf{interpola} (no extrapolar).
+\subsection{Resolución}
+\[ \mathrm{FWHM}=2.355\,\sigma,\qquad R=\frac{\mathrm{FWHM}}{E_0} \]
+\[ R_{stat}=2.355\sqrt{\frac{FW}{E}} \]
+Factor de Fano $F\approx0.1$ (gas, semic.), $\approx1$ (centelleador). Contribuciones en cuadratura: estadística, ruido, colección.
+\columnbreak
+\subsection{Respuesta temporal}
+Subida 10--90\%, caída 90--10\%. Resolución temporal: anchura de la distribución de $\Delta t$ entre dos detectores (CRT), con TAC o marcas digitales.
+\begin{clave}[Detección $\gamma$: material y tamaño]
+$N=N_0e^{-\mu x}$, $\mu$ cae con $E$. Si 1 MeV: Compton, 300 $\mu$m $\to$ 0.3\% interacciona. Si 10 keV: 95\%.
+$\Rightarrow$ \textbf{Ge}, \textbf{NaI} (I, $Z$=53), \textbf{BGO} (Bi, $Z$=83).
+\begin{itemize}
+\item \textbf{Pequeño}: fotopico + Compton + doble escape.
+\item \textbf{Intermedio}: Compton múltiple (entre borde y pico), escape simple y doble.
+\item \textbf{Grande}: sólo pico de energía total (TAS).
+\item \textbf{Entorno}: rayos X del blindaje, 511 keV, \textbf{pico de retrodispersión} (200--250 keV).
+\end{itemize}
+\end{clave}
+\subsection{Conformado y digitalización}
+El conformador ensancha el pulso (menos ruido) con máximo redondeado en $T_P$ (fácil medir amplitud); si la forma no cambia, amplitud $\propto E$.
+Amplitud $\to$ ADC; tiempo $\to$ TDC.
+\end{multicols}
+\newpage
+
+%============================================================ 3
+\section{Detectores de gas}
+\begin{clave}[Principio]
+Gas entre dos electrodos con HV: la radiación crea pares $e^-$--ion ($W\approx30$ eV; Ar 26 eV); electrones al ánodo (hilo central), iones al cátodo (pared).
+\textbf{El tipo de detector lo determina la tensión aplicada.}
+\end{clave}
+\begin{multicols}{2}
+\subsection{Regiones de la curva iones recogidos vs $V$}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Recombinación}: campo insuficiente.
+\item \imp{Cámara de ionización}: se recogen todos los primarios; meseta; señal $\propto E$, independiente de $V$.
+\item \imp{Contador proporcional}: avalancha de Townsend cerca del hilo; $Q=M\cdot N_0$, $M$ exponencial en $V$; sigue $\propto E$.
+\item \textbf{Proporcionalidad limitada}: carga espacial de iones.
+\item \imp{Geiger--Müller}: descarga en todo el hilo; señal igual para todo: sólo cuenta.
+\item Descarga continua.
+\end{enumerate}
+Curvas de $\alpha$ y $\beta$ paralelas hasta (d) y coincidentes en GM.
+\subsection{Tamaño de la señal}
+$\alpha$ 5.5 MeV en Ar: $2.1\cdot10^5$ pares, 34 fC, 3.4 mV en 10 pF. $\beta$ rápido: $\sim400$ pares, 0.06 fC $\Rightarrow$ hace falta \textbf{modo corriente o multiplicación}.
+Proporcional ($M=10^3$): 60 fC. GM: $10^9$--$10^{10}$ $e^-$, pulsos de V.
+\subsection{Cámara de ionización}
+Geometrías variadas; $\varepsilon\sim100\%$ cargadas, $\sim1\%$ fotones; señales pequeñas y lentas. Dosimetría (modo corriente), detectores de humo ($^{241}$Am), etapa $\Delta E$ de telescopios para iones.
+\columnbreak
+\subsection{Contador proporcional}
+Campo coaxial $E(r)=\frac{V}{r\ln(b/a)}$: intenso sólo junto al hilo $\Rightarrow$ ganancia independiente del punto de interacción.
+$M\sim10^2$--$10^4$ (HV muy estable). Gases: P10 (Ar+CH$_4$), isobutano, $^3$He/BF$_3$ (neutrones). Pulso $\sim\mu$s. Espectroscopía X blandos, $\beta$, neutrones.
+\subsection{Sensibles a posición}
+\textbf{MWPC} (Charpak 1968, Nobel 1992): plano de hilos anódicos entre cátodos, cada hilo un proporcional $\Rightarrow(x,y)$.
+Cámaras de deriva, \textbf{TPC} (posición por tiempo de deriva). \textbf{MPGD}: GEM (Kapton perforado, cascadas de 3) y Micromegas; $\sim$50--100 $\mu$m, $>10^6$ Hz/mm$^2$.
+\subsection{Geiger--Müller}
+He/Ne/Ar + gas de extinción, 400--1200 V. Sólo contaje $\beta$/$\gamma$; ventana de vidrio o mica (para $\beta$ blandos). Tiempo muerto grande (10--100 $\mu$s, nube de iones lenta).
+\subsection{Comparativa}
+\begin{tabular}{@{}llll@{}}
+\toprule
+& Ionización & Proporcional & GM\\\midrule
+$M$ & 1 & $10^2$--$10^4$ & descarga\\
+$\propto E$ & sí & sí & no\\
+Señal & muy pequeña & media & grande\\\bottomrule
+\end{tabular}
+\end{multicols}
+\newpage
+
+%============================================================ 4
+\section{Detectores de semiconductor}
+\begin{clave}[Idea central]
+``Cámara de ionización sólida'': pares $e$--$h$ en una \textbf{unión p--n polarizada en inversa}. \textbf{3.6 eV/par (Si), 2.96 eV (Ge)} frente a 30 eV en gas
+$\Rightarrow$ \imp{excelente resolución}; sólido denso $\Rightarrow$ compacto; alta movilidad $\Rightarrow$ rápido.
+\end{clave}
+\begin{multicols}{2}
+\subsection{Por qué deplexionar}
+Si intrínseco: $n_i\approx10^{10}$ cm$^{-3}$ $\Rightarrow$ $\sim10^8$ portadores libres frente a $3\cdot10^4$ pares de una MIP. Hay que vaciar el volumen con una unión p--n en inversa (corriente de fuga pequeña, crece con $T$ e irradiación).
+Dopado n (P, donores, $e^-$) y p (B, aceptores, huecos).
+\begin{clave}[Zona de deplexión]
+\[ -\frac{\mathrm{d}^2\phi}{\mathrm{d}x^2}=\frac{q_0}{\varepsilon\varepsilon_0}N_{eff} \]
+Carga constante, campo lineal (máximo en la unión), potencial parabólico.
+\[ w\propto\sqrt{V_B},\qquad V_{dep}=\frac{q_0}{\varepsilon\varepsilon_0}|N_{eff}|\,d^2 \]
+(exacto con factor $\tfrac12$). \imp{Colección completa sólo si $V_B>V_{dep}$}: en la zona sin campo los pares no dan señal.
+\end{clave}
+\subsection{Silicio: cargadas y rayos X}
+Gap 1.12 eV (temperatura ambiente), $\rho=2.33$, MIP 108 pares/$\mu$m, colección $<10$ ns. $Z=14$: malo para $\gamma$.
+\textbf{Segmentados}: tiras p$^+$ (DSSD con tiras cruzadas $\Rightarrow(x,y)$), espesor típico \textbf{300 $\mu$m} (150--500).
+\subsection{S/N}
+Ruido (ENC): capacidad, corriente de fuga, resistencia de polarización. $S/N>10$--15; el daño por radiación lo degrada.
+\columnbreak
+\begin{clave}[Telescopio $\Delta E$--$E$]
+Detector \textbf{fino (5--50 $\mu$m)} mide $\Delta E$; \textbf{grueso (200--1500 $\mu$m)} para la partícula. \textbf{$E_{tot}=\Delta E+E$}.
+Por Bethe--Bloch $\Delta E\cdot E\propto Mz^2$: cada especie es una \textbf{hipérbola} $\Rightarrow$ \imp{identificación de partículas} y selección de canal de reacción (p.ej.\ ($^3$He,$^4$He)).
+\end{clave}
+\subsection{HPGe: $\gamma$ y rayos X}
+\begin{itemize}
+\item $Z=32$, cristales coaxiales grandes.
+\item Gap 0.67 eV $\Rightarrow$ \imp{enfriar a 77 K} (N$_2$ líquido o eléctrico).
+\item Alta pureza ($10^{10}$ cm$^{-3}$) $\Rightarrow$ cm deplexionados con $>1000$ V (Ge(Li) antiguos debían estar siempre fríos).
+\item \imp{Resolución $\approx0.15\%$} (1.8 keV a 1332 keV) vs 7--8\% NaI; mejor pico/Compton (30--60).
+\item \imp{Menor eficiencia intrínseca} que centelleadores de $Z$ alto.
+\item Tipo n con contacto p$^+$ fino delante: ventana fina para baja energía; más resistente a neutrones.
+\end{itemize}
+\begin{clave}[Segmentados y arrays]
+Para \textbf{mejorar pico/Compton} y \textbf{corregir el Doppler} hay que seguir el $\gamma$: \imp{tracking} con Ge \textbf{segmentados}.
+Para \textbf{eficiencia}: \textbf{arrays} con criostato común (clovers) y escudos anti-Compton de BGO.
+Euroball, Exogam, Miniball, \textbf{AGATA}, GRETINA (36 segmentos).
+\end{clave}
+\subsection{Otros}
+CdTe, CZT: $Z$ alto, sin refrigerar, peor transporte de huecos. Diamante, SiC: resistentes a radiación.
+\end{multicols}
+\newpage
+
+%============================================================ 5
+\section{Detectores de centelleo}
+\begin{clave}[Principio]
+Detección \textbf{indirecta}: radiación $\to$ excitación $\to$ \textbf{luz} $\to$ (guía de luz) $\to$ \textbf{fotosensor} (PMT, APD, SiPM) $\to$ pulso. Luz $\propto$ energía $\Rightarrow$ espectrómetro.
+Deseable: mucha luz, rápido, transparente a su emisión, $\lambda$ adaptada al fotosensor, $\rho$ y $Z$ altos (para $\gamma$), barato y no higroscópico.
+\end{clave}
+\begin{multicols}{2}
+\subsection{Inorgánicos vs orgánicos}
+\textbf{Inorgánicos}: bandas del cristal + \textbf{activador} (Tl, Ce) que crea niveles en el gap $\Rightarrow$ fotón visible no reabsorbido. $Z$, $\rho$ altos, mucha luz, \textbf{lentos} $\Rightarrow$ \imp{$\gamma$}.\\
+\textbf{Orgánicos} (antraceno, líquidos NE213/BC501, plásticos): transiciones \textbf{moleculares} $S_1\to S_0$; emisión desplazada a mayor $\lambda$ $\Rightarrow$ transparentes. $Z$ bajo (domina Compton), \imp{muy rápidos} ($\sim$2 ns), ricos en H $\Rightarrow$ cargadas, $\beta$, \imp{neutrones rápidos}, ToF.
+Pulso: $I(t)=I_0(e^{-t/\tau_f}-e^{-t/\tau_r})$.
+\subsection{Ley de Birks}
+\[ \frac{\mathrm{d}L}{\mathrm{d}r}=\frac{S\,\mathrm{d}E/\mathrm{d}r}{1+kB\,\mathrm{d}E/\mathrm{d}r} \]
+$e^-$: luz $\propto E$. p, $\alpha$: saturación ($S/kB$). Luz y forma del pulso dependen de la partícula $\Rightarrow$ \imp{PSD} (n/$\gamma$). Unidades keVee.
+\subsection{Qué retener de la tabla}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+& $\rho$ & $\tau$ (ns) & fot/MeV\\\midrule
+NaI(Tl) & 3.67 & 230 & 38\,000\\
+CsI(Tl) & 4.51 & 680 & 40\,000\\
+BGO & 7.13 & 300 & 8\,200\\
+BaF$_2$ & 4.89 & 0.6 / 630 & 1\,500 / 9\,500\\
+LaBr$_3$(Ce) & 3.79 & 25 & 63\,000\\
+LSO/LYSO & 7.4 & 40--47 & 25--41\,000\\
+Plástico & 1.03 & 2.4 & 10\,000\\\bottomrule
+\end{tabular}
+
+NaI: estándar, higroscópico. BGO: máxima eficiencia, poca luz (PET, anti-Compton). BaF$_2$: componente ultrarrápida. LaBr$_3$: mejor resolución ($\approx3\%$) y timing. LSO/LYSO: PET-TOF.
+\columnbreak
+\subsection{Fotosensores}
+\textbf{PMT}: fotocátodo (QE $\approx25\%$) + 10--12 dínodos ($\delta\approx5$) $\Rightarrow G=\delta^n\sim10^7$. Gran área, bajo ruido.\\
+\textbf{APD}: avalancha en semiconductor, ganancia dependiente de $T$.\\
+\textbf{SiPM}: matriz de micro-APD en \textbf{modo Geiger}; $G\sim10^6$, 20--60 V, compacto, barato; ruido oscuro y saturación.\\
+\textbf{MCP}: timing (20--100 ps) y posición excelentes, caros.
+\begin{clave}[Del resumen]
+\imp{PMTs sensibles a campos magnéticos y SiPMs no}. \imp{PMTs requieren $\sim$1 kV}.
+\end{clave}
+\subsection{Resolución}
+\[ N_{pe}=E\cdot LY\cdot\eta_{col}\cdot QE,\quad R\approx2.355\sqrt{\frac{1+\nu}{N_{pe}}} \]
+NaI 662 keV: $25\,000$ fotones $\to N_{pe}\approx3100\to R\approx4.5\%$ (medido 7\%). HPGe: $2\cdot10^5$ pares $\to0.2\%$.
+\begin{clave}[NaI frente a HPGe]
+\imp{HPGe: mejor resolución en energía} \textperiodcentered{} \imp{NaI: mejor eficiencia intrínseca} \textperiodcentered{} \imp{Centelleadores: más rápidos} \textperiodcentered{} NaI a temperatura ambiente.
+\end{clave}
+Colección de luz: reflexión total (Snell), reflector, grasa óptica, guías y fibras WLS.
+\end{multicols}
+\newpage
+
+%============================================================ 6
+\section{Detección de neutrones}
+\begin{clave}[Idea central]
+Sin carga $\Rightarrow$ detección \imp{siempre indirecta}: reacciones nucleares que producen partículas cargadas. Lentos: \textbf{captura} ($\sigma\propto1/v$). Rápidos: \textbf{retroceso de protones} o \textbf{moderar} primero.
+\end{clave}
+\begin{multicols}{2}
+\subsection{Reacciones de conversión (térmicas)}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Reacción & $Q$ (MeV) & $\sigma$ (b)\\\midrule
+$^3$He(n,p)$^3$H & 0.764 & 5330\\
+$^{10}$B(n,$\alpha$)$^7$Li & 2.31 / 2.79 & 3840\\
+$^6$Li(n,$\alpha$)$^3$H & 4.78 & 940\\
+$^{155,157}$Gd(n,$\gamma$) & -- & $\sim10^5$\\
+$^{235}$U(n,f) & $\sim$160--200 & 585\\\bottomrule
+\end{tabular}
+
+$Q$ alto $\Rightarrow$ pulsos sobre el fondo $\gamma$.
+\subsection{Tipos}
+\textbf{Gas}: proporcionales de $^3$He y BF$_3$ (excelente rechazo $\gamma$; efecto pared en el espectro). Crisis del $^3$He $\to$ $^{10}$B, $^6$Li, CLYC.
+\textbf{Centelleadores}: vidrio de Li, LiI(Eu), ZnS:LiF (lentos); orgánicos líquidos/plásticos (rápidos) con \textbf{PSD}.
+\textbf{Semiconductor + capa convertidora} ($^6$LiF, $^{10}$B): capa fina $\Rightarrow$ baja eficiencia.
+\textbf{Cámara de fisión}: pulsos enormes, campos $\gamma$ intensos.
+\begin{clave}[Moderación]
+\[ \alpha E_0\le E\le E_0,\qquad \alpha=\left(\frac{A-1}{A+1}\right)^2 \]
+\imp{Buen moderador: ligero y rico en H} ($\alpha=0$).
+\[ \xi=\langle\ln\tfrac{E_0}{E}\rangle=1+\frac{\alpha\ln\alpha}{1-\alpha},\qquad N=\frac{\ln(E_0/E_f)}{\xi} \]
+1 MeV $\to$ 25 meV: H 18, D 24, C 111, Fe 500, Pb 1823 colisiones.
+\end{clave}
+\columnbreak
+\begin{clave}[Tiempo de vuelo]
+\[ E=\frac12m\frac{L^2}{t^2},\qquad \frac{\Delta E}{E}=2\sqrt{\left(\frac{\Delta L}{L}\right)^2+\left(\frac{\Delta t}{t}\right)^2} \]
+\textbf{Start}: haz pulsado o radiación acompañante ($\beta$, $\gamma$; no el neutrón). \textbf{Stop}: detector de n.
+\imp{Base larga, detectores cortos, buena resolución temporal}.
+\end{clave}
+Ej.: $L=1$ m, 1 MeV: $t\approx72$ ns ($t[\mathrm{ns}]\approx72.3L/\sqrt{E}$); $\Delta t=1$ ns, $\Delta L=1$ cm $\Rightarrow3.4\%$. TONERRE (plástico BC400, $\Delta\Omega/4\pi=50\%$, $\varepsilon_{int}=25\%$, $\Delta E/E=10\%$), MoNA, n\_TOF (185 m).
+\begin{clave}[Detectores moderados]
+\textbf{Esferas de Bonner}: polietileno de varios diámetros + contador térmico ($^3$He). Cada esfera tiene una respuesta $R_d(E)$ (Monte Carlo); pequeñas $\to$ lentos, grandes $\to$ rápidos.
+$N_d=\int R_d(E)\varphi(E)\,\mathrm{d}E$ $\Rightarrow$ espectro por \imp{deconvolución} (MAXED). meV--GeV, baja resolución (NEMUS, PTB).\\
+\textbf{Matriz moderada $4\pi$}: \textbf{NERO}: polietileno $60\times60\times80$ cm$^3$ + 16 $^3$He + 44 BF$_3$, $\varepsilon\approx40\%$; sin energía.
+\textbf{Long counter}: eficiencia plana.
+\end{clave}
+Respuesta por MC: MCNP, Geant4, NRESP, SCINFUL. Discriminación por altura de pulso y PSD.
+\end{multicols}
+\newpage
+
+%============================================================ 7
+\setcounter{section}{6}
+\section{Electrónica nuclear}
+\begin{clave}[Cadena]
+Detector (+HV) $\to$ \textbf{preamplificador} $\to$ \textbf{amplificador/conformador} $\to$ \textbf{ADC/TDC} o digitalizador. La señal es una corriente; su integral (carga) $\propto$ energía.
+Objetivos: detectar pulsos, medir \textbf{energía}, \textbf{forma} y \textbf{tiempo} (trigger, coincidencias).
+\end{clave}
+\begin{multicols}{2}
+\subsection{Preamplificador sensible a carga}
+\[ V_o=-\frac{Q}{C_f},\qquad V(t)=V_0e^{-t/R_fC_f} \]
+Amplitud independiente de la capacidad del detector (estándar en semiconductores). Lineal y \textbf{lo más cerca posible del detector}. Cola larga (50--500 $\mu$s).
+\subsection{Conformado}
+\textbf{Por qué}: la cola provoca \textbf{apilamiento} a tasas $>100$ s$^{-1}$; además hay que filtrar ruido.
+\begin{itemize}
+\item \textbf{CR} (diferenciador, paso alto): quita ruido de baja frecuencia.
+\item \textbf{RC} (integrador, paso bajo): quita ruido de alta frecuencia.
+\item CR--RC$^n$: semigaussiano; trapezoidal (digital).
+\end{itemize}
+Problemas: \textbf{déficit balístico} ($T_P<$ tiempo de colección; HPGe), \textbf{undershoot} (corrección \textbf{polo-cero}), apilamiento (constantes cortas $\Rightarrow$ peor S/N): compromiso tasa--resolución.
+\subsection{Ruido}
+Térmico, shot (fuga), $1/f$; ENC; depende de $C_{det}$, $I_{fuga}$ y $\tau$ (hay un óptimo).
+\subsection{Análisis de amplitud}
+\textbf{SCA}: ventana LLD--ULD $\to$ pulso lógico. \textbf{MCA}: ADC $\to$ histograma = espectro. ADC \textbf{Wilkinson} (rampa, lineal, lento), \textbf{aproximaciones sucesivas} (rápido), flash. Estándares: NIM, VME.
+\columnbreak
+\begin{clave}[Timing]
+\begin{itemize}
+\item \textbf{Umbral fijo}: \imp{time walk} (pulsos grandes cruzan antes).
+\item \imp{CFD}: señal retrasada + copia invertida y atenuada; cruce por cero a fracción fija $\Rightarrow$ independiente de la amplitud.
+\item \textbf{Jitter}: $\displaystyle\Delta t\approx\frac{\Delta U}{U}t_r$ $\Rightarrow$ flancos rápidos y alta S/N.
+\item $\Delta t$: TAC + ADC o TDC ($\sim$10 ps LSB).
+\end{itemize}
+\end{clave}
+\begin{clave}[Digitalización completa (FD-DAQ)]
+Se digitaliza el pulso en bruto (GS/s) y se procesa por software.
+\textbf{Ventajas}: una tarjeta para energía y tiempo, conserva la forma (PSD), filtros arbitrarios, estabilidad.
+\textbf{Inconvenientes}: otra cultura técnica, evolución rápida, volumen de datos.
+\textbf{Energía}: integral menos línea base o trapezoidal (igual que analógico: LaBr$_3$ 4.6\% a 662 keV).
+\textbf{Tiempo}: CFD digital, umbrales relativos, machine learning ($\sim$15\% mejor CRT).
+\end{clave}
+Ejemplo: DRS4 (5 GS/s, 12 bit); FATIMA con LaBr$_3$.
+\end{multicols}
+\newpage
+
+%============================================================ 9
+\setcounter{section}{8}
+\section{Simulaciones Monte Carlo}
+\begin{clave}[Definición]
+Simulación estadística muestreando las variables aleatorias del proceso a partir de números uniformes en $(0,1)$.
+Componentes: \textbf{PDF} (física), \textbf{generador} de números aleatorios, \textbf{muestreo}, \textbf{conteo}, \textbf{estimación del error}; opcional reducción de varianza y paralelización.
+\end{clave}
+\begin{multicols}{2}
+\subsection{Números aleatorios}
+\textbf{Pseudoaleatorios}: algoritmo + \textbf{semilla} (misma semilla, misma secuencia). Requisitos: uniformidad, periodo largo, reproducibilidad.
+\begin{clave}[Muestreo]
+\textbf{Transformada inversa}: $F(x)=\xi\Rightarrow x=F^{-1}(\xi)$.\\
+Recorrido libre: $p(s)=\mu e^{-\mu s}\Rightarrow$ \imp{$s=-\ln\xi/\mu$}.\\
+\textbf{Rechazo}: aceptar $x$ si $y<p(x)$ (como estimar $\pi$).\\
+\textbf{Discreto}: elegir proceso con $P_i=\sigma_i/\sigma_{tot}$ dividiendo $(0,1)$ en tramos.
+\end{clave}
+\begin{clave}[Incertidumbre]
+\imp{$\sigma\propto1/\sqrt N$}: mitad de error $\Rightarrow4N$; $\div10\Rightarrow100N$.
+Eficiencia: $\displaystyle\sigma_\varepsilon=\sqrt{\frac{\varepsilon(1-\varepsilon)}{N}}$, $\displaystyle\frac{\sigma_\varepsilon}{\varepsilon}\approx\frac{1}{\sqrt n}$.
+\end{clave}
+Ej.: 662 keV en NaI ($\mu=0.282$ cm$^{-1}$), $\xi=0.5\to s=2.5$ cm. $N=10^6$, $\varepsilon=0.2\to\pm0.0004$.
+\subsection{Pros y contras}
+\textbf{Pros}: problemas complejos sin simplificar; precisión mejora simulando más; no hace falta resolver ecuaciones.
+\textbf{Contras}: coste computacional; resultados con error estadístico.
+\columnbreak
+\begin{clave}[Algoritmo de transporte]
+\begin{enumerate}
+\item Inicializar posición, dirección, energía.
+\item Calcular $\sigma_{tot}$ en el material $\to\lambda=1/(N\sigma)$.
+\item Muestrear $s=-\lambda\ln\xi$ y mover.
+\item Elegir proceso ($P_i=\sigma_i/\sigma$).
+\item Nueva energía/dirección; secundarios a la pila.
+\item Registrar observables (energía depositada\dots).
+\item Repetir hasta umbral de energía o salida.
+\end{enumerate}
+\end{clave}
+Cargadas: historias condensadas (pasos continuos + sucesos duros).
+\subsection{Reducción de varianza}
+Coste $\propto\sigma^2t$: minimizar el producto. MC \textbf{sesgado} con \textbf{pesos}: misma media, menos varianza, pero sin fluctuaciones suceso a suceso.
+\textbf{Forzado de interacciones}, \textbf{splitting} (entra en región de interés: $\downarrow\sigma$, $\uparrow t$), \textbf{ruleta rusa} (sale: $\downarrow t$, $\uparrow\sigma$), importancia por regiones, partícula principal.
+\subsection{Códigos}
+\textbf{Geant4} (C++, todo, 250 eV--TeV), \textbf{MCNP} (referencia en neutrones), \textbf{FLUKA} (aceleradores, RP), \textbf{EGSnrc} y \textbf{PENELOPE} (EM, física médica).
+\subsection{Aplicaciones}
+Respuesta y eficiencia de detectores, diseño y análisis de experimentos, dosis en radioterapia/protonterapia, imagen médica, blindajes y activación.
+\end{multicols}
+\newpage
+
+%============================================================ 10
+\section{Aceleradores de partículas}
+\begin{clave}[Cómo dar muchos MeV sin muchos MV]
+\textbf{Una vez} (electrostático, $T=qV$) --- límite: \imp{ruptura dieléctrica}. \textbf{Muchas veces en línea} (linac de RF) --- límite: \imp{longitud}.
+\textbf{Muchas veces en círculo} (ciclotrón, sincrotrón) --- límite: \imp{relatividad y radiación sincrotrón}.
+\end{clave}
+\begin{multicols}{2}
+\subsection{Electrostáticos}
+\textbf{Cockcroft--Walton}: multiplicador de diodos y condensadores; $\lesssim1$ MV en aire, alta corriente (inyector).
+\textbf{Van de Graaff}: correa que lleva carga a una cúpula; varios MV en gas a presión.
+\begin{clave}[Tándem]
+Iones \textbf{negativos} aceleran de tierra al terminal $+V$; \textbf{stripper} los hace $+q$; aceleran de nuevo a tierra:
+\[ T=(1+q)\,eV \]
+VdG 10 MV: C$^-$ $\to$ 10 MeV, como C$^{2+}$ $\to$ 30 MeV. Ej.: CMAM (UAM), Tandetron 5 MV.
+\end{clave}
+\subsection{Linac}
+Tubos de deriva conectados alternativamente a RF; aceleración en los huecos (sin campo dentro de los tubos). \textbf{Tubos más largos} conforme crece $v$ (en fase); equiespaciados si $v\approx c$.
+RFQ como primera etapa de iones. Sin límite teórico ni radiación $\Rightarrow$ $e^-$ de alta energía (ILC, linacs médicos).
+\subsection{Betatrón}
+$e^-$ acelerados por \textbf{inducción} (flujo magnético variable) a radio fijo; Kerst 1940; rayos X.
+\columnbreak
+\begin{clave}[Ciclotrón]
+Dos D en campo $B$ uniforme, tensión alterna en el hueco.
+\[ r=\frac{mv}{qB},\qquad f=\frac{qB}{2\pi m},\qquad T=\frac{q^2B^2R^2}{2m} \]
+\imp{$f$ independiente del radio} (no relativista): órbita en espiral siempre en fase. p, $B=1$ T $\Rightarrow f\approx15$ MHz.
+\end{clave}
+\textbf{Problema relativista}: $\omega=qB/(\gamma m)$ disminuye. Soluciones:
+\begin{itemize}
+\item \textbf{Isócrono}: $B(r)\propto\gamma(r)$, $f$ fija, haz continuo; sectores para focalización vertical (PSI 590 MeV, TRIUMF 520 MeV).
+\item \textbf{Sincrociclotrón}: $B$ fijo, $f$ variable, haz pulsado (IBA Proteus One, protonterapia).
+\end{itemize}
+\begin{clave}[Sincrotrón]
+\[ p=qBR,\qquad f=\frac{qB}{2\pi\gamma m} \]
+\textbf{Radio fijo}: $B$ (y $f$) crecen con la energía. Casi todos los circulares modernos y colisionadores (LHC 6.8 TeV). Necesita inyector.
+\textbf{Radiación sincrotrón} $\propto\gamma^4/R^2$ ($\propto1/m^4$): limita $e^-$ y es fuente de rayos X (ALBA 3 GeV).
+\end{clave}
+\subsection{Usos}
+Física nuclear (tándem, ciclotrones GANIL), radioisótopos PET (ciclotrones 17 MeV), radioterapia (linacs $e^-$), protonterapia (sincrociclotrón/sincrotrón).
+\end{multicols}
+\newpage
+
+%============================================================ 11
+\section{Medida de vidas medias}
+\begin{clave}[Ley de desintegración]
+\[ N(t)=N_0e^{-\lambda t},\quad \tau=\frac1\lambda,\quad T_{1/2}=\tau\ln2,\quad A=\lambda N,\quad \Gamma=\frac{\hbar}{\tau} \]
+Proceso estocástico; $T_{1/2}$ es propiedad del \textbf{nivel}. Todas las ramas decaen con la misma pendiente; vida parcial $T_{1/2}^{(i)}=T_{1/2}/BR_i$.
+Vidas muy largas: actividad y equilibrio secular ($\lambda_1N_1=\lambda_2N_2$).
+\end{clave}
+\begin{multicols}{2}
+\subsection{Por qué: elementos de matriz}
+La vida de un estado da la \textbf{probabilidad reducida} $B(\sigma L)$ (elemento de matriz no diagonal), ligada a la \textbf{estructura}: partícula independiente vs \textbf{colectivo}, \textbf{deformación}.
+\[ \lambda(\sigma L)\propto E_\gamma^{2L+1}B(\sigma L);\quad \lambda(E2)\approx1.22\cdot10^9E_\gamma^5B(E2) \]
+($E$ en MeV, $B$ en $e^2$fm$^4$). Pasos: $T_{1/2}\to$ vida parcial (BR, conversión $\alpha$) $\to B(\sigma L)\to$ \textbf{unidades Weisskopf}.
+\textbf{Weisskopf}: estimación de una partícula; $B_W(E2)=0.0594A^{4/3}$. $B\gg1$ W.u.: \textbf{colectiva}; $\ll1$: inhibida (isómeros).
+Deformación: $B(E2;0^+\to2^+)=\frac{5}{16\pi}e^2Q_0^2$, $Q_0\propto ZR^2\beta$.
+\textbf{COULEX}: excitación puramente EM; da elementos de matriz y signo de $Q_s$ (prolato/oblato).
+\begin{clave}[Técnica según escala]
+\begin{tabular}{@{}ll@{}}
+Irradiación y contaje & $>$ min\\
+Etiquetado implantación--desint. & $>\mu$s\\
+Haz pulsado & ns--ms\\
+Coincidencias $\gamma\gamma$ (HPGe) & $>$ns\\
+\textbf{Fast timing} (LaBr$_3$) & $>10$ ps\\
+\textbf{RDDS} (plunger) & ps--ns\\
+\textbf{DSAM} & 100 fs--ps\\
+FDS & 10--100 fs\\
+\end{tabular}
+\end{clave}
+\columnbreak
+\begin{clave}[Métodos Doppler]
+Núcleos con $\beta\sim$ \% (fusión--evaporación, COULEX): con $\beta=1\%$, 1 $\mu$m = 3 ps $\Rightarrow$ \textbf{distancia = tiempo}.
+$E_\gamma=E_0(1+\beta\cos\theta)$. \imp{Sólo con HPGe}.
+\begin{itemize}
+\item \textbf{RDDS}: blanco + \emph{stopper} a distancia $d$ variable. Pico desplazado (en vuelo) y no desplazado (parado):
+$\displaystyle\frac{I_u}{I_u+I_s}=e^{-d/(v\tau)}$. Variante diferencial con degradador; coincidencias $\gamma\gamma$ (\emph{gate from above} elimina alimentación lateral).
+\item \textbf{DSAM}: soporte grueso de $Z$ alto; la \textbf{forma de línea} (frenado durante la emisión) da $\tau$.
+\item \textbf{FDS}: $\tau<100$ fs; $F(\tau)=\langle\beta\rangle/\beta_0$.
+\end{itemize}
+\end{clave}
+\begin{clave}[Fast timing ($\beta\gamma\gamma$/$\gamma\gamma\gamma$)]
+\textbf{HPGe}: selecciona la cascada (resolución). \textbf{LaBr$_3$}: timing rápido. \textbf{Plástico $\beta$}: start.
+\begin{itemize}
+\item $\tau>50$ ps: \textbf{pendiente} de la cola exponencial.
+\item $\tau\sim5$--70 ps: \textbf{desplazamiento del centroide} $\Delta C=\tau$.
+\end{itemize}
+Clave: \imp{calibración del walk} (fotopico y Compton). Método de Mach.
+\end{clave}
+\end{multicols}
+\newpage
+
+%============================================================ 12
+\section{Herramientas de análisis}
+\begin{clave}[Qué usar para qué]
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\textbf{SRIM} & Poder de frenado (electrónico + nuclear) y alcances de \textbf{iones} en cualquier material, eV--GeV. Bethe--Bloch con correcciones semiempíricas; frenado nuclear ZBL. Tablas, no trayectorias.\\
+\textbf{TRIM} & Monte Carlo de SRIM: trayectorias ion a ion, straggling, perfiles de implantación, defectos, cascadas, sputtering.\\
+\textbf{NIST} & ESTAR/PSTAR/ASTAR ($e^-$, p, $\alpha$) y XCOM (atenuación de fotones).\\
+\textbf{NNDC} & NuDat3 (carta de núclidos, niveles, $\gamma$), ENSDF: energías, intensidades, vidas medias.\\
+\textbf{ROOT / jsROOT} & Análisis de datos (histogramas, árboles); jsROOT visualiza \texttt{.root} en el navegador (prácticas de neutrones y vidas medias).\\
+\textbf{Gnuplot} & Representar espectros y ajustes sencillos (prácticas de Monte Carlo y procesado de pulsos).\\
+\end{tabularx}
+\end{clave}
+\begin{multicols}{2}
+\subsection{Usos típicos de SRIM/TRIM}
+Espesor de un detector $\Delta E$, ventana o degradador; energía tras atravesar el blanco; profundidad de implantación de un haz radiactivo; daño por radiación.
+\subsection{Usos típicos de NNDC}
+Identificar picos de un espectro, energías e intensidades absolutas de fuentes de calibración (calibración en energía y eficiencia), consultar vidas medias.
+\columnbreak
+\subsection{Ajuste de un fotopico}
+\[ f(E)=A\,e^{-\frac{(E-E_0)^2}{2\sigma^2}}+a+bE \]
+\begin{itemize}
+\item Centroide $E_0$ $\to$ calibración canal--energía (lineal).
+\item FWHM $=2.355\sigma$ $\to$ resolución.
+\item Área neta $=\sqrt{2\pi}A\sigma$ $\to$ eficiencia de fotopico.
+\end{itemize}
+\end{multicols}
+\end{document}
