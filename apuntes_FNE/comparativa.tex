@@ -1,0 +1,131 @@
+\documentclass[10pt,a4paper,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage[margin=1.2cm,top=1.0cm,bottom=1.0cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,array,colortbl}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+\usepackage{multicol}
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\si}{\textcolor{ForestGreen}{\ding{51}}}
+\newcommand{\best}{\cellcolor{ForestGreen!18}}
+\newcommand{\bad}{\cellcolor{red!12}}
+\newcommand{\grp}[1]{\rowcolor{NavyBlue!12}\multicolumn{9}{l}{\textbf{#1}}\\}
+\newtcolorbox{caja}[1]{enhanced,colback=NavyBlue!3,colframe=NavyBlue,boxrule=0.6pt,
+ left=3pt,right=3pt,top=2pt,bottom=2pt,fonttitle=\bfseries\small,title={#1}}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries\color{NavyBlue} Comparativa de detectores}\quad
+{\small Física Nuclear Experimental 2026-27 \textperiodcentered{} valores típicos (orden de magnitud) \textperiodcentered{}
+\colorbox{ForestGreen!18}{mejor} \colorbox{red!12}{peor}}
+\end{center}
+
+\renewcommand{\arraystretch}{1.1}
+{\footnotesize
+\begin{tabularx}{\linewidth}{P{2.6cm}P{2.3cm}P{2.6cm}P{2.3cm}P{1.9cm}P{1.6cm}P{2.6cm}LL}
+\toprule
+\textbf{Detector} & \textbf{Energía por portador / gap} & \textbf{Resolución en energía} & \textbf{Resolución temporal} & \textbf{$\rho$ (g/cm$^3$), $Z$} & \textbf{Temp.} & \textbf{Ideal para} & \textbf{Ventajas} & \textbf{Inconvenientes}\\
+\midrule
+\grp{GAS (directo, $W\approx26$--35 eV)}
+Cámara de ionización & $W\approx30$ eV & Buena para cargadas ($\sim$1\% $\alpha$) & \bad lenta ($\mu$s--ms) & \bad $10^{-3}$, bajo & ambiente & Dosimetría, $\Delta E$ de iones pesados, $\alpha$ & Simple, robusta, modo corriente & Señal muy pequeña, $\varepsilon_\gamma\sim1\%$\\
+Contador proporcional & $W\approx30$ eV, $M\sim10^2$--$10^4$ & $\sim$15\% (X de 6 keV) & $\sim$100 ns--$\mu$s & \bad bajo & ambiente & X blandos, $\beta$, \textbf{n térmicos} ($^3$He, BF$_3$), trazas (MWPC, TPC) & Ganancia interna, posición, buen rechazo $\gamma$ (n) & HV muy estable, $\varepsilon_\gamma$ baja\\
+Geiger--Müller & -- & \bad ninguna & \bad tiempo muerto 50--300 $\mu$s & bajo & ambiente & Contaje $\beta$/$\gamma$, protección radiológica & Barato, pulsos de V & Sólo cuenta\\
+\grp{SEMICONDUCTORES (directo, $W\approx3$--5 eV)}
+Si & gap 1.12 eV, $W=3.6$ eV & \best $\sim$0.2--0.3\% ($\alpha$ 5.5 MeV: 12--20 keV) & ns ($<$10 ns colección) & 2.33, $Z$=14 & ambiente & \textbf{Cargadas} ($\alpha$, p, iones, $e^-$), X; $\Delta E$--$E$; posición (strips) & Resolución, rápido, fino, segmentable, barato & \bad $Z$ bajo: malo para $\gamma$; daño por radiación\\
+HPGe & gap 0.67 eV, $W=2.96$ eV & \best $\approx$0.15\% (1.8 keV a 1332 keV) & \bad $\sim$5--10 ns (colección lenta) & 5.32, $Z$=32 & \bad 77 K & \textbf{$\gamma$ y X} de alta resolución, tracking (AGATA) & \best Mejor resolución $\gamma$ & Refrigerar, caro, $\varepsilon_{int}$ menor que centelleadores densos\\
+CdTe / CZT & gap $\approx$1.5 eV, $W\approx4.5$ eV & 1--3\% (662 keV) & ns & 5.8, $Z\approx$50 & ambiente & $\gamma$/X de baja energía portátil, imagen médica & $Z$ alto sin refrigerar & Volúmenes pequeños, mal transporte de huecos\\
+\grp{CENTELLEADORES (indirecto, $\sim$25 eV/fotón; $\sim$100--500 eV/fotoelectrón)}
+NaI(Tl) & 38\,000 fot/MeV & $\approx$7\% (662 keV) & $\sim$ns ($\tau$=230 ns) & 3.67, $Z$=51 & ambiente & $\gamma$ (eficiencia, medicina nuclear) & \best Barato, cristales grandes, mucha luz & Higroscópico, frágil, resolución media\\
+LaBr$_3$(Ce) & \best 63\,000 fot/MeV & \best $\approx$3\% (mejor centelleador) & \best $\sim$100--200 ps ($\tau$=25 ns) & 3.79, $Z$=47 & ambiente & $\gamma$ + \textbf{fast timing} (vidas medias) & Resolución y rapidez & Actividad intrínseca ($^{138}$La), caro\\
+BGO & 8\,200 fot/MeV & \bad $\approx$10--12\% & lento ($\tau$=300 ns) & \best 7.13, $Z$=75 & ambiente & Máxima eficiencia $\gamma$: PET, escudos anti-Compton, calorímetros & \best Densidad y $Z$ máximos & Poca luz\\
+BaF$_2$ & 1\,500 + 9\,500 fot/MeV & $\approx$10\% & \best $\sim$100 ps (0.6 ns, UV) & 4.89, $Z$=53 & ambiente & Timing $\gamma$, altas tasas & Componente ultrarrápida & Emisión UV, componente lenta\\
+LSO / LYSO & 25--41\,000 fot/MeV & $\approx$8--10\% & $\sim$200 ps ($\tau\approx$40 ns) & 7.1--7.4, $Z\approx$65 & ambiente & PET-TOF & Densos y rápidos & Radiactividad del $^{176}$Lu\\
+CsI(Tl) & 40\,000 fot/MeV & 6--8\% & lento ($\mu$s) & 4.51, $Z$=54 & ambiente & $\gamma$, cargadas con PSD & No higroscópico, robusto & Lento\\
+Plástico & 10\,000 fot/MeV & \bad sin fotopico (sólo Compton) & \best $\sim$100 ps ($\tau$=2 ns) & \bad 1.03, $Z\approx$4 & ambiente & $\beta$, cargadas, \textbf{n rápidos (ToF)}, veto, trigger & Muy rápido, grande, barato, rico en H & $Z$ bajo, poca resolución\\
+Orgánico líquido & $\sim$10\,000 fot/MeV & sin fotopico & $\sim$ns & 0.9, $Z$ bajo & ambiente & \textbf{n rápidos con PSD n/$\gamma$} (NE213, BC501) & PSD, resistente a radiación & Inflamable/tóxico\\
+\bottomrule
+\end{tabularx}}
+
+\newpage
+\begin{center}{\Large\bfseries\color{NavyBlue} ¿Qué detector para cada partícula?}\end{center}
+\renewcommand{\arraystretch}{1.08}
+{\small
+\begin{tabularx}{\linewidth}{P{3.0cm}P{4.3cm}P{5.2cm}LP{4.2cm}}
+\toprule
+\textbf{Radiación} & \textbf{Cómo interacciona} & \textbf{Detector preferido} & \textbf{Por qué} & \textbf{Alternativas}\\
+\midrule
+$\alpha$, p, iones & Continua (Bethe--Bloch), alcance corto y definido, pico de Bragg & \textbf{Si} (fino, $\sim$100--300 $\mu$m); \textbf{telescopio $\Delta E$--$E$} para identificar & Alcance de $\mu$m; resolución excelente; $\Delta E\cdot E\propto Mz^2$ & Cámara de ionización (iones pesados), CsI(Tl) con PSD, gas $\Delta E$\\
+$\beta$, $e^-$ & Continua + bremsstrahlung; trayectoria errática, retrodispersión & \textbf{Si} o \textbf{plástico} ($Z$ bajo) & $Z$ bajo minimiza retrodispersión y bremsstrahlung; espesor $>R_{ex}$ (mm) & Proporcional, GM (contaje), Si(Li)\\
+X y $\gamma$ de baja energía ($<$100 keV) & Fotoeléctrico domina & \textbf{Si} / Si(Li), HPGe planar (ventana de Be), CZT & Fotoeléctrico eficiente incluso en $Z$ bajo; buena resolución & Proporcional (X blandos), NaI fino\\
+$\gamma$ de alta energía (MeV) & Compton y pares; atenuación exponencial & \textbf{HPGe} (resolución) o \textbf{NaI / LaBr$_3$ / BGO} (eficiencia) & Hace falta $Z$ y $\rho$ altos y volumen grande para el fotopico & Arrays segmentados con supresión Compton; TAS (absorción total)\\
+$\gamma$ con timing (ps) & -- & \textbf{LaBr$_3$(Ce)}, BaF$_2$ (+ HPGe para seleccionar cascada) & Subida rápida y suficiente resolución & Plástico (sólo timing), LSO/LYSO (PET-TOF)\\
+n térmicos & Captura con $\sigma\propto1/v$ & \textbf{Proporcional de $^3$He} (o BF$_3$) & $\sigma$ enorme (5330 b), $Q$=764 keV, gran rechazo $\gamma$ & Vidrio de $^6$Li, ZnS:$^6$LiF, $^{10}$B, cámara de fisión, Si + convertidor\\
+n rápidos (energía) & Dispersión elástica: retroceso de protones & \textbf{Centelleador orgánico/plástico} + \textbf{ToF}; líquido con PSD & Rico en H ($E_p$ hasta $E_n$), rápido, PSD n/$\gamma$ & Esferas de Bonner (espectro por deconvolución)\\
+n rápidos (contaje $4\pi$) & Moderar y capturar & \textbf{Matriz de polietileno + $^3$He/BF$_3$} (NERO), long counter & Alta eficiencia ($\sim$40\%) & --\\
+\bottomrule
+\end{tabularx}}
+
+\vspace{2pt}
+\begin{multicols}{3}
+\begin{caja}{Ordenaciones rápidas}
+\small
+\textbf{Resolución en energía}: HPGe $>$ Si $>$ CZT $>$ LaBr$_3$ $>$ NaI $>$ BGO $>$ plástico.\\[1pt]
+\textbf{Resolución temporal}: plástico $\approx$ BaF$_2$ $\approx$ LaBr$_3$ ($\sim$100 ps) $>$ Si (ns) $>$ NaI $>$ HPGe $>$ gas $>$ GM.\\[1pt]
+\textbf{Eficiencia $\gamma$}: BGO $>$ LSO $>$ NaI $\approx$ LaBr$_3$ $>$ HPGe $\gg$ Si $\gg$ gas.\\[1pt]
+\textbf{Energía por portador ($\downarrow$ mejor)}: Ge 2.96 $<$ Si 3.6 $<$ CZT 4.5 eV $\ll$ gas 30 eV $\ll$ centelleador ($\sim$100+ eV/fotoelectrón).
+\end{caja}
+\columnbreak
+\begin{caja}{Por qué la resolución es la que es}
+\small
+$R\approx2.355\sqrt{FW/E}$: más portadores y menor Fano $\Rightarrow$ mejor.
+Semiconductor: $W$ pequeño y $F\approx0.1$. Gas: $W$ grande. Centelleador: el cuello de botella son los \textbf{fotoelectrones} ($N_{pe}=E\cdot LY\cdot\eta\cdot QE$, $F\approx1$).
+Timing: depende del \textbf{tiempo de subida} y de la S/N ($\Delta t\approx t_r\,\Delta U/U$): centelleadores rápidos ganan; HPGe pierde (cristal grande, colección lenta).
+\end{caja}
+\columnbreak
+\begin{caja}{Fotosensores}
+\small
+\begin{tabular}{@{}llll@{}}
+& PMT & SiPM & APD\\\midrule
+Ganancia & $10^6$--$10^7$ & $10^6$ & $10^2$\\
+Tensión & \bad $\sim$1 kV & \best 20--60 V & 100--500 V\\
+Campo $B$ & \bad sensible & \best inmune & inmune\\
+Área & \best grande & pequeña & pequeña\\
+Ruido & \best bajo & \bad alto & medio\\
+\end{tabular}
+\end{caja}
+\end{multicols}
+
+
+\vspace{2pt}
+\begin{multicols}{2}
+\begin{caja}{Partículas entre sí (Tema 1, en una tabla)}
+\small
+\begin{tabular}{@{}lllll@{}}
+& Pérdida & Alcance & Detector típico & Blindaje\\\midrule
+$\alpha$ 5 MeV & continua, Bragg & 25 $\mu$m (Si) & Si fino & papel\\
+$e^-$ 1 MeV & continua + radiativa & $\approx$2 mm (Si) & Si, plástico & mm de Al\\
+$\gamma$ 1 MeV & discreta & $x_{1/2}$=4.7 cm (Si) & HPGe, NaI & Pb, hormigón\\
+n & discreta (nuclear) & -- (moderación) & $^3$He, orgánico & H + B/Li/Cd\\
+\end{tabular}
+\end{caja}
+\columnbreak
+\begin{caja}{Tres reglas para elegir}
+\small
+\begin{enumerate}
+\item \textbf{¿Energía con precisión?} $\to$ semiconductor (Si para cargadas, HPGe para $\gamma$).
+\item \textbf{¿Eficiencia o tamaño grande y barato?} $\to$ centelleador inorgánico denso (NaI, BGO).
+\item \textbf{¿Tiempo?} $\to$ centelleador rápido (plástico, LaBr$_3$, BaF$_2$) con PMT/SiPM.
+\end{enumerate}
+Y para neutrones: siempre una \textbf{reacción convertidora} ($^3$He, $^6$Li, $^{10}$B) o \textbf{protones de retroceso} (H).
+\end{caja}
+\end{multicols}
+\end{document}
